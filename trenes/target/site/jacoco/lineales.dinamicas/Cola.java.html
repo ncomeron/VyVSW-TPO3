@@ -18,7 +18,7 @@ public class Cola {
 
 <span class="nc bnc" id="L19" title="All 2 branches missed.">        if (this.esVacia()) {</span>
 <span class="nc" id="L20">            this.frente = nuevo;</span>
-        } else {
+<span class="nc" id="L21">        } else {</span>
 <span class="nc" id="L22">            this.fin.setEnlace(nuevo);</span>
         }
 <span class="nc" id="L24">        this.fin = nuevo;</span>
@@ -75,7 +75,7 @@ public class Cola {
 <span class="nc" id="L75">                nueva.fin = nueva.fin.getEnlace();</span>
 
 <span class="nc" id="L77">                aux = aux.getEnlace();</span>
-<span class="nc" id="L78">            }</span>
+            }
         }
 <span class="nc" id="L80">        return nueva;</span>
     }
@@ -94,15 +94,15 @@ public class Cola {
                 // el objeto almacenado es de tipo String?
 <span class="nc bnc" id="L95" title="All 2 branches missed.">                if (elem.getClass().equals(String.class)) {</span>
 <span class="nc" id="L96">                    s += (String) elem;</span>
-                } else {
+<span class="nc" id="L97">                } else {</span>
                     // el objeto almacenado es de tipo Integer?
 <span class="nc bnc" id="L99" title="All 2 branches missed.">                    if (elem.getClass().equals(Integer.class)) {</span>
 <span class="nc" id="L100">                        s += (Integer) elem;</span>
-                    } else{
+<span class="nc" id="L101">                    } else{</span>
                         // será de tipo char?
 <span class="nc bnc" id="L103" title="All 2 branches missed.">                        if (elem.getClass().equals(char.class)) {</span>
 <span class="nc" id="L104">                            s += (char) elem;</span>
-                        } else{
+<span class="nc" id="L105">                        } else{</span>
                             // nada conocido, concatenamos como está
 <span class="nc" id="L107">                            s += elem; </span>
                         }

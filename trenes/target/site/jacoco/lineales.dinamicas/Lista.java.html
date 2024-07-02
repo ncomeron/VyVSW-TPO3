@@ -14,11 +14,11 @@ public class Lista {
 <span class="fc" id="L14">        boolean res = true;</span>
 <span class="fc bfc" id="L15" title="All 2 branches covered.">        if (cabecera == null) {</span>
 <span class="fc" id="L16">            cabecera = nuevo;</span>
-<span class="pc bpc" id="L17" title="2 of 4 branches missed.">        } else if ((pos &lt;= this.longitud() + 1) &amp;&amp; (pos &gt; 0)) {</span>
+<span class="pc bpc" id="L17" title="1 of 4 branches missed.">        } else if ((pos &lt;= this.longitud() + 1) &amp;&amp; (pos &gt; 0)) {</span>
 <span class="pc bpc" id="L18" title="1 of 2 branches missed.">            if (pos == 1) {</span>
 <span class="nc" id="L19">                nuevo.setEnlace(cabecera);</span>
 <span class="nc" id="L20">                cabecera = nuevo;</span>
-            } else {
+<span class="nc" id="L21">            } else {</span>
 <span class="fc" id="L22">                Nodo aux = cabecera;</span>
 <span class="fc" id="L23">                int i = 1;</span>
 <span class="fc bfc" id="L24" title="All 2 branches covered.">                while (i &lt; pos - 1) {</span>
@@ -27,9 +27,9 @@ public class Lista {
                 }
 <span class="fc" id="L28">                nuevo.setEnlace(aux.getEnlace());</span>
 <span class="fc" id="L29">                aux.setEnlace(nuevo);</span>
-<span class="fc" id="L30">            }</span>
-        } else {
-<span class="nc" id="L32">            res = false;</span>
+            }
+<span class="fc" id="L31">        } else {</span>
+<span class="fc" id="L32">            res = false;</span>
         }
 
 <span class="fc" id="L35">        return res;</span>
@@ -37,43 +37,43 @@ public class Lista {
 
     public boolean eliminar(int pos) {
         boolean res;
-<span class="nc bnc" id="L40" title="All 6 branches missed.">        if ((cabecera != null) &amp;&amp; (pos &lt;= this.longitud()) &amp;&amp; (pos &gt; 0)) {</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (pos == 1) {</span>
-<span class="nc" id="L42">                cabecera = cabecera.getEnlace();</span>
-            } else {
-<span class="nc" id="L44">                Nodo aux = cabecera;</span>
-<span class="nc" id="L45">                int i = 1;</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">                while (i &lt; pos - 1) {</span>
-<span class="nc" id="L47">                    aux = aux.getEnlace();</span>
-<span class="nc" id="L48">                    i++;</span>
+<span class="pc bpc" id="L40" title="3 of 6 branches missed.">        if ((cabecera != null) &amp;&amp; (pos &lt;= this.longitud()) &amp;&amp; (pos &gt; 0)) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if (pos == 1) {</span>
+<span class="fc" id="L42">                cabecera = cabecera.getEnlace();</span>
+<span class="fc" id="L43">            } else {</span>
+<span class="fc" id="L44">                Nodo aux = cabecera;</span>
+<span class="fc" id="L45">                int i = 1;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">                while (i &lt; pos - 1) {</span>
+<span class="fc" id="L47">                    aux = aux.getEnlace();</span>
+<span class="fc" id="L48">                    i++;</span>
                 }
-<span class="nc" id="L50">                aux.setEnlace(aux.getEnlace().getEnlace());</span>
+<span class="fc" id="L50">                aux.setEnlace(aux.getEnlace().getEnlace());</span>
             }
-<span class="nc" id="L52">            res = true;</span>
-        } else {
+<span class="fc" id="L52">            res = true;</span>
+<span class="fc" id="L53">        } else {</span>
 <span class="nc" id="L54">            res = false;</span>
         }
-<span class="nc" id="L56">        return res;</span>
+<span class="fc" id="L56">        return res;</span>
     }
 
     public Object recuperar(int pos) {
-<span class="nc" id="L60">        Object res = null;</span>
-<span class="nc bnc" id="L61" title="All 6 branches missed.">        if ((cabecera != null) &amp;&amp; (pos &lt;= this.longitud()) &amp;&amp; (pos &gt; 0)) {</span>
-<span class="nc" id="L62">            Nodo aux = cabecera;</span>
-<span class="nc" id="L63">            int i = 1;</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">            while (i &lt; pos) {</span>
-<span class="nc" id="L65">                aux = aux.getEnlace();</span>
-<span class="nc" id="L66">                i++;</span>
+<span class="fc" id="L60">        Object res = null;</span>
+<span class="pc bpc" id="L61" title="3 of 6 branches missed.">        if ((cabecera != null) &amp;&amp; (pos &lt;= this.longitud()) &amp;&amp; (pos &gt; 0)) {</span>
+<span class="fc" id="L62">            Nodo aux = cabecera;</span>
+<span class="fc" id="L63">            int i = 1;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            while (i &lt; pos) {</span>
+<span class="fc" id="L65">                aux = aux.getEnlace();</span>
+<span class="fc" id="L66">                i++;</span>
             }
-<span class="nc" id="L68">            res = aux.getElem();</span>
+<span class="fc" id="L68">            res = aux.getElem();</span>
         }
-<span class="nc" id="L70">        return res;</span>
+<span class="fc" id="L70">        return res;</span>
     }
 
     public int localizar(Object elem) {
 <span class="fc" id="L74">        int res = -1;</span>
 <span class="fc" id="L75">        boolean flag = false;</span>
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (cabecera != null) {</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (cabecera != null) {</span>
 <span class="fc" id="L77">            Nodo aux = cabecera;</span>
 <span class="fc" id="L78">            int i = 1;</span>
             do {
@@ -109,51 +109,51 @@ public class Lista {
 <span class="nc" id="L109">    }</span>
 
     public Lista clonar() {
-<span class="nc" id="L112">        Lista clon = new Lista();</span>
-<span class="nc" id="L113">        clon.cabecera = new Nodo(cabecera.getElem());</span>
-<span class="nc" id="L114">        Nodo original = cabecera.getEnlace();</span>
-<span class="nc" id="L115">        Nodo aux = clon.cabecera;</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">        while (original != null) {</span>
-<span class="nc" id="L117">            aux.setEnlace(new Nodo(original.getElem()));</span>
-<span class="nc" id="L118">            aux = aux.getEnlace();</span>
-<span class="nc" id="L119">            original = original.getEnlace();</span>
+<span class="fc" id="L112">        Lista clon = new Lista();</span>
+<span class="fc" id="L113">        clon.cabecera = new Nodo(cabecera.getElem());</span>
+<span class="fc" id="L114">        Nodo original = cabecera.getEnlace();</span>
+<span class="fc" id="L115">        Nodo aux = clon.cabecera;</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        while (original != null) {</span>
+<span class="fc" id="L117">            aux.setEnlace(new Nodo(original.getElem()));</span>
+<span class="fc" id="L118">            aux = aux.getEnlace();</span>
+<span class="fc" id="L119">            original = original.getEnlace();</span>
         }
-<span class="nc" id="L121">        return clon;</span>
+<span class="fc" id="L121">        return clon;</span>
     }
 
     public void copiar(Lista lista) {
-<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (lista.cabecera != null) {</span>
-<span class="nc" id="L126">            this.cabecera = new Nodo(lista.cabecera.getElem());</span>
-<span class="nc" id="L127">            Nodo aux = cabecera;</span>
-<span class="nc" id="L128">            Nodo auxCopia = lista.cabecera.getEnlace();</span>
-<span class="nc bnc" id="L129" title="All 2 branches missed.">            while (auxCopia != null) {</span>
-<span class="nc" id="L130">                aux.setEnlace(new Nodo(auxCopia.getElem()));</span>
-<span class="nc" id="L131">                aux = aux.getEnlace();</span>
-<span class="nc" id="L132">                auxCopia = auxCopia.getEnlace();</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">        if (lista.cabecera != null) {</span>
+<span class="fc" id="L126">            this.cabecera = new Nodo(lista.cabecera.getElem());</span>
+<span class="fc" id="L127">            Nodo aux = cabecera;</span>
+<span class="fc" id="L128">            Nodo auxCopia = lista.cabecera.getEnlace();</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">            while (auxCopia != null) {</span>
+<span class="fc" id="L130">                aux.setEnlace(new Nodo(auxCopia.getElem()));</span>
+<span class="fc" id="L131">                aux = aux.getEnlace();</span>
+<span class="fc" id="L132">                auxCopia = auxCopia.getEnlace();</span>
             }
         }
-<span class="nc" id="L135">    }</span>
+<span class="fc" id="L135">    }</span>
 
     @Override
     public String toString() {
-<span class="nc" id="L139">        String res = &quot;&quot;;</span>
-<span class="nc bnc" id="L140" title="All 2 branches missed.">        if (cabecera != null) {</span>
-<span class="nc" id="L141">            Nodo aux = cabecera;</span>
-<span class="nc" id="L142">            int i = 1;</span>
-<span class="nc" id="L143">            res = &quot;{&quot;;</span>
+<span class="fc" id="L139">        String res = &quot;&quot;;</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        if (cabecera != null) {</span>
+<span class="fc" id="L141">            Nodo aux = cabecera;</span>
+<span class="fc" id="L142">            int i = 1;</span>
+<span class="fc" id="L143">            res = &quot;{&quot;;</span>
             do {
-<span class="nc" id="L145">                res += aux.getElem().toString();</span>
-<span class="nc" id="L146">                aux = aux.getEnlace();</span>
-<span class="nc bnc" id="L147" title="All 2 branches missed.">                if (aux != null) {</span>
-<span class="nc" id="L148">                    res += &quot;, &quot;;</span>
+<span class="fc" id="L145">                res += aux.getElem().toString();</span>
+<span class="fc" id="L146">                aux = aux.getEnlace();</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">                if (aux != null) {</span>
+<span class="fc" id="L148">                    res += &quot;, &quot;;</span>
                 }
-<span class="nc" id="L150">                i++;</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">            } while (aux != null);</span>
-<span class="nc" id="L152">            res += &quot;}&quot;;</span>
-<span class="nc" id="L153">        }</span>
+<span class="fc" id="L150">                i++;</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            } while (aux != null);</span>
+<span class="fc" id="L152">            res += &quot;}&quot;;</span>
+<span class="fc" id="L153">        }</span>
         else 
 <span class="nc" id="L155">            res = &quot;{Ø}&quot;;</span>
-<span class="nc" id="L156">        return res;</span>
+<span class="fc" id="L156">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

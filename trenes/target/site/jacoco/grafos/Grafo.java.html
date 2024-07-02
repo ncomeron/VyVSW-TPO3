@@ -30,7 +30,7 @@ public class Grafo {
 <span class="fc" id="L30">                auxAdy = aux.getPrimerAdy();</span>
 <span class="fc" id="L31">                inicio = inicio.getSigVertice();</span>
 <span class="fc" id="L32">                res = true;</span>
-            } else {
+<span class="fc" id="L33">            } else {</span>
 <span class="nc bnc" id="L34" title="All 4 branches missed.">                while (!res &amp;&amp; aux.getSigVertice() != null) {</span>
 <span class="nc bnc" id="L35" title="All 2 branches missed.">                    if (aux.getSigVertice().getElem().equals(elem)) {</span>
 <span class="nc" id="L36">                        auxAdy = aux.getSigVertice().getPrimerAdy();</span>
@@ -52,7 +52,7 @@ public class Grafo {
 
     private NodoVert ubicarVertice(Object buscado) {
 <span class="fc" id="L54">        NodoVert aux = inicio;</span>
-<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        while (aux != null &amp;&amp; !(aux.getElem().equals(buscado))) {</span>
+<span class="fc bfc" id="L55" title="All 4 branches covered.">        while (aux != null &amp;&amp; !(aux.getElem().equals(buscado))) {</span>
 <span class="fc" id="L56">            aux = aux.getSigVertice();</span>
         }
 <span class="fc" id="L58">        return aux;</span>
@@ -62,7 +62,7 @@ public class Grafo {
 <span class="fc" id="L62">        boolean res = false;</span>
 <span class="fc" id="L63">        NodoVert aux = inicio;</span>
 <span class="fc bfc" id="L64" title="All 4 branches covered.">        while (!res &amp;&amp; aux != null) {</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            if (aux.getElem().equals(buscado)) </span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (aux.getElem().equals(buscado)) </span>
 <span class="fc" id="L66">                res = true;</span>
 <span class="fc" id="L67">            aux = aux.getSigVertice();</span>
         }
@@ -92,10 +92,10 @@ public class Grafo {
 <span class="fc bfc" id="L92" title="All 2 branches covered.">                if (nodoOrigen.getPrimerAdy() == null) {</span>
 <span class="fc" id="L93">                    nodoOrigen.setPrimerAdy(new NodoAdy(nodoDestino, etiqueta));</span>
 <span class="fc" id="L94">                    res = true;</span>
-                } else {
+<span class="fc" id="L95">                } else {</span>
 <span class="fc" id="L96">                    NodoAdy aux2 = nodoOrigen.getPrimerAdy();</span>
 <span class="pc bpc" id="L97" title="1 of 4 branches missed.">                    while (aux2 != null &amp;&amp; !(aux2.getVertice().getElem().equals(destino))) {</span>
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">                        if (aux2.getSigAdyacente() == null) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">                        if (aux2.getSigAdyacente() == null) {</span>
 <span class="fc" id="L99">                            aux2.setSigAdyacente(new NodoAdy(nodoDestino, etiqueta));</span>
 <span class="fc" id="L100">                            res = true;</span>
                         }
@@ -145,7 +145,7 @@ public class Grafo {
 <span class="pc bpc" id="L145" title="1 of 2 branches missed.">            if (nodoOrigen.getPrimerAdy().getVertice().getElem().equals(elemDestino)) {</span>
 <span class="fc" id="L146">                nodoOrigen.setPrimerAdy(nodoOrigen.getPrimerAdy().getSigAdyacente());</span>
 <span class="fc" id="L147">                res = true;</span>
-            } else {
+<span class="fc" id="L148">            } else {</span>
 <span class="nc bnc" id="L149" title="All 4 branches missed.">                while (!res &amp;&amp; aux.getSigAdyacente() != null) {</span>
 <span class="nc bnc" id="L150" title="All 2 branches missed.">                    if (aux.getSigAdyacente().getVertice().getElem().equals(elemDestino)) {</span>
 <span class="nc" id="L151">                        aux.setSigAdyacente(aux.getSigAdyacente().getSigAdyacente());</span>
@@ -165,7 +165,7 @@ public class Grafo {
 <span class="fc" id="L165">        NodoVert aux = inicio;</span>
 <span class="fc" id="L166">        boolean encontroOrigen = false;</span>
 <span class="fc" id="L167">        boolean encontroDestino = false;</span>
-<span class="pc bpc" id="L168" title="1 of 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
+<span class="fc bfc" id="L168" title="All 6 branches covered.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
 <span class="fc bfc" id="L169" title="All 2 branches covered.">            if (aux.getElem().equals(origen)) {</span>
 <span class="fc" id="L170">                nodoOrigen = aux;</span>
 <span class="fc" id="L171">                encontroOrigen = true;</span>
@@ -215,7 +215,7 @@ public class Grafo {
 <span class="pc bpc" id="L215" title="1 of 2 branches missed.">        if (aux != null) {</span>
 <span class="fc bfc" id="L216" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
 <span class="fc" id="L217">                res = true;</span>
-            }
+<span class="fc" id="L218">            }</span>
             else {
 <span class="fc" id="L220">                visitados.insertar(aux.getElem(), visitados.longitud() + 1);</span>
 <span class="fc" id="L221">                NodoAdy auxAdy = aux.getPrimerAdy();</span>
@@ -245,7 +245,7 @@ public class Grafo {
 <span class="nc" id="L245">                auxAdy = auxAdy.getSigAdyacente();</span>
             }
 <span class="nc" id="L247">            aux = aux.getSigVertice();</span>
-<span class="nc" id="L248">        }</span>
+        }
 <span class="nc" id="L249">        return res;</span>
     }
 
@@ -302,42 +302,42 @@ public class Grafo {
                 }
 <span class="nc" id="L303">                auxAdy = auxAdy.getSigAdyacente();</span>
             }
-<span class="nc" id="L305">        }</span>
+        }
 <span class="nc" id="L306">    }</span>
     
     public Lista caminoMasCorto(Object origen, Object destino) {
-<span class="nc" id="L309">        Lista camino = new Lista();</span>
-<span class="nc" id="L310">        Lista caminoMasCorto = new Lista();</span>
-<span class="nc" id="L311">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
-<span class="nc" id="L312">        NodoVert nodoDestino = ubicarVertice(destino);</span>
-<span class="nc bnc" id="L313" title="All 4 branches missed.">        if ((nodoOrigen != null) &amp;&amp; (nodoDestino != null)) </span>
-<span class="nc" id="L314">           caminoMasCorto = caminoMasCortoAux(nodoOrigen, destino, camino, caminoMasCorto);</span>
-<span class="nc" id="L315">        return caminoMasCorto;</span>
+<span class="fc" id="L309">        Lista camino = new Lista();</span>
+<span class="fc" id="L310">        Lista caminoMasCorto = new Lista();</span>
+<span class="fc" id="L311">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
+<span class="fc" id="L312">        NodoVert nodoDestino = ubicarVertice(destino);</span>
+<span class="pc bpc" id="L313" title="2 of 4 branches missed.">        if ((nodoOrigen != null) &amp;&amp; (nodoDestino != null)) </span>
+<span class="fc" id="L314">           caminoMasCorto = caminoMasCortoAux(nodoOrigen, destino, camino, caminoMasCorto);</span>
+<span class="fc" id="L315">        return caminoMasCorto;</span>
     }
     
     private Lista caminoMasCortoAux(NodoVert aux, Object destino, Lista camino, Lista caminoMasCorto) {
         NodoAdy ady;
-<span class="nc bnc" id="L320" title="All 2 branches missed.">        if (aux != null) {</span>
-<span class="nc bnc" id="L321" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L322">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
-<span class="nc bnc" id="L323" title="All 4 branches missed.">                if ((camino.longitud() &lt; caminoMasCorto.longitud()) || (caminoMasCorto.longitud() == 0))</span>
-<span class="nc" id="L324">                    caminoMasCorto = camino.clonar(); </span>
-<span class="nc" id="L325">                camino.eliminar(camino.longitud());</span>
-            }
+<span class="pc bpc" id="L320" title="1 of 2 branches missed.">        if (aux != null) {</span>
+<span class="fc bfc" id="L321" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L322">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
+<span class="pc bpc" id="L323" title="1 of 4 branches missed.">                if ((camino.longitud() &lt; caminoMasCorto.longitud()) || (caminoMasCorto.longitud() == 0))</span>
+<span class="fc" id="L324">                    caminoMasCorto = camino.clonar(); </span>
+<span class="fc" id="L325">                camino.eliminar(camino.longitud());</span>
+<span class="fc" id="L326">            }</span>
             else {
-<span class="nc" id="L328">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
-<span class="nc" id="L329">                ady = aux.getPrimerAdy();</span>
-<span class="nc bnc" id="L330" title="All 2 branches missed.">                while (ady != null) {</span>
-<span class="nc bnc" id="L331" title="All 2 branches missed.">                    if (camino.localizar(ady.getVertice().getElem()) &lt; 0) {</span>
-<span class="nc bnc" id="L332" title="All 4 branches missed.">                        if ((caminoMasCorto.longitud() == 0) || ((camino.longitud() + 1) &lt; caminoMasCorto.longitud()))</span>
-<span class="nc" id="L333">                           caminoMasCorto = caminoMasCortoAux(ady.getVertice(), destino, camino, caminoMasCorto);</span>
+<span class="fc" id="L328">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
+<span class="fc" id="L329">                ady = aux.getPrimerAdy();</span>
+<span class="fc bfc" id="L330" title="All 2 branches covered.">                while (ady != null) {</span>
+<span class="fc bfc" id="L331" title="All 2 branches covered.">                    if (camino.localizar(ady.getVertice().getElem()) &lt; 0) {</span>
+<span class="pc bpc" id="L332" title="1 of 4 branches missed.">                        if ((caminoMasCorto.longitud() == 0) || ((camino.longitud() + 1) &lt; caminoMasCorto.longitud()))</span>
+<span class="fc" id="L333">                           caminoMasCorto = caminoMasCortoAux(ady.getVertice(), destino, camino, caminoMasCorto);</span>
                     }
-<span class="nc" id="L335">                    ady = ady.getSigAdyacente();</span>
+<span class="fc" id="L335">                    ady = ady.getSigAdyacente();</span>
                 }
-<span class="nc" id="L337">                camino.eliminar(camino.longitud());</span>
+<span class="fc" id="L337">                camino.eliminar(camino.longitud());</span>
             }
         }
-<span class="nc" id="L340">        return caminoMasCorto;</span>
+<span class="fc" id="L340">        return caminoMasCorto;</span>
     }
     
     public Object[] caminoMenorTiempo(Object origen, Object destino) {
@@ -367,7 +367,7 @@ public class Grafo {
 <span class="nc" id="L367">                    arreglo[1] = suma;</span>
                 }
 <span class="nc" id="L369">                camino.eliminar(camino.longitud());</span>
-            }
+<span class="nc" id="L370">            }</span>
             else {
 <span class="nc" id="L372">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
 <span class="nc" id="L373">                ady = aux.getPrimerAdy();</span>
@@ -387,136 +387,136 @@ public class Grafo {
     }
     
     public Lista caminoMasLargo(Object origen, Object destino) {
-<span class="nc" id="L390">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
-<span class="nc" id="L391">        Lista camino = new Lista();</span>
-<span class="nc bnc" id="L392" title="All 4 branches missed.">        if (nodoOrigen != null &amp;&amp; existeCamino(origen, destino)) {</span>
-<span class="nc" id="L393">            caminoMasLargoAux(nodoOrigen, destino, camino, 0);</span>
+<span class="fc" id="L390">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
+<span class="fc" id="L391">        Lista camino = new Lista();</span>
+<span class="pc bpc" id="L392" title="2 of 4 branches missed.">        if (nodoOrigen != null &amp;&amp; existeCamino(origen, destino)) {</span>
+<span class="fc" id="L393">            caminoMasLargoAux(nodoOrigen, destino, camino, 0);</span>
         }
-<span class="nc" id="L395">        return camino;</span>
+<span class="fc" id="L395">        return camino;</span>
     }
 
     private double caminoMasLargoAux(NodoVert aux, Object destino, Lista camino, double suma) {
-<span class="nc bnc" id="L399" title="All 2 branches missed.">        if (aux != null) {</span>
-<span class="nc bnc" id="L400" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L401">                camino.insertar(destino, camino.longitud() + 1);</span>
-<span class="nc bnc" id="L402" title="All 2 branches missed.">            } else if (camino.localizar(aux.getElem()) &lt; 0) {</span>
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">        if (aux != null) {</span>
+<span class="fc bfc" id="L400" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L401">                camino.insertar(destino, camino.longitud() + 1);</span>
+<span class="fc bfc" id="L402" title="All 2 branches covered.">            } else if (camino.localizar(aux.getElem()) &lt; 0) {</span>
                 double sumaMaxima;
                 double nuevaSuma;
-<span class="nc" id="L405">                Lista temp = new Lista();</span>
-<span class="nc" id="L406">                Lista cambio = new Lista();</span>
-<span class="nc" id="L407">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
-<span class="nc" id="L408">                cambio.copiar(camino);</span>
-<span class="nc" id="L409">                temp.copiar(camino);</span>
-<span class="nc" id="L410">                NodoAdy ady = aux.getPrimerAdy();</span>
-<span class="nc" id="L411">                sumaMaxima = caminoMasLargoAux(ady.getVertice(), destino, camino, suma + 1);</span>
-<span class="nc" id="L412">                ady = ady.getSigAdyacente();</span>
-<span class="nc bnc" id="L413" title="All 2 branches missed.">                while (ady != null) {</span>
-<span class="nc" id="L414">                    nuevaSuma = caminoMasLargoAux(ady.getVertice(), destino, temp, suma + 1);</span>
-<span class="nc bnc" id="L415" title="All 2 branches missed.">                    if (nuevaSuma &gt; 0) {</span>
-<span class="nc bnc" id="L416" title="All 2 branches missed.">                        if (sumaMaxima == 0) {</span>
-<span class="nc" id="L417">                            sumaMaxima = nuevaSuma;</span>
-<span class="nc" id="L418">                            camino.copiar(temp);</span>
-                        } else {
-<span class="nc bnc" id="L420" title="All 2 branches missed.">                            if (nuevaSuma &gt; sumaMaxima) {</span>
+<span class="fc" id="L405">                Lista temp = new Lista();</span>
+<span class="fc" id="L406">                Lista cambio = new Lista();</span>
+<span class="fc" id="L407">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
+<span class="fc" id="L408">                cambio.copiar(camino);</span>
+<span class="fc" id="L409">                temp.copiar(camino);</span>
+<span class="fc" id="L410">                NodoAdy ady = aux.getPrimerAdy();</span>
+<span class="fc" id="L411">                sumaMaxima = caminoMasLargoAux(ady.getVertice(), destino, camino, suma + 1);</span>
+<span class="fc" id="L412">                ady = ady.getSigAdyacente();</span>
+<span class="fc bfc" id="L413" title="All 2 branches covered.">                while (ady != null) {</span>
+<span class="fc" id="L414">                    nuevaSuma = caminoMasLargoAux(ady.getVertice(), destino, temp, suma + 1);</span>
+<span class="fc bfc" id="L415" title="All 2 branches covered.">                    if (nuevaSuma &gt; 0) {</span>
+<span class="fc bfc" id="L416" title="All 2 branches covered.">                        if (sumaMaxima == 0) {</span>
+<span class="fc" id="L417">                            sumaMaxima = nuevaSuma;</span>
+<span class="fc" id="L418">                            camino.copiar(temp);</span>
+<span class="fc" id="L419">                        } else {</span>
+<span class="pc bpc" id="L420" title="1 of 2 branches missed.">                            if (nuevaSuma &gt; sumaMaxima) {</span>
 <span class="nc" id="L421">                                sumaMaxima = nuevaSuma;</span>
 <span class="nc" id="L422">                                camino.copiar(temp);</span>
                             }
                         }
                     }
-<span class="nc" id="L426">                    temp.copiar(cambio);</span>
-<span class="nc" id="L427">                    ady = ady.getSigAdyacente();</span>
+<span class="fc" id="L426">                    temp.copiar(cambio);</span>
+<span class="fc" id="L427">                    ady = ady.getSigAdyacente();</span>
                 }
-<span class="nc" id="L429">                suma = sumaMaxima;</span>
-<span class="nc" id="L430">            } else {</span>
-<span class="nc" id="L431">                suma = 0;</span>
+<span class="fc" id="L429">                suma = sumaMaxima;</span>
+<span class="fc" id="L430">            } else {</span>
+<span class="fc" id="L431">                suma = 0;</span>
             }
         }
-<span class="nc" id="L434">        return suma;</span>
+<span class="fc" id="L434">        return suma;</span>
     }
 
     public Lista caminoMayorLongitud(Object origen, Object destino) {
-<span class="nc" id="L438">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
-<span class="nc" id="L439">        Lista camino = new Lista();</span>
-<span class="nc bnc" id="L440" title="All 4 branches missed.">        if (nodoOrigen != null &amp;&amp; existeCamino(origen, destino)) {</span>
-<span class="nc" id="L441">            caminoMayorLongitudAux(nodoOrigen, destino, camino, 0);</span>
+<span class="fc" id="L438">        NodoVert nodoOrigen = ubicarVertice(origen);</span>
+<span class="fc" id="L439">        Lista camino = new Lista();</span>
+<span class="pc bpc" id="L440" title="2 of 4 branches missed.">        if (nodoOrigen != null &amp;&amp; existeCamino(origen, destino)) {</span>
+<span class="fc" id="L441">            caminoMayorLongitudAux(nodoOrigen, destino, camino, 0);</span>
         }
-<span class="nc" id="L443">        return camino;</span>
+<span class="fc" id="L443">        return camino;</span>
     }
 
     private double caminoMayorLongitudAux(NodoVert aux, Object destino, Lista camino, double suma) {
-<span class="nc bnc" id="L447" title="All 2 branches missed.">        if (aux != null) {</span>
-<span class="nc bnc" id="L448" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L449">                camino.insertar(destino, camino.longitud() + 1);</span>
-<span class="nc bnc" id="L450" title="All 2 branches missed.">            } else if (camino.localizar(aux.getElem()) &lt; 0) {</span>
+<span class="pc bpc" id="L447" title="1 of 2 branches missed.">        if (aux != null) {</span>
+<span class="fc bfc" id="L448" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L449">                camino.insertar(destino, camino.longitud() + 1);</span>
+<span class="fc bfc" id="L450" title="All 2 branches covered.">            } else if (camino.localizar(aux.getElem()) &lt; 0) {</span>
                 double sumaMaxima;
                 double nuevaSuma;
-<span class="nc" id="L453">                Lista temp = new Lista();</span>
-<span class="nc" id="L454">                Lista cambio = new Lista();</span>
-<span class="nc" id="L455">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
-<span class="nc" id="L456">                cambio.copiar(camino);</span>
-<span class="nc" id="L457">                temp.copiar(camino);</span>
-<span class="nc" id="L458">                NodoAdy ady = aux.getPrimerAdy();</span>
-<span class="nc" id="L459">                sumaMaxima = caminoMayorLongitudAux(ady.getVertice(), destino, camino, suma + ady.getEtiqueta());</span>
-<span class="nc" id="L460">                ady = ady.getSigAdyacente();</span>
-<span class="nc bnc" id="L461" title="All 2 branches missed.">                while (ady != null) {</span>
-<span class="nc" id="L462">                    nuevaSuma = caminoMayorLongitudAux(ady.getVertice(), destino, temp, suma + ady.getEtiqueta());</span>
-<span class="nc bnc" id="L463" title="All 2 branches missed.">                    if (nuevaSuma &gt; 0) {</span>
-<span class="nc bnc" id="L464" title="All 2 branches missed.">                        if (sumaMaxima == 0) {</span>
-<span class="nc" id="L465">                            sumaMaxima = nuevaSuma;</span>
-<span class="nc" id="L466">                            camino.copiar(temp);</span>
-                        } else {
-<span class="nc bnc" id="L468" title="All 2 branches missed.">                            if (nuevaSuma &gt; sumaMaxima) {</span>
-<span class="nc" id="L469">                                sumaMaxima = nuevaSuma;</span>
-<span class="nc" id="L470">                                camino.copiar(temp);</span>
+<span class="fc" id="L453">                Lista temp = new Lista();</span>
+<span class="fc" id="L454">                Lista cambio = new Lista();</span>
+<span class="fc" id="L455">                camino.insertar(aux.getElem(), camino.longitud() + 1);</span>
+<span class="fc" id="L456">                cambio.copiar(camino);</span>
+<span class="fc" id="L457">                temp.copiar(camino);</span>
+<span class="fc" id="L458">                NodoAdy ady = aux.getPrimerAdy();</span>
+<span class="fc" id="L459">                sumaMaxima = caminoMayorLongitudAux(ady.getVertice(), destino, camino, suma + ady.getEtiqueta());</span>
+<span class="fc" id="L460">                ady = ady.getSigAdyacente();</span>
+<span class="fc bfc" id="L461" title="All 2 branches covered.">                while (ady != null) {</span>
+<span class="fc" id="L462">                    nuevaSuma = caminoMayorLongitudAux(ady.getVertice(), destino, temp, suma + ady.getEtiqueta());</span>
+<span class="fc bfc" id="L463" title="All 2 branches covered.">                    if (nuevaSuma &gt; 0) {</span>
+<span class="fc bfc" id="L464" title="All 2 branches covered.">                        if (sumaMaxima == 0) {</span>
+<span class="fc" id="L465">                            sumaMaxima = nuevaSuma;</span>
+<span class="fc" id="L466">                            camino.copiar(temp);</span>
+<span class="fc" id="L467">                        } else {</span>
+<span class="fc bfc" id="L468" title="All 2 branches covered.">                            if (nuevaSuma &gt; sumaMaxima) {</span>
+<span class="fc" id="L469">                                sumaMaxima = nuevaSuma;</span>
+<span class="fc" id="L470">                                camino.copiar(temp);</span>
                             }
                         }
                     }
-<span class="nc" id="L474">                    temp.copiar(cambio);</span>
-<span class="nc" id="L475">                    ady = ady.getSigAdyacente();</span>
+<span class="fc" id="L474">                    temp.copiar(cambio);</span>
+<span class="fc" id="L475">                    ady = ady.getSigAdyacente();</span>
                 }
-<span class="nc" id="L477">                suma = sumaMaxima;</span>
-<span class="nc" id="L478">            } else {</span>
-<span class="nc" id="L479">                suma = 0;</span>
+<span class="fc" id="L477">                suma = sumaMaxima;</span>
+<span class="fc" id="L478">            } else {</span>
+<span class="fc" id="L479">                suma = 0;</span>
             }
         }
-<span class="nc" id="L482">        return suma;</span>
+<span class="fc" id="L482">        return suma;</span>
     }
 
     public boolean esVacio() {
-<span class="nc bnc" id="L486" title="All 2 branches missed.">        return (inicio == null);</span>
+<span class="fc bfc" id="L486" title="All 2 branches covered.">        return (inicio == null);</span>
     }
 
     public void vaciar() {
-<span class="nc" id="L490">        inicio = null;</span>
-<span class="nc" id="L491">    }</span>
+<span class="fc" id="L490">        inicio = null;</span>
+<span class="fc" id="L491">    }</span>
 
     public Grafo clonar() {
-<span class="nc" id="L494">        Grafo clon = new Grafo();</span>
-<span class="nc bnc" id="L495" title="All 2 branches missed.">        if (inicio != null) {</span>
-<span class="nc" id="L496">            clon.inicio = new NodoVert(inicio.getElem());</span>
-<span class="nc" id="L497">            NodoVert aux = inicio;</span>
-<span class="nc" id="L498">            NodoVert auxClon = clon.inicio;</span>
-<span class="nc bnc" id="L499" title="All 2 branches missed.">            while (aux.getSigVertice() != null) {</span>
-<span class="nc" id="L500">                aux = aux.getSigVertice();</span>
-<span class="nc" id="L501">                auxClon.setSigVertice(new NodoVert(aux.getElem()));</span>
-<span class="nc" id="L502">                auxClon = auxClon.getSigVertice();</span>
+<span class="fc" id="L494">        Grafo clon = new Grafo();</span>
+<span class="pc bpc" id="L495" title="1 of 2 branches missed.">        if (inicio != null) {</span>
+<span class="fc" id="L496">            clon.inicio = new NodoVert(inicio.getElem());</span>
+<span class="fc" id="L497">            NodoVert aux = inicio;</span>
+<span class="fc" id="L498">            NodoVert auxClon = clon.inicio;</span>
+<span class="fc bfc" id="L499" title="All 2 branches covered.">            while (aux.getSigVertice() != null) {</span>
+<span class="fc" id="L500">                aux = aux.getSigVertice();</span>
+<span class="fc" id="L501">                auxClon.setSigVertice(new NodoVert(aux.getElem()));</span>
+<span class="fc" id="L502">                auxClon = auxClon.getSigVertice();</span>
             }
-<span class="nc" id="L504">            aux = inicio;</span>
-<span class="nc" id="L505">            auxClon = clon.inicio;</span>
-<span class="nc bnc" id="L506" title="All 2 branches missed.">            while (aux != null) {</span>
-<span class="nc" id="L507">                NodoAdy auxAdy = aux.getPrimerAdy();</span>
-<span class="nc" id="L508">                auxClon.setPrimerAdy(new NodoAdy(clon.ubicarVertice(auxAdy.getVertice().getElem()), auxAdy.getEtiqueta()));</span>
-<span class="nc" id="L509">                NodoAdy auxAdyClon = auxClon.getPrimerAdy();</span>
-<span class="nc bnc" id="L510" title="All 2 branches missed.">                while (auxAdy.getSigAdyacente() != null) {</span>
-<span class="nc" id="L511">                    auxAdy = auxAdy.getSigAdyacente();</span>
-<span class="nc" id="L512">                    auxAdyClon.setSigAdyacente(new NodoAdy(clon.ubicarVertice(auxAdy.getVertice().getElem()), auxAdy.getEtiqueta()));</span>
-<span class="nc" id="L513">                    auxAdyClon = auxAdyClon.getSigAdyacente();</span>
+<span class="fc" id="L504">            aux = inicio;</span>
+<span class="fc" id="L505">            auxClon = clon.inicio;</span>
+<span class="fc bfc" id="L506" title="All 2 branches covered.">            while (aux != null) {</span>
+<span class="fc" id="L507">                NodoAdy auxAdy = aux.getPrimerAdy();</span>
+<span class="fc" id="L508">                auxClon.setPrimerAdy(new NodoAdy(clon.ubicarVertice(auxAdy.getVertice().getElem()), auxAdy.getEtiqueta()));</span>
+<span class="fc" id="L509">                NodoAdy auxAdyClon = auxClon.getPrimerAdy();</span>
+<span class="fc bfc" id="L510" title="All 2 branches covered.">                while (auxAdy.getSigAdyacente() != null) {</span>
+<span class="fc" id="L511">                    auxAdy = auxAdy.getSigAdyacente();</span>
+<span class="fc" id="L512">                    auxAdyClon.setSigAdyacente(new NodoAdy(clon.ubicarVertice(auxAdy.getVertice().getElem()), auxAdy.getEtiqueta()));</span>
+<span class="fc" id="L513">                    auxAdyClon = auxAdyClon.getSigAdyacente();</span>
                 }
-<span class="nc" id="L515">                aux = aux.getSigVertice();</span>
-<span class="nc" id="L516">                auxClon = auxClon.getSigVertice();</span>
-<span class="nc" id="L517">            }</span>
+<span class="fc" id="L515">                aux = aux.getSigVertice();</span>
+<span class="fc" id="L516">                auxClon = auxClon.getSigVertice();</span>
+            }
         }
-<span class="nc" id="L519">        return clon;</span>
+<span class="fc" id="L519">        return clon;</span>
     }
 
     @Override

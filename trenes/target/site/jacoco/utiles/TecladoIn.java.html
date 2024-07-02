@@ -66,22 +66,22 @@
 	        {
 <span class="nc" id="L67">	            inputString = readLine( );</span>
 <span class="nc" id="L68">	            StringTokenizer wordSource =</span>
-	                                new StringTokenizer(inputString);
+<span class="nc" id="L69">	                                new StringTokenizer(inputString);</span>
 <span class="nc bnc" id="L70" title="All 2 branches missed.">	            if (wordSource.hasMoreTokens( ))</span>
 	            {
 <span class="nc" id="L72">	                result = wordSource.nextToken( );</span>
 <span class="nc" id="L73">	                done = true;</span>
-	            }
+<span class="nc" id="L74">	            }</span>
 	            else
 	            {
 <span class="nc" id="L77">	                System.out.println(</span>
-	                     &quot;Your input is not correct. Your input must&quot;);
+<span class="nc" id="L78">	                     &quot;Your input is not correct. Your input must&quot;);</span>
 <span class="nc" id="L79">	                System.out.println(</span>
-	                 &quot;contain at least one nonwhitespace character.&quot;);
+<span class="nc" id="L80">	                 &quot;contain at least one nonwhitespace character.&quot;);</span>
 <span class="nc" id="L81">	                System.out.println(</span>
-	                                 &quot;Please try again. Enter input:&quot;);
+<span class="nc" id="L82">	                                 &quot;Please try again. Enter input:&quot;);</span>
 	           }
-<span class="nc" id="L84">	       }</span>
+	       }
 
 <span class="nc" id="L86">	       return result;</span>
 	   }
@@ -111,22 +111,22 @@
 <span class="nc" id="L111">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L112">	                number = Integer.parseInt(inputString);</span>
 <span class="nc" id="L113">	                done = true;</span>
-	            }
+<span class="nc" id="L114">	            }</span>
 <span class="nc" id="L115">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L117">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L118">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L119">	                System.out.println(</span>
-	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L120">	                         &quot;Your input number must be&quot;);</span>
 <span class="nc" id="L121">	                System.out.println(</span>
-	                         &quot;a whole number written as an&quot;);
+<span class="nc" id="L122">	                         &quot;a whole number written as an&quot;);</span>
 <span class="nc" id="L123">	                System.out.println(</span>
-	                          &quot;ordinary numeral, such as 42&quot;);
+<span class="nc" id="L124">	                          &quot;ordinary numeral, such as 42&quot;);</span>
 <span class="nc" id="L125">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
 	                          + &quot;but do not use a plus sign.&quot;);
 <span class="nc" id="L127">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L128">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
-<span class="nc" id="L129">	            }</span>
+	            }
 	        }
 
 <span class="nc" id="L132">	        return number;</span>
@@ -157,22 +157,22 @@
 <span class="nc" id="L157">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L158">	                number = Long.parseLong(inputString);</span>
 <span class="nc" id="L159">	                done = true;</span>
-	            }
+<span class="nc" id="L160">	            }</span>
 <span class="nc" id="L161">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L163">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L164">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L165">	                System.out.println(</span>
-	                             &quot;Your input number must be&quot;);
+<span class="nc" id="L166">	                             &quot;Your input number must be&quot;);</span>
 <span class="nc" id="L167">	                System.out.println(</span>
-	                             &quot;a whole number written as an&quot;);
+<span class="nc" id="L168">	                             &quot;a whole number written as an&quot;);</span>
 <span class="nc" id="L169">	                System.out.println(</span>
-	                              &quot;ordinary numeral, such as 42&quot;);
+<span class="nc" id="L170">	                              &quot;ordinary numeral, such as 42&quot;);</span>
 <span class="nc" id="L171">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
 	                               + &quot;but do not use a plus sign.&quot;);
 <span class="nc" id="L173">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L174">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
-<span class="nc" id="L175">	            }</span>
+	            }
 	       }
 
 <span class="nc" id="L178">	        return number;</span>
@@ -203,21 +203,21 @@
 <span class="nc" id="L203">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L204">	                number = Double.parseDouble(inputString);</span>
 <span class="nc" id="L205">	                done = true;</span>
-	            }
+<span class="nc" id="L206">	            }</span>
 <span class="nc" id="L207">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L209">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L210">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L211">	                System.out.println(</span>
-	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L212">	                         &quot;Your input number must be&quot;);</span>
 <span class="nc" id="L213">	                System.out.println(</span>
-	                          &quot;an ordinary number either with&quot;);
+<span class="nc" id="L214">	                          &quot;an ordinary number either with&quot;);</span>
 <span class="nc" id="L215">	                System.out.println(</span>
-	                           &quot;or without a decimal point,&quot;);
+<span class="nc" id="L216">	                           &quot;or without a decimal point,&quot;);</span>
 <span class="nc" id="L217">	                System.out.println(&quot;such as 42 or 9.99&quot;);</span>
 <span class="nc" id="L218">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L219">	                System.out.println(&quot;Enter the number:&quot;);</span>
-<span class="nc" id="L220">	            }</span>
+	            }
 	        }
 
 <span class="nc" id="L223">	        return number;</span>
@@ -248,21 +248,21 @@
 <span class="nc" id="L248">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L249">	                number = Float.parseFloat(inputString);</span>
 <span class="nc" id="L250">	                done = true;</span>
-	            }
+<span class="nc" id="L251">	            }</span>
 <span class="nc" id="L252">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L254">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L255">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L256">	                System.out.println(</span>
-	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L257">	                         &quot;Your input number must be&quot;);</span>
 <span class="nc" id="L258">	                System.out.println(</span>
-	                          &quot;an ordinary number either with&quot;);
+<span class="nc" id="L259">	                          &quot;an ordinary number either with&quot;);</span>
 <span class="nc" id="L260">	                System.out.println(</span>
-	                          &quot;or without a decimal point,&quot;);
+<span class="nc" id="L261">	                          &quot;or without a decimal point,&quot;);</span>
 <span class="nc" id="L262">	                System.out.println(&quot;such as 42 or 9.99&quot;);</span>
 <span class="nc" id="L263">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L264">	                System.out.println(&quot;Enter the number:&quot;);</span>
-<span class="nc" id="L265">	            }</span>
+	            }
 	        }
 
 <span class="nc" id="L268">	        return number;</span>
@@ -287,14 +287,14 @@
 <span class="nc bnc" id="L287" title="All 2 branches missed.">	            if (inputString.length( ) == 0)</span>
 	            {
 <span class="nc" id="L289">	                System.out.println(</span>
-	                         &quot;Your input is not correct.&quot;);
+<span class="nc" id="L290">	                         &quot;Your input is not correct.&quot;);</span>
 <span class="nc" id="L291">	                System.out.println(</span>
-	                         &quot;Your input must contain at&quot;);
+<span class="nc" id="L292">	                         &quot;Your input must contain at&quot;);</span>
 <span class="nc" id="L293">	                System.out.println(</span>
-	                         &quot;least one nonwhitespace character.&quot;);
+<span class="nc" id="L294">	                         &quot;least one nonwhitespace character.&quot;);</span>
 <span class="nc" id="L295">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L296">	                System.out.println(&quot;Enter input:&quot;);</span>
-	            }
+<span class="nc" id="L297">	            }</span>
 	            else
 	            {
 <span class="nc" id="L300">	                nonWhite = (inputString.charAt(0));</span>
@@ -330,17 +330,17 @@
 	            {
 <span class="nc" id="L331">	                result = true;</span>
 <span class="nc" id="L332">	                done = true;</span>
-	            }
+<span class="nc" id="L333">	            }</span>
 <span class="nc bnc" id="L334" title="All 2 branches missed.">	            else if (inputString.equalsIgnoreCase(&quot;false&quot;)</span>
 <span class="nc bnc" id="L335" title="All 2 branches missed.">	                        || inputString.equalsIgnoreCase(&quot;f&quot;))</span>
 	            {
 <span class="nc" id="L337">	                result = false;</span>
 <span class="nc" id="L338">	                done = true;</span>
-	            }
+<span class="nc" id="L339">	            }</span>
 	            else
 	            {
 <span class="nc" id="L342">	                System.out.println(</span>
-	                         &quot;Your input is not correct.&quot;);
+<span class="nc" id="L343">	                         &quot;Your input is not correct.&quot;);</span>
 <span class="nc" id="L344">	                System.out.println(&quot;Your input must be&quot;);</span>
 <span class="nc" id="L345">	                System.out.println(&quot;one of the following:&quot;);</span>
 <span class="nc" id="L346">	                System.out.println(&quot;the word true,&quot;);</span>
@@ -348,7 +348,7 @@
 <span class="nc" id="L348">	                System.out.println(&quot;the letter T,&quot;);</span>
 <span class="nc" id="L349">	                System.out.println(&quot;or the letter F.&quot;);</span>
 <span class="nc" id="L350">	                System.out.println(</span>
-	                         &quot;You may use either upper-&quot;);
+<span class="nc" id="L351">	                         &quot;You may use either upper-&quot;);</span>
 <span class="nc" id="L352">	                System.out.println(&quot;or lowercase letters.&quot;);</span>
 <span class="nc" id="L353">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L354">	                System.out.println(&quot;Enter input:&quot;);</span>
@@ -369,13 +369,13 @@
 	        try
 	        {
 <span class="nc" id="L371">	            charAsInt = System.in.read( );</span>
-	        }
+<span class="nc" id="L372">	        }</span>
 <span class="nc" id="L373">	        catch(IOException e)</span>
 	        {
 <span class="nc" id="L375">	            System.out.println(e.getMessage( ));</span>
 <span class="nc" id="L376">	            System.out.println(&quot;Fatal error. Ending program.&quot;);</span>
 <span class="nc" id="L377">	            System.exit(0);</span>
-<span class="nc" id="L378">	        }</span>
+	        }
 
 <span class="nc" id="L380">	        return (char)charAsInt;</span>
 	    }
@@ -551,23 +551,23 @@
 <span class="nc" id="L551">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L552">	                number = Byte.parseByte(inputString);</span>
 <span class="nc" id="L553">	                done = true;</span>
-	            }
+<span class="nc" id="L554">	            }</span>
 <span class="nc" id="L555">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L557">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L558">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L559">	                System.out.println(</span>
-	                         &quot;Your input number must be a&quot;);
+<span class="nc" id="L560">	                         &quot;Your input number must be a&quot;);</span>
 <span class="nc" id="L561">	                System.out.println(</span>
-	                         &quot;whole number in the range&quot;);
+<span class="nc" id="L562">	                         &quot;whole number in the range&quot;);</span>
 <span class="nc" id="L563">	                System.out.println(&quot;-128 to 127, written as&quot;);</span>
 <span class="nc" id="L564">	                System.out.println(</span>
-	                         &quot;an ordinary numeral, such as 42.&quot;);
+<span class="nc" id="L565">	                         &quot;an ordinary numeral, such as 42.&quot;);</span>
 <span class="nc" id="L566">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
 	                               + &quot;but do not use a plus sign.&quot;);
 <span class="nc" id="L568">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L569">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
-<span class="nc" id="L570">	            }</span>
+	            }
 	        }
 
 <span class="nc" id="L573">	        return number;</span>
@@ -598,24 +598,24 @@
 <span class="nc" id="L598">	                inputString = inputString.trim( );</span>
 <span class="nc" id="L599">	                number = Short.parseShort(inputString);</span>
 <span class="nc" id="L600">	                done = true;</span>
-	            }
+<span class="nc" id="L601">	            }</span>
 <span class="nc" id="L602">	            catch (NumberFormatException e)</span>
 	            {
 <span class="nc" id="L604">	                System.out.println(</span>
-	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L605">	                         &quot;Your input number is not correct.&quot;);</span>
 <span class="nc" id="L606">	                System.out.println(</span>
-	                         &quot;Your input number must be a&quot;);
+<span class="nc" id="L607">	                         &quot;Your input number must be a&quot;);</span>
 <span class="nc" id="L608">	                System.out.println(</span>
-	                         &quot;whole number in the range&quot;);
+<span class="nc" id="L609">	                         &quot;whole number in the range&quot;);</span>
 <span class="nc" id="L610">	                System.out.println(</span>
-	                         &quot;-32768 to 32767, written as&quot;);
+<span class="nc" id="L611">	                         &quot;-32768 to 32767, written as&quot;);</span>
 <span class="nc" id="L612">	                System.out.println(</span>
-	                         &quot;an ordinary numeral, such as 42.&quot;);
+<span class="nc" id="L613">	                         &quot;an ordinary numeral, such as 42.&quot;);</span>
 <span class="nc" id="L614">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
 	                               + &quot;but do not use a plus sign.&quot;);
 <span class="nc" id="L616">	                System.out.println(&quot;Please try again.&quot;);</span>
 <span class="nc" id="L617">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
-<span class="nc" id="L618">	            }</span>
+	            }
 	        }
 
 <span class="nc" id="L621">	        return number;</span>
@@ -650,13 +650,13 @@
 	        try
 	        {
 <span class="nc" id="L652">	            result = System.in.read( );</span>
-	        }
+<span class="nc" id="L653">	        }</span>
 <span class="nc" id="L654">	        catch(IOException e)</span>
 	        {
 <span class="nc" id="L656">	            System.out.println(e.getMessage( ));</span>
 <span class="nc" id="L657">	            System.out.println(&quot;Fatal error. Ending program.&quot;);</span>
 <span class="nc" id="L658">	            System.exit(0);</span>
-<span class="nc" id="L659">	        }</span>
+	        }
 <span class="nc" id="L660">	        return result;</span>
 	    }
 	}

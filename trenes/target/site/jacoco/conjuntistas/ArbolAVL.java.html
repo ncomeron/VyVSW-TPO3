@@ -16,7 +16,7 @@ public class ArbolAVL {
 <span class="nc" id="L16">        boolean res = true;</span>
 <span class="nc bnc" id="L17" title="All 2 branches missed.">        if (raiz == null) {</span>
 <span class="nc" id="L18">            raiz = new NodoAVL(elem);</span>
-        } else {
+<span class="nc" id="L19">        } else {</span>
 <span class="nc" id="L20">            res = insertarAux(raiz, elem);</span>
         }
 <span class="nc bnc" id="L22" title="All 2 branches missed.">        if (res) {</span>
@@ -29,20 +29,20 @@ public class ArbolAVL {
 <span class="nc" id="L29">        boolean res = true;</span>
 <span class="nc bnc" id="L30" title="All 2 branches missed.">        if (elem.equals(aux.getElem())) {</span>
 <span class="nc" id="L31">            res = false;</span>
-        } else {
+<span class="nc" id="L32">        } else {</span>
 <span class="nc bnc" id="L33" title="All 2 branches missed.">            if (elem.compareTo(aux.getElem()) &lt; 0) {</span>
 <span class="nc bnc" id="L34" title="All 2 branches missed.">                if (aux.getIzquierdo() != null) {</span>
 <span class="nc" id="L35">                    res = insertarAux(aux.getIzquierdo(), elem);</span>
                     //aux.calcularAltura();
-                } else {
+<span class="nc" id="L37">                } else {</span>
 <span class="nc" id="L38">                    aux.setIzquierdo(new NodoAVL(elem));</span>
                     //aux.calcularAltura();
                 }
-            } else {
+<span class="nc" id="L41">            } else {</span>
 <span class="nc bnc" id="L42" title="All 2 branches missed.">                if (aux.getDerecho() != null) {</span>
 <span class="nc" id="L43">                    res = insertarAux(aux.getDerecho(), elem);</span>
                     //aux.calcularAltura();
-                } else {
+<span class="nc" id="L45">                } else {</span>
 <span class="nc" id="L46">                    aux.setDerecho(new NodoAVL(elem));</span>
                     //aux.calcularAltura();
                 }
@@ -72,11 +72,11 @@ public class ArbolAVL {
 <span class="nc bnc" id="L72" title="All 2 branches missed.">                } else if (soloHijoDer(raiz)) {</span>
 <span class="nc" id="L73">                    raiz = raiz.getDerecho();</span>
                     //raiz.calcularAltura();
-                } else {
+<span class="nc" id="L75">                } else {</span>
 <span class="nc" id="L76">                    raiz = tercerCaso(raiz);</span>
                 }
 <span class="nc" id="L78">                res = true;</span>
-            } else {
+<span class="nc" id="L79">            } else {</span>
 <span class="nc" id="L80">                res = eliminarAux(raiz, elem);</span>
             }
         }
@@ -99,7 +99,7 @@ public class ArbolAVL {
 <span class="nc bnc" id="L99" title="All 2 branches missed.">                } else if (soloHijoDer(aux.getIzquierdo())) {</span>
 <span class="nc" id="L100">                    aux.setIzquierdo(aux.getIzquierdo().getDerecho());</span>
                     //aux.calcularAltura();
-                } else {
+<span class="nc" id="L102">                } else {</span>
 <span class="nc" id="L103">                    aux.setIzquierdo(tercerCaso(aux.getIzquierdo()));</span>
                     //aux.calcularAltura();
                 }
@@ -114,12 +114,12 @@ public class ArbolAVL {
 <span class="nc bnc" id="L114" title="All 2 branches missed.">                } else if (soloHijoDer(aux.getDerecho())) {</span>
 <span class="nc" id="L115">                    aux.setDerecho(aux.getDerecho().getDerecho());</span>
                     //aux.calcularAltura();
-                } else {
+<span class="nc" id="L117">                } else {</span>
 <span class="nc" id="L118">                    aux.setDerecho(tercerCaso(aux.getDerecho()));</span>
                     //aux.calcularAltura();
                 }
 <span class="nc" id="L121">                res = true;</span>
-            } else {
+<span class="nc" id="L122">            } else {</span>
 <span class="nc" id="L123">                res = eliminarAux(aux.getIzquierdo(), elem);</span>
 <span class="nc bnc" id="L124" title="All 2 branches missed.">                if (!res) {</span>
 <span class="nc" id="L125">                    res = eliminarAux(aux.getDerecho(), elem);</span>
@@ -139,7 +139,7 @@ public class ArbolAVL {
 <span class="nc" id="L139">            int balanceHD = alturaAux(n.getDerecho().getIzquierdo()) - alturaAux(n.getDerecho().getDerecho());</span>
 <span class="nc bnc" id="L140" title="All 2 branches missed.">            if (balanceHD &lt; 0) {</span>
 <span class="nc" id="L141">                rotacionSimpleIzq(n);</span>
-            } else {
+<span class="nc" id="L142">            } else {</span>
 <span class="nc" id="L143">                rotacionSimpleDer(n.getDerecho());</span>
 <span class="nc" id="L144">                rotacionSimpleIzq(n);</span>
             }
@@ -147,7 +147,7 @@ public class ArbolAVL {
 <span class="nc" id="L147">            int balanceHI = alturaAux(n.getIzquierdo().getIzquierdo()) - alturaAux(n.getIzquierdo().getDerecho());</span>
 <span class="nc bnc" id="L148" title="All 2 branches missed.">            if (balanceHI &gt; 0) {</span>
 <span class="nc" id="L149">                rotacionSimpleDer(n);</span>
-            } else {
+<span class="nc" id="L150">            } else {</span>
 <span class="nc" id="L151">                rotacionSimpleIzq(n.getIzquierdo());</span>
 <span class="nc" id="L152">                rotacionSimpleDer(n);</span>
             }
@@ -267,7 +267,7 @@ public class ArbolAVL {
         int suma;
 <span class="nc bnc" id="L268" title="All 2 branches missed.">        if (aux == null) {</span>
 <span class="nc" id="L269">            suma = -1;</span>
-        } else {
+<span class="nc" id="L270">        } else {</span>
 <span class="nc" id="L271">            suma = 1 + Math.max(alturaAux(aux.getIzquierdo()),</span>
 <span class="nc" id="L272">                    alturaAux(aux.getDerecho()));</span>
         }
@@ -287,10 +287,10 @@ public class ArbolAVL {
 <span class="nc bnc" id="L287" title="All 2 branches missed.">        if (aux != null) {</span>
 <span class="nc bnc" id="L288" title="All 2 branches missed.">            if (elem.equals(aux.getElem())) {</span>
 <span class="nc" id="L289">                res = true;</span>
-            } else {
+<span class="nc" id="L290">            } else {</span>
 <span class="nc bnc" id="L291" title="All 2 branches missed.">                if (elem.compareTo(aux.getElem()) &lt; 0) {</span>
 <span class="nc" id="L292">                    res = perteneceAux(aux.getIzquierdo(), elem);</span>
-                } else {
+<span class="nc" id="L293">                } else {</span>
 <span class="nc" id="L294">                    res = perteneceAux(aux.getDerecho(), elem);</span>
                 }
             }
@@ -306,7 +306,7 @@ public class ArbolAVL {
         Comparable res;
 <span class="nc bnc" id="L307" title="All 2 branches missed.">        if (raiz != null) {</span>
 <span class="nc" id="L308">            res = obtenerMinAux(raiz).getElem();</span>
-        } else {
+<span class="nc" id="L309">        } else {</span>
 <span class="nc" id="L310">            res = null;</span>
         }
 <span class="nc" id="L312">        return res;</span>
@@ -316,7 +316,7 @@ public class ArbolAVL {
         NodoAVL res;
 <span class="nc bnc" id="L317" title="All 2 branches missed.">        if (aux.getIzquierdo() == null) {</span>
 <span class="nc" id="L318">            res = aux;</span>
-        } else {
+<span class="nc" id="L319">        } else {</span>
 <span class="nc" id="L320">            res = obtenerMinAux(aux.getIzquierdo());</span>
         }
 <span class="nc" id="L322">        return res;</span>
@@ -331,7 +331,7 @@ public class ArbolAVL {
     private NodoAVL eliminarMinAux(NodoAVL aux) {
 <span class="nc bnc" id="L332" title="All 2 branches missed.">        if (aux.getIzquierdo() == null) {</span>
 <span class="nc" id="L333">            aux = aux.getDerecho();</span>
-        } else {
+<span class="nc" id="L334">        } else {</span>
 <span class="nc" id="L335">            aux.setIzquierdo(eliminarMinAux(aux.getIzquierdo()));</span>
         }
 <span class="nc" id="L337">        return aux;</span>
@@ -341,7 +341,7 @@ public class ArbolAVL {
         Comparable res;
 <span class="nc bnc" id="L342" title="All 2 branches missed.">        if (raiz != null) {</span>
 <span class="nc" id="L343">            res = obtenerMaxAux(raiz).getElem();</span>
-        } else {
+<span class="nc" id="L344">        } else {</span>
 <span class="nc" id="L345">            res = null;</span>
         }
 <span class="nc" id="L347">        return res;</span>
@@ -351,7 +351,7 @@ public class ArbolAVL {
         NodoAVL res;
 <span class="nc bnc" id="L352" title="All 2 branches missed.">        if (aux.getDerecho() == null) {</span>
 <span class="nc" id="L353">            res = aux;</span>
-        } else {
+<span class="nc" id="L354">        } else {</span>
 <span class="nc" id="L355">            res = obtenerMaxAux(aux.getDerecho());</span>
         }
 <span class="nc" id="L357">        return res;</span>
@@ -366,7 +366,7 @@ public class ArbolAVL {
     private NodoAVL eliminarMaxAux(NodoAVL aux) {
 <span class="nc bnc" id="L367" title="All 2 branches missed.">        if (aux.getDerecho() == null) {</span>
 <span class="nc" id="L368">            aux = aux.getIzquierdo();</span>
-        } else {
+<span class="nc" id="L369">        } else {</span>
 <span class="nc" id="L370">            aux.setDerecho(eliminarMaxAux(aux.getDerecho()));</span>
         }
 <span class="nc" id="L372">        return aux;</span>
@@ -452,13 +452,13 @@ public class ArbolAVL {
 <span class="nc" id="L452">        res += &quot;(&quot;;</span>
 <span class="nc bnc" id="L453" title="All 2 branches missed.">        if (aux.getIzquierdo() != null) {</span>
 <span class="nc" id="L454">            res += aux.getIzquierdo().getElem().toString();</span>
-        } else {
+<span class="nc" id="L455">        } else {</span>
 <span class="nc" id="L456">            res += &quot;null&quot;;</span>
         }
 <span class="nc" id="L458">        res += &quot;, &quot;;</span>
 <span class="nc bnc" id="L459" title="All 2 branches missed.">        if (aux.getDerecho() != null) {</span>
 <span class="nc" id="L460">            res += aux.getDerecho().getElem().toString();</span>
-        } else {
+<span class="nc" id="L461">        } else {</span>
 <span class="nc" id="L462">            res += &quot;null&quot;;</span>
         }
 <span class="nc" id="L464">        res += &quot;)&quot;;</span>

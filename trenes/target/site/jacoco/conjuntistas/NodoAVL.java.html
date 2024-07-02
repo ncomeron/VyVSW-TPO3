@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NodoAVL.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">conjuntistas</a> &gt; <span class="el_source">NodoAVL.java</span></div><h1>NodoAVL.java</h1><pre class="source lang-java linenums">package conjuntistas;
+
+public class NodoAVL {
+    
+    private Comparable elem;
+    private NodoAVL izquierdo;
+    private NodoAVL derecho;
+    //private int altura;
+
+<span class="nc" id="L10">    public NodoAVL(Comparable elem) {</span>
+<span class="nc" id="L11">        this.elem = elem;</span>
+<span class="nc" id="L12">        this.izquierdo = null;</span>
+<span class="nc" id="L13">        this.derecho = null;</span>
+        //this.calcularAltura();
+<span class="nc" id="L15">    }</span>
+    
+<span class="nc" id="L17">    public NodoAVL(Comparable elem, NodoAVL izquierdo, NodoAVL derecho) {</span>
+<span class="nc" id="L18">        this.elem = elem;</span>
+<span class="nc" id="L19">        this.izquierdo = izquierdo;</span>
+<span class="nc" id="L20">        this.derecho = derecho;</span>
+        //this.calcularAltura();
+<span class="nc" id="L22">    }</span>
+
+    public Comparable getElem() {
+<span class="nc" id="L25">        return elem;</span>
+    }
+
+    public void setElem(Comparable elem) {
+<span class="nc" id="L29">        this.elem = elem;</span>
+<span class="nc" id="L30">    }</span>
+
+    public NodoAVL getIzquierdo() {
+<span class="nc" id="L33">        return izquierdo;</span>
+    }
+
+    public void setIzquierdo(NodoAVL izquierdo) {
+<span class="nc" id="L37">        this.izquierdo = izquierdo;</span>
+<span class="nc" id="L38">    }</span>
+
+    public NodoAVL getDerecho() {
+<span class="nc" id="L41">        return derecho;</span>
+    }
+
+    public void setDerecho(NodoAVL derecho) {
+<span class="nc" id="L45">        this.derecho = derecho;</span>
+<span class="nc" id="L46">    }</span>
+    
+    /*
+    public void calcularAltura() {
+        int altHI = -1;
+        int altHD = -1;
+        if (this.getDerecho() != null) 
+            altHD = this.getDerecho().getAltura();
+        if (this.getIzquierdo() != null) 
+            altHI = this.getIzquierdo().getAltura();
+        this.altura = (Math.max(altHD, altHI) + 1);
+    }
+    
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+    */
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

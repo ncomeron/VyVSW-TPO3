@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Diccionario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">especificos</a> &gt; <span class="el_source">Diccionario.java</span></div><h1>Diccionario.java</h1><pre class="source lang-java linenums">package especificos;
+
+/* Ineficiencia a la hora de autobalancear debido al alturaAux(), hay que agregar atrib altura al nodo */
+
+import lineales.dinamicas.Lista;
+
+public class Diccionario {
+    
+    private NodoAVLDicc raiz;
+
+<span class="fc" id="L11">    public Diccionario() {</span>
+<span class="fc" id="L12">        this.raiz = null;</span>
+<span class="fc" id="L13">    }</span>
+
+    public boolean insertar(Comparable clave, Object dato) {
+<span class="nc" id="L16">        boolean res = true;</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (raiz == null) {</span>
+<span class="nc" id="L18">            raiz = new NodoAVLDicc(clave, dato);</span>
+        } else {
+<span class="nc" id="L20">            res = insertarAux(raiz, clave, dato);</span>
+        }
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        if (res) {</span>
+<span class="nc" id="L23">            autobalancear(raiz);</span>
+        }
+<span class="nc" id="L25">        return res;</span>
+    }
+    
+    private boolean insertarAux(NodoAVLDicc aux, Comparable clave, Object dato) {
+<span class="nc" id="L29">        boolean res = true;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (clave.equals(aux.getClave())) {</span>
+<span class="nc" id="L31">            res = false;</span>
+        } else {
+<span class="nc bnc" id="L33" title="All 2 branches missed.">            if (clave.compareTo(aux.getClave()) &lt; 0) {</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">                if (aux.getIzquierdo() != null) {</span>
+<span class="nc" id="L35">                    res = insertarAux(aux.getIzquierdo(), clave, dato);</span>
+                    //aux.calcularAltura();
+                } else {
+<span class="nc" id="L38">                    aux.setIzquierdo(new NodoAVLDicc(clave, dato));</span>
+                    //aux.calcularAltura();
+                }
+            } else {
+<span class="nc bnc" id="L42" title="All 2 branches missed.">                if (aux.getDerecho() != null) {</span>
+<span class="nc" id="L43">                    res = insertarAux(aux.getDerecho(), clave, dato);</span>
+                    //aux.calcularAltura();
+                } else {
+<span class="nc" id="L46">                    aux.setDerecho(new NodoAVLDicc(clave, dato));</span>
+                    //aux.calcularAltura();
+                }
+            }
+        }
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (res) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">            if (aux.getIzquierdo() != null) {</span>
+<span class="nc" id="L53">                aux.setIzquierdo(autobalancear(aux.getIzquierdo()));</span>
+            }
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            if (aux.getDerecho() != null) {</span>
+<span class="nc" id="L56">                aux.setDerecho(autobalancear(aux.getDerecho()));</span>
+            }
+        }
+<span class="nc" id="L59">        return res;</span>
+    }
+    
+    public boolean eliminar(Comparable clave) {
+<span class="nc" id="L63">        boolean res = false;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (raiz.getClave().equals(clave)) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                if (esHoja(raiz)) {</span>
+<span class="nc" id="L67">                    raiz = null;</span>
+                    //raiz.calcularAltura();
+<span class="nc bnc" id="L69" title="All 2 branches missed.">                } else if (soloHijoIzq(raiz)) {</span>
+<span class="nc" id="L70">                    raiz = raiz.getIzquierdo();</span>
+                    //raiz.calcularAltura();
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                } else if (soloHijoDer(raiz)) {</span>
+<span class="nc" id="L73">                    raiz = raiz.getDerecho();</span>
+                    //raiz.calcularAltura();
+                } else {
+<span class="nc" id="L76">                    raiz = tercerCaso(raiz);</span>
+                }
+<span class="nc" id="L78">                res = true;</span>
+            } else {
+<span class="nc" id="L80">                res = eliminarAux(raiz, clave);</span>
+            }
+        }
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (res) {</span>
+<span class="nc" id="L84">            autobalancear(raiz);</span>
+        }
+<span class="nc" id="L86">        return res;</span>
+    }
+    
+    private boolean eliminarAux(NodoAVLDicc aux, Comparable clave) {
+<span class="nc" id="L90">        boolean res = false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if ((aux.getIzquierdo() != null) &amp;&amp; (aux.getIzquierdo().getClave().equals(clave))) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                if (esHoja(aux.getIzquierdo())) {</span>
+<span class="nc" id="L94">                    aux.setIzquierdo(null);</span>
+                    //aux.calcularAltura();
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                } else if (soloHijoIzq(aux.getIzquierdo())) {</span>
+<span class="nc" id="L97">                    aux.setIzquierdo(aux.getIzquierdo().getIzquierdo());</span>
+                    //aux.calcularAltura();
+<span class="nc bnc" id="L99" title="All 2 branches missed.">                } else if (soloHijoDer(aux.getIzquierdo())) {</span>
+<span class="nc" id="L100">                    aux.setIzquierdo(aux.getIzquierdo().getDerecho());</span>
+                    //aux.calcularAltura();
+                } else {
+<span class="nc" id="L103">                    aux.setIzquierdo(tercerCaso(aux.getIzquierdo()));</span>
+                    //aux.calcularAltura();
+                }
+<span class="nc" id="L106">                res = true;</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            } else if ((aux.getDerecho() != null) &amp;&amp; (aux.getDerecho().getClave().equals(clave))) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">                if (esHoja(aux.getDerecho())) {</span>
+<span class="nc" id="L109">                    aux.setDerecho(null);</span>
+                    //aux.calcularAltura();
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                } else if (soloHijoIzq(aux.getDerecho())) {</span>
+<span class="nc" id="L112">                    aux.setDerecho(aux.getDerecho().getIzquierdo());</span>
+                    //aux.calcularAltura();
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                } else if (soloHijoDer(aux.getDerecho())) {</span>
+<span class="nc" id="L115">                    aux.setDerecho(aux.getDerecho().getDerecho());</span>
+                    //aux.calcularAltura();
+                } else {
+<span class="nc" id="L118">                    aux.setDerecho(tercerCaso(aux.getDerecho()));</span>
+                    //aux.calcularAltura();
+                }
+<span class="nc" id="L121">                res = true;</span>
+            } else {
+<span class="nc" id="L123">                res = eliminarAux(aux.getIzquierdo(), clave);</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">                if (!res) {</span>
+<span class="nc" id="L125">                    res = eliminarAux(aux.getDerecho(), clave);</span>
+                }
+            }
+        }
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (res) {</span>
+<span class="nc" id="L130">            autobalancear(aux);</span>
+        }
+<span class="nc" id="L132">        return res;</span>
+    }
+    
+    private NodoAVLDicc autobalancear(NodoAVLDicc n) {
+        int balanceP;
+<span class="nc" id="L137">        balanceP = alturaAux(n.getIzquierdo()) - alturaAux(n.getDerecho());</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (balanceP &lt; -1) {</span>
+<span class="nc" id="L139">            int balanceHD = alturaAux(n.getDerecho().getIzquierdo()) - alturaAux(n.getDerecho().getDerecho());</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (balanceHD &lt; 0) {</span>
+<span class="nc" id="L141">                rotacionSimpleIzq(n);</span>
+            } else {
+<span class="nc" id="L143">                rotacionSimpleDer(n.getDerecho());</span>
+<span class="nc" id="L144">                rotacionSimpleIzq(n);</span>
+            }
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        } else if (balanceP &gt; 1) {</span>
+<span class="nc" id="L147">            int balanceHI = alturaAux(n.getIzquierdo().getIzquierdo()) - alturaAux(n.getIzquierdo().getDerecho());</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (balanceHI &gt; 0) {</span>
+<span class="nc" id="L149">                rotacionSimpleDer(n);</span>
+            } else {
+<span class="nc" id="L151">                rotacionSimpleIzq(n.getIzquierdo());</span>
+<span class="nc" id="L152">                rotacionSimpleDer(n);</span>
+            }
+        }
+<span class="nc" id="L155">        return n;</span>
+    }
+    
+    /*
+    private NodoAVLDicc autobalancear(NodoAVLDicc n) {
+        int balanceP = calcularBalance(n);
+        
+        if (balanceP &lt; -1)  {
+            NodoAVLDicc aux = n.getDerecho();
+            int balanceHD = calcularBalance(aux);
+            
+            if (balanceHD &lt; 0) {
+                rotacionSimpleIzq(n);
+            } else {
+                rotacionSimpleDer(n.getDerecho());
+                rotacionSimpleIzq(n);
+            }
+        } else if (balanceP &gt; 1) {
+            NodoAVLDicc aux = n.getIzquierdo();
+            int balanceHI = calcularBalance(aux);
+            
+            if (balanceHI &gt; 0) {
+                rotacionSimpleDer(n);
+            } else {
+                rotacionSimpleIzq(n.getIzquierdo());
+                rotacionSimpleDer(n);
+            }
+        }
+        return n;
+    }
+    
+    private int calcularBalance(NodoAVLDicc n) {
+        int balance;
+        if (n.getIzquierdo() != null &amp;&amp; n.getDerecho() != null)
+            balance = (n.getIzquierdo().getAltura()) - (n.getDerecho().getAltura());
+        else {
+            if (n.getIzquierdo() == null &amp;&amp; n.getDerecho() == null)
+                balance = 0;
+            else {
+                if (n.getIzquierdo() != null &amp;&amp; n.getDerecho() == null) 
+                    balance = (n.getIzquierdo().getAltura() - (-1));
+                else
+                    balance = ((-1) - (n.getDerecho().getAltura())); 
+            }
+        }
+        return balance;
+    }
+    */
+    
+    private NodoAVLDicc rotacionSimpleIzq(NodoAVLDicc n) {
+<span class="nc" id="L205">        Comparable aux1 = n.getClave();</span>
+<span class="nc" id="L206">        Object aux2 = n.getDato();</span>
+<span class="nc" id="L207">        n.setClave(n.getDerecho().getClave());</span>
+<span class="nc" id="L208">        n.setDato(n.getDerecho().getDato());</span>
+<span class="nc" id="L209">        NodoAVLDicc temp = n.getDerecho().getIzquierdo();</span>
+<span class="nc" id="L210">        n.setDerecho(n.getDerecho().getDerecho());</span>
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (n.getIzquierdo() != null) {</span>
+<span class="nc" id="L212">            NodoAVLDicc nuevoIzq = new NodoAVLDicc(aux1, aux2);</span>
+<span class="nc" id="L213">            nuevoIzq.setIzquierdo(n.getIzquierdo());</span>
+<span class="nc" id="L214">            n.setIzquierdo(nuevoIzq);</span>
+<span class="nc" id="L215">            n.getIzquierdo().setDerecho(temp);</span>
+<span class="nc" id="L216">        } else {</span>
+<span class="nc" id="L217">            n.setIzquierdo(new NodoAVLDicc(aux1, aux2));</span>
+<span class="nc" id="L218">            n.getIzquierdo().setDerecho(temp);</span>
+        }
+<span class="nc" id="L220">        return n;</span>
+    }
+
+    private NodoAVLDicc rotacionSimpleDer(NodoAVLDicc n) {
+<span class="nc" id="L224">        Comparable aux1 = n.getClave();</span>
+<span class="nc" id="L225">        Object aux2 = n.getDato();</span>
+<span class="nc" id="L226">        n.setClave(n.getIzquierdo().getClave());</span>
+<span class="nc" id="L227">        n.setDato(n.getIzquierdo().getDato());</span>
+<span class="nc" id="L228">        NodoAVLDicc temp = n.getIzquierdo().getDerecho();</span>
+<span class="nc" id="L229">        n.setIzquierdo(n.getIzquierdo().getIzquierdo());</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (n.getDerecho() != null) {</span>
+<span class="nc" id="L231">            NodoAVLDicc nuevoDer = new NodoAVLDicc(aux1, aux2);</span>
+<span class="nc" id="L232">            nuevoDer.setDerecho(n.getDerecho());</span>
+<span class="nc" id="L233">            n.setDerecho(nuevoDer);</span>
+<span class="nc" id="L234">            n.getDerecho().setIzquierdo(temp);</span>
+<span class="nc" id="L235">        } else {</span>
+<span class="nc" id="L236">            n.setDerecho(new NodoAVLDicc(aux1, aux2));</span>
+<span class="nc" id="L237">            n.getDerecho().setIzquierdo(temp);</span>
+        }
+<span class="nc" id="L239">        return n;</span>
+    }
+    
+    private boolean esHoja(NodoAVLDicc aux) {
+<span class="nc bnc" id="L243" title="All 4 branches missed.">        return ((aux.getDerecho() == null) &amp;&amp; (aux.getIzquierdo() == null));</span>
+    }
+
+    private boolean soloHijoDer(NodoAVLDicc aux) {
+<span class="nc bnc" id="L247" title="All 4 branches missed.">        return ((aux.getDerecho() != null) &amp;&amp; (aux.getIzquierdo() == null));</span>
+    }
+
+    private boolean soloHijoIzq(NodoAVLDicc aux) {
+<span class="nc bnc" id="L251" title="All 4 branches missed.">        return ((aux.getDerecho() == null) &amp;&amp; (aux.getIzquierdo() != null));</span>
+    }
+
+    private NodoAVLDicc tercerCaso(NodoAVLDicc aux) {
+        NodoAVLDicc temp;
+<span class="nc" id="L256">        temp = obtenerMinAux(aux.getDerecho());</span>
+<span class="nc" id="L257">        aux.setClave(temp.getClave());</span>
+<span class="nc" id="L258">        aux.setDato(temp.getDato());</span>
+<span class="nc" id="L259">        eliminarAux(aux, temp.getClave());</span>
+<span class="nc" id="L260">        return aux;</span>
+    }
+    
+    private int alturaAux(NodoAVLDicc aux) {
+        int suma;
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        if (aux == null) {</span>
+<span class="nc" id="L266">            suma = -1;</span>
+        } else {
+<span class="nc" id="L268">            suma = 1 + Math.max(alturaAux(aux.getIzquierdo()),</span>
+<span class="nc" id="L269">                    alturaAux(aux.getDerecho()));</span>
+        }
+<span class="nc" id="L271">        return suma;</span>
+    }
+    
+    private NodoAVLDicc obtenerMinAux(NodoAVLDicc aux) {
+        NodoAVLDicc res;
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (aux.getIzquierdo() == null) {</span>
+<span class="nc" id="L277">            res = aux;</span>
+        } else {
+<span class="nc" id="L279">            res = obtenerMinAux(aux.getIzquierdo());</span>
+        }
+<span class="nc" id="L281">        return res;</span>
+    }
+
+    public boolean existeClave(Comparable clave) {
+<span class="nc" id="L285">        boolean res = false;</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L287">            res = existeClaveAux(raiz, clave);</span>
+        }
+<span class="nc" id="L289">        return res;</span>
+    }
+
+    private boolean existeClaveAux(NodoAVLDicc aux, Comparable clave) {
+<span class="nc" id="L293">        boolean res = false;</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc bnc" id="L295" title="All 2 branches missed.">            if (clave.equals(aux.getClave())) {</span>
+<span class="nc" id="L296">                res = true;</span>
+            } else {
+<span class="nc bnc" id="L298" title="All 2 branches missed.">                if (clave.compareTo(aux.getClave()) &lt; 0) {</span>
+<span class="nc" id="L299">                    res = existeClaveAux(aux.getIzquierdo(), clave);</span>
+                } else {
+<span class="nc" id="L301">                    res = existeClaveAux(aux.getDerecho(), clave);</span>
+                }
+            }
+        }
+<span class="nc" id="L305">        return res;</span>
+    }
+    
+    public Object obtenerInformacion(Comparable clave) {
+<span class="nc" id="L309">       Object res = null;</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L311">            res = obtenerInformacionAux(raiz, clave);</span>
+        }
+<span class="nc" id="L313">        return res;</span>
+    }
+
+    private Object obtenerInformacionAux(NodoAVLDicc aux, Comparable clave) {
+<span class="nc" id="L317">        Object dato = null;</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">            if (clave.equals(aux.getClave())) {</span>
+<span class="nc" id="L320">                dato = aux.getDato();</span>
+            } else {
+<span class="nc bnc" id="L322" title="All 2 branches missed.">                if (clave.compareTo(aux.getClave()) &lt; 0) {</span>
+<span class="nc" id="L323">                    dato = obtenerInformacionAux(aux.getIzquierdo(), clave);</span>
+                } else {
+<span class="nc" id="L325">                    dato = obtenerInformacionAux(aux.getDerecho(), clave);</span>
+                }
+            }
+        }
+<span class="nc" id="L329">        return dato;</span>
+    }
+
+    public Lista listarClaves() {
+<span class="nc" id="L333">        Lista res = new Lista();</span>
+<span class="nc bnc" id="L334" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L335">            res = new Lista();</span>
+<span class="nc" id="L336">            listarClavesAux(res, raiz);</span>
+        }
+<span class="nc" id="L338">        return res;</span>
+    }
+
+    private void listarClavesAux(Lista res, NodoAVLDicc aux) {
+<span class="nc bnc" id="L342" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc" id="L343">            listarClavesAux(res, aux.getIzquierdo());</span>
+<span class="nc" id="L344">            res.insertar(aux.getClave(), res.longitud() + 1);</span>
+<span class="nc" id="L345">            listarClavesAux(res, aux.getDerecho());</span>
+        }
+<span class="nc" id="L347">    }</span>
+
+    public Lista listarDatos() {
+<span class="nc" id="L350">        Lista res = new Lista();</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L352">            res = new Lista();</span>
+<span class="nc" id="L353">            listarDatosAux(res, raiz);</span>
+        }
+<span class="nc" id="L355">        return res;</span>
+    }
+    
+    private void listarDatosAux(Lista res, NodoAVLDicc aux) {
+<span class="nc bnc" id="L359" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc" id="L360">            listarDatosAux(res, aux.getIzquierdo());</span>
+<span class="nc" id="L361">            res.insertar(aux.getDato(), res.longitud() + 1);</span>
+<span class="nc" id="L362">            listarDatosAux(res, aux.getDerecho());</span>
+        }
+<span class="nc" id="L364">    }</span>
+
+    public Lista listarRango(Comparable ini, Comparable fin) {
+<span class="nc" id="L367">        Lista res = new Lista();</span>
+<span class="nc bnc" id="L368" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L369">            res = new Lista();</span>
+<span class="nc" id="L370">            listarRangoAux(res, raiz, ini, fin);</span>
+        }
+<span class="nc" id="L372">        return res;</span>
+    }
+
+    private void listarRangoAux(Lista res, NodoAVLDicc aux, Comparable ini, Comparable fin) {
+<span class="nc bnc" id="L376" title="All 2 branches missed.">        if (aux != null) {</span>
+<span class="nc bnc" id="L377" title="All 2 branches missed.">            if (aux.getClave().compareTo(ini) &gt; 0) </span>
+<span class="nc" id="L378">                listarRangoAux(res, aux.getIzquierdo(), ini, fin);</span>
+<span class="nc bnc" id="L379" title="All 4 branches missed.">            if (aux.getClave().compareTo(ini) &gt;= 0 &amp;&amp; aux.getClave().compareTo(fin) &lt;= 0)</span>
+<span class="nc" id="L380">                res.insertar(aux.getClave(), res.longitud() + 1); </span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            if (aux.getClave().compareTo(fin) &lt; 0) </span>
+<span class="nc" id="L382">                    listarRangoAux(res, aux.getDerecho(), ini, fin);</span>
+        }
+<span class="nc" id="L384">    }</span>
+    
+    public boolean esVacio() {
+<span class="nc bnc" id="L387" title="All 2 branches missed.">        return (this.raiz == null);</span>
+    }
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L392">        String res = &quot;&quot;;</span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">        if (raiz != null) {</span>
+<span class="nc" id="L394">            res += &quot;{&quot;;</span>
+<span class="nc" id="L395">            res += toStringAux(raiz);</span>
+<span class="nc" id="L396">            res += &quot;}&quot;;</span>
+        }
+        else
+<span class="nc" id="L399">            res = &quot;{Ø}&quot;;</span>
+<span class="nc" id="L400">        return res;</span>
+    }
+
+    private String toStringAux(NodoAVLDicc aux) {
+<span class="nc" id="L404">        String res = aux.getClave().toString();</span>
+<span class="nc" id="L405">        res += &quot;(&quot;;</span>
+<span class="nc bnc" id="L406" title="All 2 branches missed.">        if (aux.getIzquierdo() != null) {</span>
+<span class="nc" id="L407">            res += aux.getIzquierdo().getClave().toString();</span>
+        } else {
+<span class="nc" id="L409">            res += &quot;null&quot;;</span>
+        }
+<span class="nc" id="L411">        res += &quot;, &quot;;</span>
+<span class="nc bnc" id="L412" title="All 2 branches missed.">        if (aux.getDerecho() != null) {</span>
+<span class="nc" id="L413">            res += aux.getDerecho().getClave().toString();</span>
+        } else {
+<span class="nc" id="L415">            res += &quot;null&quot;;</span>
+        }
+<span class="nc" id="L417">        res += &quot;)&quot;;</span>
+<span class="nc bnc" id="L418" title="All 2 branches missed.">        if (aux.getIzquierdo() != null) {</span>
+<span class="nc" id="L419">            res += &quot;, &quot;+&quot;\n&quot;+ toStringAux(aux.getIzquierdo());</span>
+        }
+<span class="nc bnc" id="L421" title="All 2 branches missed.">        if (aux.getDerecho() != null) {</span>
+<span class="nc" id="L422">            res += &quot;, &quot;+&quot;\n&quot;+ toStringAux(aux.getDerecho());</span>
+        }
+<span class="nc" id="L424">        return res;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

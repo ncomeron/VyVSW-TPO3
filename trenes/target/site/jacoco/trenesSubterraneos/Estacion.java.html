@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Estacion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">trenesSubterraneos</a> &gt; <span class="el_source">Estacion.java</span></div><h1>Estacion.java</h1><pre class="source lang-java linenums">package trenesSubterraneos;
+
+import lineales.dinamicas.Lista;
+
+public class Estacion {
+    
+    private String nombre, direccion, horario, accesibilidad;
+    private boolean esExtremo;
+    private Lista lineas;
+
+<span class="fc" id="L11">    public Estacion(String nombre, String direccion, String horario, String accesibilidad, boolean esExtremo) {</span>
+<span class="fc" id="L12">        this.nombre = nombre;</span>
+<span class="fc" id="L13">        this.direccion = direccion;</span>
+<span class="fc" id="L14">        this.horario = horario;</span>
+<span class="fc" id="L15">        this.accesibilidad = accesibilidad;</span>
+<span class="fc" id="L16">        this.esExtremo = esExtremo;</span>
+<span class="fc" id="L17">        this.lineas = new Lista();</span>
+<span class="fc" id="L18">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L21">        return nombre;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L25">        this.nombre = nombre;</span>
+<span class="nc" id="L26">    }</span>
+
+    public String getDireccion() {
+<span class="nc" id="L29">        return direccion;</span>
+    }
+
+    public void setDireccion(String direccion) {
+<span class="nc" id="L33">        this.direccion = direccion;</span>
+<span class="nc" id="L34">    }</span>
+
+    public String getHorario() {
+<span class="nc" id="L37">        return horario;</span>
+    }
+
+    public void setHorario(String horario) {
+<span class="nc" id="L41">        this.horario = horario;</span>
+<span class="nc" id="L42">    }</span>
+
+    public String getAccesibilidad() {
+<span class="nc" id="L45">        return accesibilidad;</span>
+    }
+
+    public void setAccesibilidad(String accesibilidad) {
+<span class="nc" id="L49">        this.accesibilidad = accesibilidad;</span>
+<span class="nc" id="L50">    }</span>
+
+    public boolean getEsExtremo() {
+<span class="nc" id="L53">        return esExtremo;</span>
+    }
+
+    public void setEsExtremo(boolean esExtremo) {
+<span class="nc" id="L57">        this.esExtremo = esExtremo;</span>
+<span class="nc" id="L58">    }</span>
+
+    public Lista getLineas() {
+<span class="nc" id="L61">        return lineas;</span>
+    }
+
+    public void setLineas(Lista lineas) {
+<span class="nc" id="L65">        this.lineas = lineas;</span>
+<span class="nc" id="L66">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L70">        return &quot;{&quot;+nombre+&quot;, &quot;+direccion+&quot;, &quot;+horario+&quot;, &quot;+accesibilidad+&quot;, &quot;+esExtremo+&quot;, &quot;+lineas+&quot;}&quot;+&quot;\n&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

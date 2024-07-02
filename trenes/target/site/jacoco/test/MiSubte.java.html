@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MiSubte.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">test</a> &gt; <span class="el_source">MiSubte.java</span></div><h1>MiSubte.java</h1><pre class="source lang-java linenums">package test;
+
+import trenesSubterraneos.*;
+import utiles.TecladoIn;
+import java.io.*;
+import java.util.Arrays;
+
+<span class="nc" id="L8">public class MiSubte {</span>
+
+    public static void main(String[] args) throws IOException {
+<span class="nc" id="L11">        TrenesSubterraneos miSubte = new TrenesSubterraneos();</span>
+<span class="nc" id="L12">        FileWriter archivo = new FileWriter(&quot;C:\\Users\\Nicolas\\Desktop\\log.txt&quot;);</span>
+<span class="nc" id="L13">        PrintWriter escritor = new PrintWriter(archivo);</span>
+        int op;
+
+        do {
+<span class="nc" id="L17">            op = menu();</span>
+<span class="nc bnc" id="L18" title="All 19 branches missed.">            switch (op) {</span>
+                case 1: //1.Crear sistema de prueba.
+<span class="nc" id="L20">                    cargarSistemaTrenesSubterraneos(miSubte, escritor);</span>
+<span class="nc" id="L21">                    break;</span>
+                case 2: //2.Insertar estacion.
+<span class="nc" id="L23">                    insertarEstacion(miSubte, escritor);</span>
+<span class="nc" id="L24">                    break;</span>
+                case 3: //3.Insertar vinculo estaciones.
+<span class="nc" id="L26">                    insertarTramoDeRieles(miSubte, escritor);</span>
+<span class="nc" id="L27">                    break;</span>
+                case 4: //4.Insertar tren.
+<span class="nc" id="L29">                    insertarTren(miSubte, escritor);</span>
+<span class="nc" id="L30">                    break;</span>
+                case 5: //5.Eliminar estacion.
+<span class="nc" id="L32">                    eliminarEstacion(miSubte, escritor);</span>
+<span class="nc" id="L33">                    break;</span>
+                case 6: //6.Eliminar vinculo estaciones.
+<span class="nc" id="L35">                    eliminarTramoDeRieles(miSubte, escritor);</span>
+<span class="nc" id="L36">                    break;</span>
+                case 7: //7.Eliminar tren.
+<span class="nc" id="L38">                    eliminarTren(miSubte, escritor);</span>
+<span class="nc" id="L39">                    break;</span>
+                case 8: //8.Modificar linea tren.
+<span class="nc" id="L41">                    modificarLineaTren(miSubte, escritor);</span>
+<span class="nc" id="L42">                    break;</span>
+                case 9: //9.Buscar tren y mostrar su informacion.
+<span class="nc" id="L44">                    buscarTren(miSubte, escritor);</span>
+<span class="nc" id="L45">                    break;</span>
+                case 10: //10.Buscar estar estacion y mostrar su informacion.
+<span class="nc" id="L47">                    buscarEstacion(miSubte, escritor);</span>
+<span class="nc" id="L48">                    break;</span>
+                case 11: //11.Buscar y devolver estaciones que comiencen con una determinada cadena.
+<span class="nc" id="L50">                    estacionIniciaCon(miSubte, escritor);</span>
+<span class="nc" id="L51">                    break;</span>
+                case 12: //12.Mostrar camino que pasa por menos estaciones.
+<span class="nc" id="L53">                    mostrarCaminoMenosEstaciones(miSubte, escritor);</span>
+<span class="nc" id="L54">                    break;</span>
+                case 13: //13.Mostrar camino que pasa por menos estaciones.
+<span class="nc" id="L56">                    mostrarCaminoMenorTiempo(miSubte, escritor);</span>
+<span class="nc" id="L57">                    break;</span>
+                case 14: //14.Mostrar estaciones.
+<span class="nc" id="L59">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L60">                    miSubte.mostrarEstaciones();</span>
+<span class="nc" id="L61">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L62">                    break;</span>
+                case 15: //15.Mostrar subte.
+<span class="nc" id="L64">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L65">                    miSubte.mostrarSubte();</span>
+<span class="nc" id="L66">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L67">                    break;</span>
+                case 16: //16.Mostrar lineas.
+<span class="nc" id="L69">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L70">                    miSubte.mostrarLineas();</span>
+<span class="nc" id="L71">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L72">                    break;</span>
+                case 17: //17.Mostrar trenes.
+<span class="nc" id="L74">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L75">                    miSubte.mostrarTrenes();</span>
+<span class="nc" id="L76">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L77">                    break;</span>
+                case 18: //18.Mostrar sistema.
+<span class="nc" id="L79">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L80">                    miSubte.mostrarEstructuras();</span>
+<span class="nc" id="L81">                    System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+                    break;
+            }
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        } while (op != 0);</span>
+<span class="nc" id="L85">        archivo.close();</span>
+<span class="nc" id="L86">    }</span>
+
+    public static int menu() {
+        int op;
+
+<span class="nc" id="L91">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L92">        System.out.println(&quot;|1.Crear un sistema de trenes subterraneos precargado.        |&quot;);</span>
+<span class="nc" id="L93">        System.out.println(&quot;|2.Insertar una nueva estacion.                               |&quot;);</span>
+<span class="nc" id="L94">        System.out.println(&quot;|3.Insertar un nuevo tramo entre dos estaciones.              |&quot;);</span>
+<span class="nc" id="L95">        System.out.println(&quot;|4.Insertar un nuevo tren.                                    |&quot;);</span>
+<span class="nc" id="L96">        System.out.println(&quot;|5.Eliminar una estacion existente.                           |&quot;);</span>
+<span class="nc" id="L97">        System.out.println(&quot;|6.Eliminar un tramo ya existente entre dos estaciones.       |&quot;);</span>
+<span class="nc" id="L98">        System.out.println(&quot;|7.Eliminar un tren existente.                                |&quot;);</span>
+<span class="nc" id="L99">        System.out.println(&quot;|8.Modificar linea de un tren existente.                      |&quot;);</span>
+<span class="nc" id="L100">        System.out.println(&quot;|-------------------------------------------------------------|&quot;);</span>
+<span class="nc" id="L101">        System.out.println(&quot;|Consultas sobre Trenes:                                      |&quot;);</span>
+<span class="nc" id="L102">        System.out.println(&quot;|9.Buscar tren y mostrar su informacion.                      |&quot;);</span>
+<span class="nc" id="L103">        System.out.println(&quot;|-------------------------------------------------------------|&quot;);</span>
+<span class="nc" id="L104">        System.out.println(&quot;|Consultas sobre Estaciones:                                  |&quot;);</span>
+<span class="nc" id="L105">        System.out.println(&quot;|10.Buscar estacion y mostrar su informacion.                 |&quot;);</span>
+<span class="nc" id="L106">        System.out.println(&quot;|11.Estaciones cuyo nombre comienzan con una cadena dada.     |&quot;);</span>
+<span class="nc" id="L107">        System.out.println(&quot;|-------------------------------------------------------------|&quot;);</span>
+<span class="nc" id="L108">        System.out.println(&quot;|Consultas sobre Viajes:                                      |&quot;);</span>
+<span class="nc" id="L109">        System.out.println(&quot;|12.Camino de A a B que pase por menos cantidad de estaciones.|&quot;);</span>
+<span class="nc" id="L110">        System.out.println(&quot;|13.Camino de A a B que tarde menor cantidad de tiempo.       |&quot;);</span>
+<span class="nc" id="L111">        System.out.println(&quot;|-------------------------------------------------------------|&quot;);</span>
+<span class="nc" id="L112">        System.out.println(&quot;|14.Mostrar estaciones (Diccionario/AVL)                      |&quot;);</span>
+<span class="nc" id="L113">        System.out.println(&quot;|15.Mostrar subte (Grafo)                                     |&quot;);</span>
+<span class="nc" id="L114">        System.out.println(&quot;|16.Mostrar lineas (HashMap)                                  |&quot;);</span>
+<span class="nc" id="L115">        System.out.println(&quot;|17.Mostrar trenes (HashMap)                                  |&quot;);</span>
+<span class="nc" id="L116">        System.out.println(&quot;|18.Mostrar sistema.                                          |&quot;);</span>
+<span class="nc" id="L117">        System.out.println(&quot;|0.Salir                                                      |&quot;);</span>
+<span class="nc" id="L118">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+
+        do {
+<span class="nc" id="L121">            op = TecladoIn.readLineInt();</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            if (op &lt; 0 || op &gt; 18) {</span>
+<span class="nc" id="L123">                System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L124">                System.out.println(&quot;El valor ingresado no es válido&quot;);</span>
+<span class="nc" id="L125">                System.out.println(&quot;Reeingrese valor.&quot;);</span>
+<span class="nc" id="L126">                System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+            }
+<span class="nc bnc" id="L128" title="All 4 branches missed.">        } while (op &lt; 0 || op &gt; 18);</span>
+<span class="nc" id="L129">        return op;</span>
+    }
+
+    public static void cargarSistemaTrenesSubterraneos(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+<span class="nc" id="L133">        unSisTrenSub.altaEstacion(&quot;LAS HERAS&quot;, &quot;Av Pueyrredon&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L134">        unSisTrenSub.altaEstacion(&quot;SANTA FE&quot;, &quot;Av Santa Fe&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L135">        unSisTrenSub.altaEstacion(&quot;CORRIENTES&quot;, &quot;Av Corrientes&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L136">        unSisTrenSub.altaEstacion(&quot;ONCE&quot;, &quot;Av de Mayo&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L137">        unSisTrenSub.altaEstacion(&quot;HUMBERTO 1°&quot;, &quot;Av Jujuy&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L138">        unSisTrenSub.altaEstacion(&quot;HOSPITALES&quot;, &quot;Sanchez de Loria&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+        
+<span class="nc" id="L140">        unSisTrenSub.altaEstacion(&quot;BOLIVAR&quot;, &quot;Diag Sur&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L141">        unSisTrenSub.altaEstacion(&quot;BELGRANO&quot;, &quot;Av Belgrano&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L142">        unSisTrenSub.altaEstacion(&quot;INDEPENDENCIA&quot;, &quot;Av Independencia&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L143">        unSisTrenSub.altaEstacion(&quot;JUJUY&quot;, &quot;Av Varela&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L144">        unSisTrenSub.altaEstacion(&quot;BOEDO&quot;, &quot;Av Boedo&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L145">        unSisTrenSub.altaEstacion(&quot;PLAZA DE LOS VIRREYES&quot;, &quot;Av San Pedrito&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+        
+<span class="nc" id="L147">        unSisTrenSub.altaEstacion(&quot;CATEDRAL&quot;, &quot;Diag Norte&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L148">        unSisTrenSub.altaEstacion(&quot;9 DE JULIO&quot;, &quot;Diag Norte&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L149">        unSisTrenSub.altaEstacion(&quot;CALLAO&quot;, &quot;Av Callao&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L150">        unSisTrenSub.altaEstacion(&quot;PUEYRREDON&quot;, &quot;Av Pueyrredon&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L151">        unSisTrenSub.altaEstacion(&quot;PALERMO&quot;, &quot;Av Juan B Justo&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L152">        unSisTrenSub.altaEstacion(&quot;CONGRESO DE TUCUMAN&quot;, &quot;Av Congreso&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+        
+<span class="nc" id="L154">        unSisTrenSub.altaEstacion(&quot;RETIRO&quot;, &quot;Av R Mejia&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L155">        unSisTrenSub.altaEstacion(&quot;DIAGONAL NORTE&quot;, &quot;Diag Norte&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L156">        unSisTrenSub.altaEstacion(&quot;AVENIDA DE MAYO&quot;, &quot;Av de Mayo&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L157">        unSisTrenSub.altaEstacion(&quot;MORENO&quot;, &quot;Lima&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L158">        unSisTrenSub.altaEstacion(&quot;SAN JUAN&quot;, &quot;Av San Juan&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L159">        unSisTrenSub.altaEstacion(&quot;CONSTITUCION&quot;, &quot;B de Irigoyen&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+        
+<span class="nc" id="L161">        unSisTrenSub.altaEstacion(&quot;LEANDRO ALEM&quot;, &quot;Av L N Alem&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L162">        unSisTrenSub.altaEstacion(&quot;CARLOS PELLEGRINI&quot;, &quot;Carlos Pellegrini&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L163">        unSisTrenSub.altaEstacion(&quot;URUGUAY&quot;, &quot;Av Corrientes&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L164">        unSisTrenSub.altaEstacion(&quot;CARLOS GARDEL&quot;, &quot;Av Corrientes&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L165">        unSisTrenSub.altaEstacion(&quot;DORREGO&quot;, &quot;Av Dorrego&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L166">        unSisTrenSub.altaEstacion(&quot;JUAN MANUEL DE ROSAS&quot;, &quot;Av Triunvirato&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+        
+<span class="nc" id="L168">        unSisTrenSub.altaEstacion(&quot;PLAZA DE MAYO&quot;, &quot;Paseo Colon&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+<span class="nc" id="L169">        unSisTrenSub.altaEstacion(&quot;PERU&quot;, &quot;Av de Mayo&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L170">        unSisTrenSub.altaEstacion(&quot;LIMA&quot;, &quot;Lima&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L171">        unSisTrenSub.altaEstacion(&quot;PLAZA MISERERE&quot;, &quot;Av Jujuy&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L172">        unSisTrenSub.altaEstacion(&quot;PRIMERA JUNTA&quot;, &quot;Rojas&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, false);</span>
+<span class="nc" id="L173">        unSisTrenSub.altaEstacion(&quot;SAN PEDRITO&quot;, &quot;Av Rivadavia&quot;, &quot;05:00 a 23:00hs&quot;, &quot;{Rampas, Ascensor}&quot;, true);</span>
+       
+<span class="nc" id="L175">        unSisTrenSub.altaTramoDeRieles(&quot;SAN PEDRITO&quot;, &quot;PRIMERA JUNTA&quot;, 30);</span>
+<span class="nc" id="L176">        unSisTrenSub.altaTramoDeRieles(&quot;PRIMERA JUNTA&quot;, &quot;PLAZA MISERERE&quot;, 30);</span>
+<span class="nc" id="L177">        unSisTrenSub.altaTramoDeRieles(&quot;PLAZA MISERERE&quot;, &quot;ONCE&quot;, 5);</span>
+<span class="nc" id="L178">        unSisTrenSub.altaTramoDeRieles(&quot;PLAZA MISERERE&quot;, &quot;LIMA&quot;, 10);</span>
+<span class="nc" id="L179">        unSisTrenSub.altaTramoDeRieles(&quot;LIMA&quot;, &quot;AVENIDA DE MAYO&quot;, 5);</span>
+<span class="nc" id="L180">        unSisTrenSub.altaTramoDeRieles(&quot;LIMA&quot;, &quot;PERU&quot;, 20);</span>
+<span class="nc" id="L181">        unSisTrenSub.altaTramoDeRieles(&quot;PERU&quot;, &quot;CATEDRAL&quot;, 5);</span>
+<span class="nc" id="L182">        unSisTrenSub.altaTramoDeRieles(&quot;PERU&quot;, &quot;BOLIVAR&quot;, 5);</span>
+<span class="nc" id="L183">        unSisTrenSub.altaTramoDeRieles(&quot;PERU&quot;, &quot;PLAZA DE MAYO&quot;, 10);</span>
+        
+<span class="nc" id="L185">        unSisTrenSub.altaTramoDeRieles(&quot;JUAN MANUEL DE ROSAS&quot;, &quot;DORREGO&quot;, 30);</span>
+<span class="nc" id="L186">        unSisTrenSub.altaTramoDeRieles(&quot;DORREGO&quot;, &quot;CARLOS GARDEL&quot;, 20);</span>
+<span class="nc" id="L187">        unSisTrenSub.altaTramoDeRieles(&quot;CARLOS GARDEL&quot;, &quot;CORRIENTES&quot;, 5);</span>
+<span class="nc" id="L188">        unSisTrenSub.altaTramoDeRieles(&quot;CARLOS GARDEL&quot;, &quot;URUGUAY&quot;, 15);</span>
+<span class="nc" id="L189">        unSisTrenSub.altaTramoDeRieles(&quot;URUGUAY&quot;, &quot;CARLOS PELLEGRINI&quot;, 10);</span>
+<span class="nc" id="L190">        unSisTrenSub.altaTramoDeRieles(&quot;CARLOS PELLEGRINI&quot;, &quot;9 DE JULIO&quot;, 5);</span>
+<span class="nc" id="L191">        unSisTrenSub.altaTramoDeRieles(&quot;CARLOS PELLEGRINI&quot;, &quot;LEANDRO ALEM&quot;, 10);</span>
+        
+<span class="nc" id="L193">        unSisTrenSub.altaTramoDeRieles(&quot;CONSTITUCION&quot;, &quot;SAN JUAN&quot;, 10);</span>
+<span class="nc" id="L194">        unSisTrenSub.altaTramoDeRieles(&quot;SAN JUAN&quot;, &quot;INDEPENDENCIA&quot;, 5);</span>
+<span class="nc" id="L195">        unSisTrenSub.altaTramoDeRieles(&quot;SAN JUAN&quot;, &quot;MORENO&quot;, 10);</span>
+<span class="nc" id="L196">        unSisTrenSub.altaTramoDeRieles(&quot;MORENO&quot;, &quot;AVENIDA DE MAYO&quot;, 5);</span>
+<span class="nc" id="L197">        unSisTrenSub.altaTramoDeRieles(&quot;AVENIDA DE MAYO&quot;, &quot;LIMA&quot;, 5);</span>
+<span class="nc" id="L198">        unSisTrenSub.altaTramoDeRieles(&quot;AVENIDA DE MAYO&quot;, &quot;DIAGONAL NORTE&quot;, 10);</span>
+<span class="nc" id="L199">        unSisTrenSub.altaTramoDeRieles(&quot;DIAGONAL NORTE&quot;, &quot;9 DE JULIO&quot;, 5);</span>
+<span class="nc" id="L200">        unSisTrenSub.altaTramoDeRieles(&quot;DIAGONAL NORTE&quot;, &quot;RETIRO&quot;, 25);</span>
+        
+<span class="nc" id="L202">        unSisTrenSub.altaTramoDeRieles(&quot;CONGRESO DE TUCUMAN&quot;, &quot;PALERMO&quot;, 30);</span>
+<span class="nc" id="L203">        unSisTrenSub.altaTramoDeRieles(&quot;PALERMO&quot;, &quot;PUEYRREDON&quot;, 20);</span>
+<span class="nc" id="L204">        unSisTrenSub.altaTramoDeRieles(&quot;PUEYRREDON&quot;, &quot;SANTA FE&quot;, 5);</span>
+<span class="nc" id="L205">        unSisTrenSub.altaTramoDeRieles(&quot;PUEYRREDON&quot;, &quot;CALLAO&quot;, 10);</span>
+<span class="nc" id="L206">        unSisTrenSub.altaTramoDeRieles(&quot;CALLAO&quot;, &quot;9 DE JULIO&quot;, 15);</span>
+<span class="nc" id="L207">        unSisTrenSub.altaTramoDeRieles(&quot;9 DE JULIO&quot;, &quot;CARLOS PELLEGRINI&quot;, 5);</span>
+<span class="nc" id="L208">        unSisTrenSub.altaTramoDeRieles(&quot;9 DE JULIO&quot;, &quot;DIAGONAL NORTE&quot;, 5);</span>
+<span class="nc" id="L209">        unSisTrenSub.altaTramoDeRieles(&quot;9 DE JULIO&quot;, &quot;CATEDRAL&quot;, 10);</span>
+<span class="nc" id="L210">        unSisTrenSub.altaTramoDeRieles(&quot;CATEDRAL&quot;, &quot;BOLIVAR&quot;, 5);</span>
+        
+<span class="nc" id="L212">        unSisTrenSub.altaTramoDeRieles(&quot;PLAZA DE LOS VIRREYES&quot;, &quot;BOEDO&quot;, 40);</span>
+<span class="nc" id="L213">        unSisTrenSub.altaTramoDeRieles(&quot;BOEDO&quot;, &quot;JUJUY&quot;, 10);</span>
+<span class="nc" id="L214">        unSisTrenSub.altaTramoDeRieles(&quot;JUJUY&quot;, &quot;HUMBERTO 1°&quot;, 5);</span>
+<span class="nc" id="L215">        unSisTrenSub.altaTramoDeRieles(&quot;JUJUY&quot;, &quot;INDEPENDENCIA&quot;, 10);</span>
+<span class="nc" id="L216">        unSisTrenSub.altaTramoDeRieles(&quot;INDEPENDENCIA&quot;, &quot;SAN JUAN&quot;, 5);</span>
+<span class="nc" id="L217">        unSisTrenSub.altaTramoDeRieles(&quot;INDEPENDENCIA&quot;, &quot;BELGRANO&quot;, 15);</span>
+<span class="nc" id="L218">        unSisTrenSub.altaTramoDeRieles(&quot;BELGRANO&quot;, &quot;BOLIVAR&quot;, 10);</span>
+        
+<span class="nc" id="L220">        unSisTrenSub.altaTramoDeRieles(&quot;HOSPITALES&quot;, &quot;HUMBERTO 1°&quot;, 30);</span>
+<span class="nc" id="L221">        unSisTrenSub.altaTramoDeRieles(&quot;HUMBERTO 1°&quot;, &quot;JUJUY&quot;, 5);</span>
+<span class="nc" id="L222">        unSisTrenSub.altaTramoDeRieles(&quot;HUMBERTO 1°&quot;, &quot;ONCE&quot;, 25);</span>
+<span class="nc" id="L223">        unSisTrenSub.altaTramoDeRieles(&quot;ONCE&quot;, &quot;PLAZA MISERERE&quot;, 5);</span>
+<span class="nc" id="L224">        unSisTrenSub.altaTramoDeRieles(&quot;ONCE&quot;, &quot;CORRIENTES&quot;, 15);</span>
+<span class="nc" id="L225">        unSisTrenSub.altaTramoDeRieles(&quot;CORRIENTES&quot;, &quot;CARLOS GARDEL&quot;, 5);</span>
+<span class="nc" id="L226">        unSisTrenSub.altaTramoDeRieles(&quot;CORRIENTES&quot;, &quot;SANTA FE&quot;, 20);</span>
+<span class="nc" id="L227">        unSisTrenSub.altaTramoDeRieles(&quot;SANTA FE&quot;, &quot;PUEYRREDON&quot;, 5);</span>
+<span class="nc" id="L228">        unSisTrenSub.altaTramoDeRieles(&quot;SANTA FE&quot;, &quot;LAS HERAS&quot;, 10);</span>
+        
+<span class="nc" id="L230">        unSisTrenSub.altaLinea(&quot;A&quot;, &quot;Celeste&quot;, &quot;SAN PEDRITO&quot;, &quot;PLAZA DE MAYO&quot;);</span>
+<span class="nc" id="L231">        unSisTrenSub.altaLinea(&quot;B&quot;, &quot;Rojo&quot;, &quot;JUAN MANUEL DE ROSAS&quot;, &quot;LEANDRO ALEM&quot;);</span>
+<span class="nc" id="L232">        unSisTrenSub.altaLinea(&quot;C&quot;, &quot;Azul&quot;, &quot;CONSTITUCION&quot;, &quot;RETIRO&quot;);</span>
+<span class="nc" id="L233">        unSisTrenSub.altaLinea(&quot;D&quot;, &quot;Verde&quot;, &quot;CONGRESO DE TUCUMAN&quot;, &quot;CATEDRAL&quot;);</span>
+<span class="nc" id="L234">        unSisTrenSub.altaLinea(&quot;E&quot;, &quot;Violeta&quot;, &quot;PLAZA DE LOS VIRREYES&quot;, &quot;BOLIVAR&quot;);</span>
+<span class="nc" id="L235">        unSisTrenSub.altaLinea(&quot;H&quot;, &quot;Amarillo&quot;, &quot;HOSPITALES&quot;, &quot;LAS HERAS&quot;);</span>
+        
+<span class="nc" id="L237">        unSisTrenSub.altaTren(&quot;001&quot;, &quot;A&quot;);</span>
+<span class="nc" id="L238">        unSisTrenSub.altaTren(&quot;002&quot;, &quot;B&quot;);</span>
+<span class="nc" id="L239">        unSisTrenSub.altaTren(&quot;003&quot;, &quot;C&quot;);</span>
+<span class="nc" id="L240">        unSisTrenSub.altaTren(&quot;004&quot;, &quot;D&quot;);</span>
+<span class="nc" id="L241">        unSisTrenSub.altaTren(&quot;005&quot;, &quot;E&quot;);</span>
+<span class="nc" id="L242">        unSisTrenSub.altaTren(&quot;006&quot;, &quot;H&quot;);</span>
+<span class="nc" id="L243">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L244">        System.out.println(&quot;Sistema cargado correctamente.&quot;); </span>
+<span class="nc" id="L245">        escritor.println(&quot;Sistema cargado correctamente.&quot;);</span>
+<span class="nc" id="L246">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L247">    }</span>
+
+    public static void insertarEstacion(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String nombre, direccion, horario, accesibilidad;
+        boolean esExtremo, salida;
+
+<span class="nc" id="L253">        System.out.println(&quot;Ingrese el nombre de la estacion:&quot;);</span>
+<span class="nc" id="L254">        nombre = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L255">        System.out.println(&quot;Ingrese la direccion donde se encuentra ubicada:&quot;);</span>
+<span class="nc" id="L256">        direccion = TecladoIn.readLine();</span>
+<span class="nc" id="L257">        System.out.println(&quot;Ingrese el horario de funcionamiento (hh:mm a hh:mm):&quot;);</span>
+<span class="nc" id="L258">        horario = TecladoIn.readLine();</span>
+<span class="nc" id="L259">        System.out.println(&quot;Ingrese las facilidades de accesibilidad (si posee):&quot;);</span>
+<span class="nc" id="L260">        accesibilidad = TecladoIn.readLine();</span>
+<span class="nc" id="L261">        System.out.println(&quot;Ingrese si la estacion forma parte de algunos de los extremos del recorrido (true/false):&quot;);</span>
+<span class="nc" id="L262">        esExtremo = TecladoIn.readLineBoolean();</span>
+<span class="nc" id="L263">        salida = unSisTrenSub.altaEstacion(nombre, direccion, horario, accesibilidad, esExtremo);</span>
+<span class="nc" id="L264">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L265">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L267">            System.out.println(&quot;Estacion creada correctamente.&quot;);</span>
+<span class="nc" id="L268">            escritor.println(&quot;Estacion creada correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L271">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L272">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L274">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L275">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L276">    }</span>
+    
+    public static void eliminarEstacion(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String nombre;
+        boolean salida;
+        
+<span class="nc" id="L282">        System.out.println(&quot;Ingrese el nombre de la estacion:&quot;);</span>
+<span class="nc" id="L283">        nombre = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L284">        salida = unSisTrenSub.bajaEstacion(nombre);</span>
+<span class="nc" id="L285">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L286">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L288">            System.out.println(&quot;Estacion eliminada correctamente.&quot;);</span>
+<span class="nc" id="L289">            escritor.println(&quot;Estacion eliminada correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L292">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L293">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L295">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L296">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L297">    }</span>
+    
+    public static void insertarTramoDeRieles(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String origen, destino; 
+        int tiempo;
+        boolean salida;
+
+<span class="nc" id="L304">        System.out.println(&quot;Ingrese la estacion a vincular:&quot;);</span>
+<span class="nc" id="L305">        origen = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L306">        System.out.println(&quot;Ingrese la segunda estacion a vincular:&quot;);</span>
+<span class="nc" id="L307">        destino = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L308">        System.out.println(&quot;Ingrese el tiempo de viaje:&quot;);</span>
+<span class="nc" id="L309">        tiempo = TecladoIn.readLineInt();</span>
+<span class="nc" id="L310">        salida = unSisTrenSub.altaTramoDeRieles(origen, destino, tiempo);</span>
+<span class="nc" id="L311">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L312">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L313" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L314">            System.out.println(&quot;Vinculo entre estaciones creado correctamente.&quot;);</span>
+<span class="nc" id="L315">            escritor.println(&quot;Vinculo entre estaciones creado correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L318">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L319">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L321">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L322">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L323">    }</span>
+    
+    public static void eliminarTramoDeRieles(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String origen, destino;
+        boolean salida;
+
+<span class="nc" id="L329">        System.out.println(&quot;Ingrese una de las estaciones vinculadas:&quot;);</span>
+<span class="nc" id="L330">        origen = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L331">        System.out.println(&quot;Ingrese la estacion faltante vinculada con la anterior:&quot;);</span>
+<span class="nc" id="L332">        destino = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L333">        salida = unSisTrenSub.bajaTramoDeRieles(origen, destino);</span>
+<span class="nc" id="L334">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L335">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L337">            System.out.println(&quot;Vinculo entre estaciones eliminado correctamente.&quot;);</span>
+<span class="nc" id="L338">            escritor.println(&quot;Vinculo entre estaciones eliminado correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L341">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L342">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L344">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L345">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L346">    }</span>
+    
+    public static void insertarLinea(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String linea, color, estacionIni, estacionFin;
+        boolean salida;
+
+<span class="nc" id="L352">        System.out.println(&quot;Ingrese nombre/numero de la linea:&quot;);</span>
+<span class="nc" id="L353">        linea = TecladoIn.readLine();</span>
+<span class="nc" id="L354">        System.out.println(&quot;Ingrese el color por el cual se encuentra representada en el mapa:&quot;);</span>
+<span class="nc" id="L355">        color = TecladoIn.readLine();</span>
+<span class="nc" id="L356">        System.out.println(&quot;Ingrese el nombre de la estacion donde comienza su recorrido:&quot;);</span>
+<span class="nc" id="L357">        estacionIni = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L358">        System.out.println(&quot;Ingrese el nombre de la estacion donde finaliza su recorrido:&quot;);</span>
+<span class="nc" id="L359">        estacionFin = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L360">        salida = unSisTrenSub.altaLinea(linea, color, estacionIni, estacionFin);</span>
+<span class="nc" id="L361">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L362">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L364">            System.out.println(&quot;Linea creada correctamente.&quot;);</span>
+<span class="nc" id="L365">            escritor.println(&quot;Linea creada correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L368">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L369">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L371">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L372">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L373">    }</span>
+    
+    public static void insertarTren(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String id, linea;
+        boolean salida;
+
+<span class="nc" id="L379">        System.out.println(&quot;Ingrese numero de identificacion del tren:&quot;);</span>
+<span class="nc" id="L380">        id = TecladoIn.readLine();</span>
+<span class="nc" id="L381">        System.out.println(&quot;Ingrese el nombre/numero de la linea a la cual va a ser asignado:&quot;);</span>
+<span class="nc" id="L382">        linea = TecladoIn.readLine();</span>
+<span class="nc" id="L383">        salida = unSisTrenSub.altaTren(id, linea);</span>
+<span class="nc" id="L384">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L385">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L387">            System.out.println(&quot;Tren creado correctamente.&quot;);</span>
+<span class="nc" id="L388">            escritor.println(&quot;Tren creado correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L391">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L392">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L394">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L395">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L396">    }</span>
+    
+    public static void eliminarTren(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String id;
+        boolean salida;
+        
+<span class="nc" id="L402">        System.out.println(&quot;Ingrese numero de identificacion del tren:&quot;);</span>
+<span class="nc" id="L403">        id = TecladoIn.readLine();</span>
+<span class="nc" id="L404">        salida = unSisTrenSub.bajaTren(id);</span>
+<span class="nc" id="L405">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L406">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L407" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L408">            System.out.println(&quot;Tren eliminado correctamente.&quot;);</span>
+<span class="nc" id="L409">            escritor.println(&quot;Tren eliminado correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L412">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L413">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L415">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L416">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L417">    }</span>
+    
+    public static void modificarLineaTren(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String id, linea;
+        boolean salida;
+        
+<span class="nc" id="L423">        System.out.println(&quot;Ingrese numero de identificacion del tren:&quot;);</span>
+<span class="nc" id="L424">        id = TecladoIn.readLine();</span>
+<span class="nc" id="L425">        System.out.println(&quot;Ingrese el nombre/numero de la linea a la cual va a ser asignado:&quot;);</span>
+<span class="nc" id="L426">        linea = TecladoIn.readLine();</span>
+<span class="nc" id="L427">        salida = unSisTrenSub.modificarTrenExistente(id, linea);</span>
+<span class="nc" id="L428">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L429">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L431">            System.out.println(&quot;La operacion se concreto correctamente.&quot;);</span>
+<span class="nc" id="L432">            escritor.println(&quot;La operacion se concreto correctamente.&quot;);</span>
+        }
+        else {
+<span class="nc" id="L435">            System.out.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+<span class="nc" id="L436">            escritor.println(&quot;ERROR: Ha ocurrido un error al realizar la operacion.&quot;);</span>
+        }
+<span class="nc" id="L438">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L439">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L440">    }</span>
+    
+    public static void buscarTren(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String id, salida;
+        
+<span class="nc" id="L445">        System.out.println(&quot;Ingrese numero de identificacion del tren:&quot;);</span>
+<span class="nc" id="L446">        id = TecladoIn.readLine();</span>
+<span class="nc" id="L447">        salida = unSisTrenSub.mostrarDatosTren(id);</span>
+<span class="nc" id="L448">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L449">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L450">        System.out.println(&quot;Datos del tren &quot;+id+&quot;: &quot;+salida);</span>
+<span class="nc" id="L451">        escritor.println(&quot;Datos del tren &quot;+id+&quot;: &quot;+salida);</span>
+<span class="nc" id="L452">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L453">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L454">    }</span>
+    
+    public static void buscarEstacion(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String nombreEstacion, salida;
+        
+<span class="nc" id="L459">        System.out.println(&quot;Ingrese el nombre de la estacion:&quot;);</span>
+<span class="nc" id="L460">        nombreEstacion = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L461">        salida = unSisTrenSub.mostrarDatosEstacion(nombreEstacion);</span>
+<span class="nc" id="L462">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L463">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L464">        System.out.println(&quot;Datos de la estacion: &quot;+salida);</span>
+<span class="nc" id="L465">        escritor.println(&quot;Datos de la estacion: &quot;+salida);</span>
+<span class="nc" id="L466">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L467">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L468">    }</span>
+    
+    public static void estacionIniciaCon(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String cadena;
+        
+<span class="nc" id="L473">        System.out.println(&quot;Ingrese la cadena por la cual comienza el nombre de la estacion:&quot;);</span>
+<span class="nc" id="L474">        cadena = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L475">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L476">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L477">        System.out.println(&quot;Estacion/es que contienen a la cadena '&quot;+cadena+&quot;': &quot;+unSisTrenSub.estacionSegunCadena(cadena).toString());</span>
+<span class="nc" id="L478">        escritor.println(&quot;Estacion/es que contienen a la cadena '&quot;+cadena+&quot;': &quot;+unSisTrenSub.estacionSegunCadena(cadena).toString());</span>
+<span class="nc" id="L479">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L480">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L481">    }</span>
+    
+    public static void  mostrarCaminoMenosEstaciones(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String origen, destino;
+
+<span class="nc" id="L486">        System.out.println(&quot;Ingrese una de las estaciones:&quot;);</span>
+<span class="nc" id="L487">        origen = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L488">        System.out.println(&quot;Ingrese la estacion faltante:&quot;);</span>
+<span class="nc" id="L489">        destino = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L490">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L491">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L492">        System.out.println(&quot;A continuacion se indica el camino de &quot;+origen+&quot; a &quot;+destino+&quot; que pasa por la menor cantidad de estaciones: &quot;+unSisTrenSub.caminoMenosEstaciones(origen, destino).toString());</span>
+<span class="nc" id="L493">        escritor.println(&quot;A continuacion se indica el camino de &quot;+origen+&quot; a &quot;+destino+&quot; que pasa por la menor cantidad de estaciones: &quot;+unSisTrenSub.caminoMenosEstaciones(origen, destino).toString());</span>
+<span class="nc" id="L494">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L495">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L496">    }</span>
+    
+    public static void  mostrarCaminoMenorTiempo(TrenesSubterraneos unSisTrenSub, PrintWriter escritor) {
+        String origen, destino;
+
+<span class="nc" id="L501">        System.out.println(&quot;Ingrese una de las estaciones:&quot;);</span>
+<span class="nc" id="L502">        origen = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L503">        System.out.println(&quot;Ingrese la estacion faltante:&quot;);</span>
+<span class="nc" id="L504">        destino = TecladoIn.readLine().toUpperCase();</span>
+<span class="nc" id="L505">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L506">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L507">        Object[] array = unSisTrenSub.caminoMenorTiempo(origen, destino);</span>
+<span class="nc" id="L508">        System.out.println(&quot;A continuacion se indica el camino de &quot;+origen+&quot; a &quot;+destino+&quot; que demora la menor cantidad de tiempo: &quot;+Arrays.toString(array));</span>
+<span class="nc" id="L509">        escritor.println(&quot;A continuacion se indica el camino de &quot;+origen+&quot; a &quot;+destino+&quot; que demora la menor cantidad de tiempo: &quot;+Arrays.toString(array));</span>
+<span class="nc" id="L510">        System.out.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L511">        escritor.println(&quot;---------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L512">    }</span>
+}
+    
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

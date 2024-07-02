@@ -17,6 +17,12 @@ public class TrenesSubterraneos {
         trenes = new HashMap();
         lineas = new HashMap();
     }
+    public TrenesSubterraneos(HashMap trenes, HashMap lineas, Grafo redDeRieles, Diccionario estaciones) {
+        this.redDeRieles = redDeRieles;
+        this.estaciones = estaciones;
+        this.trenes = trenes;
+        this.lineas = lineas;
+    }
 
     public TrenesSubterraneos(Diccionario estaciones) {
         this.estaciones = estaciones;

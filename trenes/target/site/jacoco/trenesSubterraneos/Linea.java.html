@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Linea.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">trenesSubterraneos</a> &gt; <span class="el_source">Linea.java</span></div><h1>Linea.java</h1><pre class="source lang-java linenums">package trenesSubterraneos;
+
+import lineales.dinamicas.Lista;
+
+public class Linea {
+    
+    private String linea, color, estacionIni, estacionFin;
+    private Lista trenesFuncionando;
+
+<span class="nc" id="L10">    public Linea(String linea, String color, String estacionIni, String estacionFin) {</span>
+<span class="nc" id="L11">        this.linea = linea;</span>
+<span class="nc" id="L12">        this.color = color;</span>
+<span class="nc" id="L13">        this.estacionIni = estacionIni;</span>
+<span class="nc" id="L14">        this.estacionFin = estacionFin;</span>
+<span class="nc" id="L15">        trenesFuncionando = new Lista();</span>
+<span class="nc" id="L16">    }</span>
+
+    public String getNombre() {
+<span class="nc" id="L19">        return linea;</span>
+    }
+
+    public void setLinea(String linea) {
+<span class="nc" id="L23">        this.linea = linea;</span>
+<span class="nc" id="L24">    }</span>
+
+    public String getColor() {
+<span class="nc" id="L27">        return color;</span>
+    }
+
+    public void setColor(String color) {
+<span class="nc" id="L31">        this.color = color;</span>
+<span class="nc" id="L32">    }</span>
+
+    public Lista getTrenesFuncionando() {
+<span class="nc" id="L35">        return trenesFuncionando;</span>
+    }
+
+    public void setTrenesFuncionando(Lista trenesFuncionando) {
+<span class="nc" id="L39">        this.trenesFuncionando = trenesFuncionando;</span>
+<span class="nc" id="L40">    }</span>
+
+    public String getEstacionIni() {
+<span class="nc" id="L43">        return estacionIni;</span>
+    }
+
+    public void setEstacionIni(String estacionIni) {
+<span class="nc" id="L47">        this.estacionIni = estacionIni;</span>
+<span class="nc" id="L48">    }</span>
+
+    public String getEstacionFin() {
+<span class="nc" id="L51">        return estacionFin;</span>
+    }
+
+    public void setEstacionFin(String estacionFin) {
+<span class="nc" id="L55">        this.estacionFin = estacionFin;</span>
+<span class="nc" id="L56">    }</span>
+    
+    @Override
+    public String toString() {
+<span class="nc" id="L60">        return &quot;{&quot;+color+&quot;, &quot;+estacionIni+&quot;, &quot;+estacionFin+&quot;, &quot;+trenesFuncionando.toString()+&quot;}&quot;+&quot;\n&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

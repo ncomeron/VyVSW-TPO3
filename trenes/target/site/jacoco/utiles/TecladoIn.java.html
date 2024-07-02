@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TecladoIn.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">utiles</a> &gt; <span class="el_source">TecladoIn.java</span></div><h1>TecladoIn.java</h1><pre class="source lang-java linenums">package utiles;
+
+
+
+	import java.io.*;
+	import java.util.*;
+
+	/**
+	 Class for simple console input.
+	 A class designed primarily for simple keyboard input of the
+	 form one input value per line. If the user enters an improper
+	 input, i.e., an input of the wrong type or a blank line, then
+	 the user is prompted to reenter the input and given a brief
+	 explanation of what is required. Also includes some additional
+	 methods to input single numbers, words, and characters, without
+	 going to the next line.
+	*/
+<span class="nc" id="L18">	public class TecladoIn</span>
+	{
+	    /**
+	     Reads a line of text and returns that line as a String
+	     value. The end of a line must be indicated either by a
+	     new-line character '\n' or by a carriage return '\r'
+	     followed by a new-line character '\n'. (Almost all systems
+	     do this automatically. So you need not worry about this
+	     detail.) Neither the '\n', nor the '\r' if present, are
+	     part of the string returned. This will read the rest of a
+	     line if the line is already partially read.
+	    */
+	    public static String readLine( )
+	    {
+	        char nextChar;
+<span class="nc" id="L33">	        String result = &quot;&quot;;</span>
+<span class="nc" id="L34">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L36" title="All 2 branches missed.">	        while (!done)</span>
+	        {
+<span class="nc" id="L38">	            nextChar = readChar( );</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">	            if (nextChar == '\n')</span>
+<span class="nc" id="L40">	               done = true;</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">	            else if (nextChar == '\r')</span>
+	            {
+	                //Do nothing.
+	                //Next loop iteration will detect '\n'.
+	            }
+	            else
+<span class="nc" id="L47">	               result = result + nextChar;</span>
+	        }
+
+<span class="nc" id="L50">	        return result;</span>
+	    }
+
+	    /**
+	     Reads the first string of nonwhitespace characters on
+	     a line and returns that string. The rest of the line
+	     is discarded. If the line contains only whitespace,
+	     the user is asked to reenter the line.
+	    */
+	    public static String readLineWord( )
+	    {
+<span class="nc" id="L61">	        String inputString = null,</span>
+<span class="nc" id="L62">	               result = null;</span>
+<span class="nc" id="L63">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L65" title="All 2 branches missed.">	        while(!done)</span>
+	        {
+<span class="nc" id="L67">	            inputString = readLine( );</span>
+<span class="nc" id="L68">	            StringTokenizer wordSource =</span>
+	                                new StringTokenizer(inputString);
+<span class="nc bnc" id="L70" title="All 2 branches missed.">	            if (wordSource.hasMoreTokens( ))</span>
+	            {
+<span class="nc" id="L72">	                result = wordSource.nextToken( );</span>
+<span class="nc" id="L73">	                done = true;</span>
+	            }
+	            else
+	            {
+<span class="nc" id="L77">	                System.out.println(</span>
+	                     &quot;Your input is not correct. Your input must&quot;);
+<span class="nc" id="L79">	                System.out.println(</span>
+	                 &quot;contain at least one nonwhitespace character.&quot;);
+<span class="nc" id="L81">	                System.out.println(</span>
+	                                 &quot;Please try again. Enter input:&quot;);
+	           }
+<span class="nc" id="L84">	       }</span>
+
+<span class="nc" id="L86">	       return result;</span>
+	   }
+
+	    /**
+	     Precondition: The user has entered a number of type int
+	     on a line by itself, except that there may be
+	     whitespace before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     int. The rest of the line is discarded. If the input is
+	     not entered correctly, then in most cases, the user will
+	     be asked to reenter the input. In particular, this
+	     applies to incorrect number formats and blank lines.
+	    */
+	    public static int readLineInt( )
+	    {
+<span class="nc" id="L101">	        String inputString = null;</span>
+<span class="nc" id="L102">	        int number = -9999;//To keep the compiler happy.</span>
+	                           //Designed to look like a garbage value.
+<span class="nc" id="L104">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L110">	                inputString = readLine( );</span>
+<span class="nc" id="L111">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L112">	                number = Integer.parseInt(inputString);</span>
+<span class="nc" id="L113">	                done = true;</span>
+	            }
+<span class="nc" id="L115">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L117">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L119">	                System.out.println(</span>
+	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L121">	                System.out.println(</span>
+	                         &quot;a whole number written as an&quot;);
+<span class="nc" id="L123">	                System.out.println(</span>
+	                          &quot;ordinary numeral, such as 42&quot;);
+<span class="nc" id="L125">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
+	                          + &quot;but do not use a plus sign.&quot;);
+<span class="nc" id="L127">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L128">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
+<span class="nc" id="L129">	            }</span>
+	        }
+
+<span class="nc" id="L132">	        return number;</span>
+	    }
+
+	    /**
+	     Precondition: The user has entered a number of type long
+	     on a line by itself, except that there may be whitespace
+	     before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     long. The rest of the line is discarded. If the input is
+	     not entered correctly, then in most cases, the user will
+	     be asked to reenter the input. In particular, this
+	     applies to incorrect number formats and blank lines.
+	    */
+	    public static long readLineLong( )
+	    {
+<span class="nc" id="L147">	        String inputString = null;</span>
+<span class="nc" id="L148">	        long number = -9999;//To keep the compiler happy.</span>
+	                      //Designed to look like a garbage value.
+<span class="nc" id="L150">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L152" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L156">	                inputString = readLine( );</span>
+<span class="nc" id="L157">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L158">	                number = Long.parseLong(inputString);</span>
+<span class="nc" id="L159">	                done = true;</span>
+	            }
+<span class="nc" id="L161">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L163">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L165">	                System.out.println(</span>
+	                             &quot;Your input number must be&quot;);
+<span class="nc" id="L167">	                System.out.println(</span>
+	                             &quot;a whole number written as an&quot;);
+<span class="nc" id="L169">	                System.out.println(</span>
+	                              &quot;ordinary numeral, such as 42&quot;);
+<span class="nc" id="L171">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
+	                               + &quot;but do not use a plus sign.&quot;);
+<span class="nc" id="L173">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L174">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
+<span class="nc" id="L175">	            }</span>
+	       }
+
+<span class="nc" id="L178">	        return number;</span>
+	    }
+
+	    /**
+	     Precondition: The user has entered a number of type
+	     double on a line by itself, except that there may be
+	     whitespace before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     double. The rest of the line is discarded. If the input
+	     is not entered correctly, then in most cases, the user
+	     will be asked to reenter the input. In particular, this
+	     applies to incorrect number formats and blank lines.
+	    */
+	    public static double readLineDouble( )
+	    {
+<span class="nc" id="L193">	        String inputString = null;</span>
+<span class="nc" id="L194">	        double number = -9999;//To keep the compiler happy.</span>
+	                      //Designed to look like a garbage value.
+<span class="nc" id="L196">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L202">	                inputString = readLine( );</span>
+<span class="nc" id="L203">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L204">	                number = Double.parseDouble(inputString);</span>
+<span class="nc" id="L205">	                done = true;</span>
+	            }
+<span class="nc" id="L207">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L209">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L211">	                System.out.println(</span>
+	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L213">	                System.out.println(</span>
+	                          &quot;an ordinary number either with&quot;);
+<span class="nc" id="L215">	                System.out.println(</span>
+	                           &quot;or without a decimal point,&quot;);
+<span class="nc" id="L217">	                System.out.println(&quot;such as 42 or 9.99&quot;);</span>
+<span class="nc" id="L218">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L219">	                System.out.println(&quot;Enter the number:&quot;);</span>
+<span class="nc" id="L220">	            }</span>
+	        }
+
+<span class="nc" id="L223">	        return number;</span>
+	    }
+
+	    /**
+	     Precondition: The user has entered a number of type float
+	     on a line by itself, except that there may be whitespace
+	     before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     float. The rest of the line is discarded. If the input is
+	     not entered correctly, then in most cases, the user will
+	     be asked to reenter the input. In particular,
+	     this applies to incorrect number formats and blank lines.
+	    */
+	    public static float readLineFloat( )
+	    {
+<span class="nc" id="L238">	        String inputString = null;</span>
+<span class="nc" id="L239">	        float number = -9999;//To keep the compiler happy.</span>
+	                      //Designed to look like a garbage value.
+<span class="nc" id="L241">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L243" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L247">	                inputString = readLine( );</span>
+<span class="nc" id="L248">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L249">	                number = Float.parseFloat(inputString);</span>
+<span class="nc" id="L250">	                done = true;</span>
+	            }
+<span class="nc" id="L252">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L254">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L256">	                System.out.println(</span>
+	                         &quot;Your input number must be&quot;);
+<span class="nc" id="L258">	                System.out.println(</span>
+	                          &quot;an ordinary number either with&quot;);
+<span class="nc" id="L260">	                System.out.println(</span>
+	                          &quot;or without a decimal point,&quot;);
+<span class="nc" id="L262">	                System.out.println(&quot;such as 42 or 9.99&quot;);</span>
+<span class="nc" id="L263">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L264">	                System.out.println(&quot;Enter the number:&quot;);</span>
+<span class="nc" id="L265">	            }</span>
+	        }
+
+<span class="nc" id="L268">	        return number;</span>
+	    }
+
+	    /**
+	     Reads the first nonwhitespace character on a line and
+	     returns that character. The rest of the line is
+	     discarded. If the line contains only whitespace, the
+	     user is asked to reenter the line.
+	    */
+	    public static char readLineNonwhiteChar( )
+	    {
+<span class="nc" id="L279">	        boolean done = false;</span>
+<span class="nc" id="L280">	        String inputString = null;</span>
+<span class="nc" id="L281">	        char nonWhite = ' ';//To keep the compiler happy.</span>
+
+<span class="nc bnc" id="L283" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+<span class="nc" id="L285">	            inputString = readLine( );</span>
+<span class="nc" id="L286">	            inputString = inputString.trim( );</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">	            if (inputString.length( ) == 0)</span>
+	            {
+<span class="nc" id="L289">	                System.out.println(</span>
+	                         &quot;Your input is not correct.&quot;);
+<span class="nc" id="L291">	                System.out.println(</span>
+	                         &quot;Your input must contain at&quot;);
+<span class="nc" id="L293">	                System.out.println(</span>
+	                         &quot;least one nonwhitespace character.&quot;);
+<span class="nc" id="L295">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L296">	                System.out.println(&quot;Enter input:&quot;);</span>
+	            }
+	            else
+	            {
+<span class="nc" id="L300">	                nonWhite = (inputString.charAt(0));</span>
+<span class="nc" id="L301">	                done = true;</span>
+	            }
+	        }
+
+<span class="nc" id="L305">	        return nonWhite;</span>
+	    }
+
+	    /**
+	     Input should consist of a single word on a line, possibly
+	     surrounded by whitespace. The line is read and discarded.
+	     If the input word is &quot;true&quot; or &quot;t&quot;, then true is returned.
+	     If the input word is &quot;false&quot; or &quot;f&quot;, then false is
+	     returned. Uppercase and lowercase letters are considered
+	     equal. If the user enters anything else (e.g., multiple
+	     words or different words), the user is asked
+	     to reenter the input.
+	    */
+	    public static boolean readLineBoolean( )
+	    {
+<span class="nc" id="L320">	        boolean done = false;</span>
+<span class="nc" id="L321">	        String inputString = null;</span>
+<span class="nc" id="L322">	        boolean result = false;//To keep the compiler happy.</span>
+
+<span class="nc bnc" id="L324" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+<span class="nc" id="L326">	            inputString = readLine( );</span>
+<span class="nc" id="L327">	            inputString = inputString.trim( );</span>
+<span class="nc bnc" id="L328" title="All 2 branches missed.">	            if (inputString.equalsIgnoreCase(&quot;true&quot;)</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">	                   || inputString.equalsIgnoreCase(&quot;t&quot;))</span>
+	            {
+<span class="nc" id="L331">	                result = true;</span>
+<span class="nc" id="L332">	                done = true;</span>
+	            }
+<span class="nc bnc" id="L334" title="All 2 branches missed.">	            else if (inputString.equalsIgnoreCase(&quot;false&quot;)</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">	                        || inputString.equalsIgnoreCase(&quot;f&quot;))</span>
+	            {
+<span class="nc" id="L337">	                result = false;</span>
+<span class="nc" id="L338">	                done = true;</span>
+	            }
+	            else
+	            {
+<span class="nc" id="L342">	                System.out.println(</span>
+	                         &quot;Your input is not correct.&quot;);
+<span class="nc" id="L344">	                System.out.println(&quot;Your input must be&quot;);</span>
+<span class="nc" id="L345">	                System.out.println(&quot;one of the following:&quot;);</span>
+<span class="nc" id="L346">	                System.out.println(&quot;the word true,&quot;);</span>
+<span class="nc" id="L347">	                System.out.println(&quot;the word false,&quot;);</span>
+<span class="nc" id="L348">	                System.out.println(&quot;the letter T,&quot;);</span>
+<span class="nc" id="L349">	                System.out.println(&quot;or the letter F.&quot;);</span>
+<span class="nc" id="L350">	                System.out.println(</span>
+	                         &quot;You may use either upper-&quot;);
+<span class="nc" id="L352">	                System.out.println(&quot;or lowercase letters.&quot;);</span>
+<span class="nc" id="L353">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L354">	                System.out.println(&quot;Enter input:&quot;);</span>
+	            }
+	         }
+
+<span class="nc" id="L358">	        return result;</span>
+	    }
+
+	    /**
+	     Reads the next input character and returns that character.
+	     The next read takes place on the same line where this
+	     one left off.
+	    */
+	    public static char readChar( )
+	    {
+<span class="nc" id="L368">	        int charAsInt = -1; //To keep the compiler happy.</span>
+	        try
+	        {
+<span class="nc" id="L371">	            charAsInt = System.in.read( );</span>
+	        }
+<span class="nc" id="L373">	        catch(IOException e)</span>
+	        {
+<span class="nc" id="L375">	            System.out.println(e.getMessage( ));</span>
+<span class="nc" id="L376">	            System.out.println(&quot;Fatal error. Ending program.&quot;);</span>
+<span class="nc" id="L377">	            System.exit(0);</span>
+<span class="nc" id="L378">	        }</span>
+
+<span class="nc" id="L380">	        return (char)charAsInt;</span>
+	    }
+
+	    /**
+	     Reads the next nonwhitespace input character and returns
+	     that character. The next read takes place immediately
+	     after the character read.
+	    */
+	    public static char readNonwhiteChar( )
+	    {
+	      char next;
+
+<span class="nc" id="L392">	      next = readChar( );</span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">	      while (Character.isWhitespace(next))</span>
+<span class="nc" id="L394">	          next = readChar( );</span>
+
+<span class="nc" id="L396">	      return next;</span>
+	    }
+
+
+	    /**
+	     The following methods are not used in the text, except
+	     for a brief reference in Chapter 2. No program code uses
+	     them. However, some programmers may want to use them.
+	    */
+
+
+	    /**
+	     Precondition: The next input in the stream consists of
+	     an int value, possibly preceded by whitespace, but
+	     definitely followed by whitespace.
+	     Action: Reads the first string of nonwhitespace characters
+	     and returns the int value it represents. Discards the
+	     first whitespace character after the word. The next read
+	     takes place immediately after the discarded whitespace.
+	     In particular, if the word is at the end of a line, the
+	     next read will take place starting on the next line.
+	     If the next word does not represent an int value,
+	     a NumberFormatException is thrown.
+	    */
+	    public static int readInt( ) throws NumberFormatException
+	    {
+<span class="nc" id="L422">	        String inputString = null;</span>
+<span class="nc" id="L423">	        inputString = readWord( );</span>
+<span class="nc" id="L424">	        return Integer.parseInt(inputString);</span>
+	    }
+
+	    /**
+	     Precondition: The next input consists of a long value,
+	     possibly preceded by whitespace, but definitely
+	     followed by whitespace.
+	     Action: Reads the first string of nonwhitespace characters
+	     and returns the long value it represents. Discards the
+	     first whitespace character after the string read. The
+	     next read takes place immediately after the discarded
+	     whitespace. In particular, if the string read is at the
+	     end of a line, the next read will take place starting on
+	     the next line. If the next word does not represent a long
+	     value, a NumberFormatException is thrown.
+	    */
+	    public static long readLong( )
+	                      throws NumberFormatException
+	    {
+<span class="nc" id="L443">	        String inputString = null;</span>
+<span class="nc" id="L444">	        inputString = readWord( );</span>
+<span class="nc" id="L445">	        return Long.parseLong(inputString);</span>
+	    }
+
+	   /**
+	     Precondition: The next input consists of a double value,
+	     possibly preceded by whitespace, but definitely
+	     followed by whitespace.
+	     Action: Reads the first string of nonwhitespace characters
+	     and returns the double value it represents. Discards the
+	     first whitespace character after the string read. The
+	     next read takes place immediately after the discarded
+	     whitespace. In particular, if the string read is at the
+	     end of a line, the next read will take place starting on
+	     the next line. If the next word does not represent a
+	     double value, a NumberFormatException is thrown.
+	    */
+	    public static double readDouble( )
+	                       throws NumberFormatException
+	    {
+<span class="nc" id="L464">	        String inputString = null;</span>
+<span class="nc" id="L465">	        inputString = readWord( );</span>
+<span class="nc" id="L466">	        return Double.parseDouble(inputString);</span>
+	    }
+
+	    /**
+	     Precondition: The next input consists of a float value,
+	     possibly preceded by whitespace, but definitely
+	     followed by whitespace.
+	     Action: Reads the first string of nonwhitespace characters
+	     and returns the float value it represents. Discards the
+	     first whitespace character after the string read. The
+	     next read takes place immediately after the discarded
+	     whitespace. In particular, if the string read is at the
+	     end of a line, the next read will take place starting on
+	     the next line. If the next word does not represent
+	     a float value, a NumberFormatException is thrown.
+	    */
+	    public static float readFloat( )
+	                         throws NumberFormatException
+	    {
+<span class="nc" id="L485">	        String inputString = null;</span>
+<span class="nc" id="L486">	        inputString = readWord( );</span>
+<span class="nc" id="L487">	        return Float.parseFloat(inputString);</span>
+	    }
+
+	    /**
+	     Reads the first string of nonwhitespace characters and
+	     returns that string. Discards the first whitespace
+	     character after the string read. The next read takes
+	     place immediately after the discarded whitespace. In
+	     particular, if the string read is at the end of a line,
+	     the next read will take place starting on the next line.
+	     Note that if it receives blank lines, it will wait until
+	     it gets a nonwhitespace character.
+	    */
+	    public static String readWord( )
+	    {
+<span class="nc" id="L502">	        String result = &quot;&quot;;</span>
+	        char next;
+
+<span class="nc" id="L505">	        next = readChar( );</span>
+<span class="nc bnc" id="L506" title="All 2 branches missed.">	        while (Character.isWhitespace(next))</span>
+<span class="nc" id="L507">	             next = readChar( );</span>
+
+<span class="nc bnc" id="L509" title="All 2 branches missed.">	        while (!(Character.isWhitespace(next)))</span>
+	        {
+<span class="nc" id="L511">	            result = result + next;</span>
+<span class="nc" id="L512">	            next = readChar( );</span>
+	        }
+
+<span class="nc bnc" id="L515" title="All 2 branches missed.">	        if (next == '\r')</span>
+	        {
+<span class="nc" id="L517">	            next = readChar( );</span>
+<span class="nc bnc" id="L518" title="All 2 branches missed.">	            if (next != '\n')</span>
+	            {
+<span class="nc" id="L520">	                System.out.println(&quot;Fatal error in method &quot;</span>
+	                     + &quot;readWord of the class SavitchIn.&quot;);
+<span class="nc" id="L522">	                System.exit(1);</span>
+	            }
+	        }
+
+<span class="nc" id="L526">	        return result;</span>
+	    }
+
+	    /**
+	     Precondition: The user has entered a number of type byte
+	     on a line by itself, except that there may be whitespace
+	     before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     byte. The rest of the line is discarded. If the input is
+	     not entered correctly, then in most cases, the user will
+	     be asked to reenter the input. In particular, this applies
+	     to incorrect number formats and blank lines.
+	    */
+	    public static byte readLineByte( )
+	    {
+<span class="nc" id="L541">	        String inputString = null;</span>
+<span class="nc" id="L542">	        byte number = -123;//To keep the compiler happy.</span>
+	                      //Designed to look like a garbage value.
+<span class="nc" id="L544">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L546" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L550">	                inputString = readLine( );</span>
+<span class="nc" id="L551">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L552">	                number = Byte.parseByte(inputString);</span>
+<span class="nc" id="L553">	                done = true;</span>
+	            }
+<span class="nc" id="L555">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L557">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L559">	                System.out.println(</span>
+	                         &quot;Your input number must be a&quot;);
+<span class="nc" id="L561">	                System.out.println(</span>
+	                         &quot;whole number in the range&quot;);
+<span class="nc" id="L563">	                System.out.println(&quot;-128 to 127, written as&quot;);</span>
+<span class="nc" id="L564">	                System.out.println(</span>
+	                         &quot;an ordinary numeral, such as 42.&quot;);
+<span class="nc" id="L566">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
+	                               + &quot;but do not use a plus sign.&quot;);
+<span class="nc" id="L568">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L569">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
+<span class="nc" id="L570">	            }</span>
+	        }
+
+<span class="nc" id="L573">	        return number;</span>
+	    }
+
+	    /**
+	     Precondition: The user has entered a number of type short
+	     on a line by itself, except that there may be whitespace
+	     before and/or after the number.
+	     Action: Reads and returns the number as a value of type
+	     short. The rest of the line is discarded. If the input is
+	     not entered correctly, then in most cases, the user will
+	     be asked to reenter the input. In particular, this applies
+	     to incorrect number formats and blank lines.
+	    */
+	    public static short readLineShort( )
+	    {
+<span class="nc" id="L588">	        String inputString = null;</span>
+<span class="nc" id="L589">	        short number = -9999;//To keep the compiler happy.</span>
+	                           //Designed to look like a garbage value.
+<span class="nc" id="L591">	        boolean done = false;</span>
+
+<span class="nc bnc" id="L593" title="All 2 branches missed.">	        while (! done)</span>
+	        {
+	            try
+	            {
+<span class="nc" id="L597">	                inputString = readLine( );</span>
+<span class="nc" id="L598">	                inputString = inputString.trim( );</span>
+<span class="nc" id="L599">	                number = Short.parseShort(inputString);</span>
+<span class="nc" id="L600">	                done = true;</span>
+	            }
+<span class="nc" id="L602">	            catch (NumberFormatException e)</span>
+	            {
+<span class="nc" id="L604">	                System.out.println(</span>
+	                         &quot;Your input number is not correct.&quot;);
+<span class="nc" id="L606">	                System.out.println(</span>
+	                         &quot;Your input number must be a&quot;);
+<span class="nc" id="L608">	                System.out.println(</span>
+	                         &quot;whole number in the range&quot;);
+<span class="nc" id="L610">	                System.out.println(</span>
+	                         &quot;-32768 to 32767, written as&quot;);
+<span class="nc" id="L612">	                System.out.println(</span>
+	                         &quot;an ordinary numeral, such as 42.&quot;);
+<span class="nc" id="L614">	                System.out.println(&quot;Minus signs are OK,&quot;</span>
+	                               + &quot;but do not use a plus sign.&quot;);
+<span class="nc" id="L616">	                System.out.println(&quot;Please try again.&quot;);</span>
+<span class="nc" id="L617">	                System.out.println(&quot;Enter a whole number:&quot;);</span>
+<span class="nc" id="L618">	            }</span>
+	        }
+
+<span class="nc" id="L621">	        return number;</span>
+	    }
+
+	    public static byte readByte( ) throws NumberFormatException
+	    {
+<span class="nc" id="L626">	        String inputString = null;</span>
+<span class="nc" id="L627">	        inputString = readWord( );</span>
+<span class="nc" id="L628">	        return Byte.parseByte(inputString);</span>
+	    }
+
+	    public static short readShort( ) throws NumberFormatException
+	    {
+<span class="nc" id="L633">	        String inputString = null;</span>
+<span class="nc" id="L634">	        inputString = readWord( );</span>
+<span class="nc" id="L635">	        return Short.parseShort(inputString);</span>
+	    }
+
+	    //The following was intentionally not used in the code for
+	    //other methods so that somebody reading the code could
+	    //more quickly see what was being used.
+	    /**
+	     Reads the first byte in the input stream and returns that
+	     byte as an int. The next read takes place where this one
+	     left off. This read is the same as System.in.read( ),
+	     except that it catches IOExceptions.
+	    */
+	    public static int read( )
+	    {
+<span class="nc" id="L649">	        int result = -1; //To keep the compiler happy</span>
+	        try
+	        {
+<span class="nc" id="L652">	            result = System.in.read( );</span>
+	        }
+<span class="nc" id="L654">	        catch(IOException e)</span>
+	        {
+<span class="nc" id="L656">	            System.out.println(e.getMessage( ));</span>
+<span class="nc" id="L657">	            System.out.println(&quot;Fatal error. Ending program.&quot;);</span>
+<span class="nc" id="L658">	            System.exit(0);</span>
+<span class="nc" id="L659">	        }</span>
+<span class="nc" id="L660">	        return result;</span>
+	    }
+	}
+
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

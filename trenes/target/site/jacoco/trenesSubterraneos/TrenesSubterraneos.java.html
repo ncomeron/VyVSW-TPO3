@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TrenesSubterraneos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trenes</a> &gt; <a href="index.source.html" class="el_package">trenesSubterraneos</a> &gt; <span class="el_source">TrenesSubterraneos.java</span></div><h1>TrenesSubterraneos.java</h1><pre class="source lang-java linenums">package trenesSubterraneos;
+
+import grafos.Grafo;
+import especificos.Diccionario;
+import java.util.HashMap;
+import lineales.dinamicas.Lista;
+
+public class TrenesSubterraneos {
+    
+    private Grafo redDeRieles;
+    private Diccionario estaciones;
+    private HashMap trenes, lineas;
+    
+<span class="nc" id="L14">    public TrenesSubterraneos() {</span>
+<span class="nc" id="L15">        redDeRieles = new Grafo();</span>
+<span class="nc" id="L16">        estaciones = new Diccionario();</span>
+<span class="nc" id="L17">        trenes = new HashMap();</span>
+<span class="nc" id="L18">        lineas = new HashMap();</span>
+<span class="nc" id="L19">    }</span>
+<span class="fc" id="L20">    public TrenesSubterraneos(HashMap trenes, HashMap lineas, Grafo redDeRieles, Diccionario estaciones) {</span>
+<span class="fc" id="L21">        this.redDeRieles = redDeRieles;</span>
+<span class="fc" id="L22">        this.estaciones = estaciones;</span>
+<span class="fc" id="L23">        this.trenes = trenes;</span>
+<span class="fc" id="L24">        this.lineas = lineas;</span>
+<span class="fc" id="L25">    }</span>
+
+<span class="nc" id="L27">    public TrenesSubterraneos(Diccionario estaciones) {</span>
+<span class="nc" id="L28">        this.estaciones = estaciones;</span>
+<span class="nc" id="L29">    }</span>
+    
+    //Metodo que realiza la creacion de los trenes y sus respectivas actualizaciones dentro de las demas estructuras.
+    public boolean altaTren(String numTren, String linea) {
+<span class="fc" id="L33">        boolean salida = false;</span>
+<span class="pc bpc" id="L34" title="2 of 4 branches missed.">        if (!trenes.containsKey(numTren) &amp;&amp; lineas.containsKey(linea)) {;</span>
+<span class="nc" id="L35">            trenes.put(numTren, linea);</span>
+<span class="nc" id="L36">            Linea l = (Linea) lineas.get(linea);</span>
+<span class="nc" id="L37">            l.getTrenesFuncionando().insertar(numTren, l.getTrenesFuncionando().longitud() + 1);</span>
+<span class="nc" id="L38">            salida = true;</span>
+        }
+<span class="fc" id="L40">        return salida;</span>
+    }
+    
+    //Metodo que realiza la eliminacion de los trenes y sus respectivas actualizaciones dentro de las demas estructuras.
+    public boolean bajaTren(String numTren) {
+<span class="nc" id="L45">        boolean salida = trenes.containsKey(numTren);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L47">            Linea l = (Linea)lineas.get(trenes.get(numTren));</span>
+<span class="nc" id="L48">            l.getTrenesFuncionando().eliminar(l.getTrenesFuncionando().localizar(numTren));</span>
+<span class="nc" id="L49">            trenes.remove(numTren);</span>
+        }
+<span class="nc" id="L51">        return salida;</span>
+    }
+    
+    //Metodo que realiza la creacion de las estaciones y sus respectivas actualizaciones dentro de las demas estructuras.
+    public boolean altaEstacion(String nombre, String direccion, String horario, String accesibilidad, boolean esExtremo) {
+<span class="fc" id="L56">        Estacion unaEstacion = new Estacion(nombre, direccion, horario, accesibilidad, esExtremo);</span>
+<span class="fc" id="L57">        boolean salida = estaciones.insertar(nombre, unaEstacion);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (salida)</span>
+<span class="fc" id="L59">            redDeRieles.insertarVertice(nombre);</span>
+<span class="fc" id="L60">        return salida;</span>
+    }
+    
+    //Metodo que realiza la eliminacion de las estaciones y sus respectivas actualizaciones dentro de las demas estructuras.
+    public boolean bajaEstacion(String estacion) {
+<span class="nc" id="L65">        boolean salida = estaciones.existeClave(estacion);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (salida) {</span>
+<span class="nc" id="L67">            Estacion e = (Estacion)estaciones.obtenerInformacion(estacion);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (!e.getEsExtremo()) {</span>
+<span class="nc" id="L69">                redDeRieles.eliminarVertice(estacion);</span>
+<span class="nc" id="L70">                estaciones.eliminar(estacion);</span>
+            }
+            else
+<span class="nc" id="L73">                salida = false;</span>
+        }
+<span class="nc" id="L75">        return salida;</span>
+    }
+    
+    //Metodo que realiza la vinculacion entre estaciones.
+    public boolean altaTramoDeRieles(String origen, String destino, int tiempo) {
+<span class="fc" id="L80">        return redDeRieles.insertarArco(origen, destino, tiempo);</span>
+    }
+    
+    //Metodo que realiza la desvinculacion entre estaciones.
+    public boolean bajaTramoDeRieles(String origen, String destino) {
+<span class="fc" id="L85">        return redDeRieles.eliminarArco(origen, destino);</span>
+    }
+    
+    //Metodo que realiza la creacion de las lineas y sus respectivas actualizaciones dentro de las demas estructuras.
+    public boolean altaLinea(String linea, String color, String estacionIni, String estacionFin) {
+<span class="nc" id="L90">        boolean salida = false;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (!lineas.containsKey(linea)) {</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">            if ((estaciones.existeClave(estacionIni)) &amp;&amp; (estaciones.existeClave(estacionFin))) {</span>
+<span class="nc" id="L93">                Linea unaLinea = new Linea(linea, color, estacionIni, estacionFin);</span>
+<span class="nc" id="L94">                Lista listaEstaciones = redDeRieles.caminoMasCorto(estacionIni, estacionFin);</span>
+<span class="nc" id="L95">                agregarLinea(linea, listaEstaciones);</span>
+<span class="nc" id="L96">                lineas.put(linea, unaLinea);</span>
+<span class="nc" id="L97">                salida = true;</span>
+            }
+        }
+<span class="nc" id="L100">        return salida;</span>
+    }
+    
+    //Metodo privado que, dado el trayecto de estaciones que realiza la linea, añade a cada estacion
+    //que dicha linea pasa por ella.
+    private void agregarLinea(String linea, Lista listaEstaciones) {
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (int i = 1; i &lt;= listaEstaciones.longitud(); i++) {</span>
+<span class="nc" id="L107">            Estacion e = (Estacion)estaciones.obtenerInformacion((Comparable)listaEstaciones.recuperar(i));</span>
+<span class="nc" id="L108">            e.getLineas().insertar(linea, e.getLineas().longitud() + 1);</span>
+        }
+<span class="nc" id="L110">    }</span>
+    
+    //Metodo que busca un tren y en caso de existir se devuelve su informacion en forma de string.
+    public String mostrarDatosTren(String tren) {
+<span class="nc" id="L114">        String salida = &quot;Dicho tren NO existe.&quot;;</span>
+<span class="nc" id="L115">        boolean existe = trenes.containsKey(tren);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        if (existe)</span>
+<span class="nc" id="L117">            salida = trenes.get(tren).toString();</span>
+<span class="nc" id="L118">        return salida;</span>
+    }
+    
+    //Metodo que busca una estacion y en caso de existir se devuelve su informacion en forma de string.
+    public String mostrarDatosEstacion(String estacion) {
+<span class="nc" id="L123">        String salida = &quot;Dicha estacion NO existe.&quot;;</span>
+<span class="nc" id="L124">        boolean existe = estaciones.existeClave(estacion);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (existe)</span>
+<span class="nc" id="L126">            salida = estaciones.obtenerInformacion(estacion).toString();</span>
+<span class="nc" id="L127">        return salida;</span>
+    }
+    
+    public Lista estacionSegunCadena(String cadena) {
+<span class="nc" id="L131">        return estaciones.listarRango(cadena, cadena+=&quot;ZZ&quot;);</span>
+    }
+    
+    //Metodo que retorna una lista con el camino por el cual se llega a su destino a traves de menos estaciones.
+    public Lista caminoMenosEstaciones(String origen, String destino) {
+<span class="fc" id="L136">        return redDeRieles.caminoMasCorto(origen, destino);</span>
+    }
+    
+    //Metodo que retorna una lista con el camino por el cual se llega a su destino en la menor cantidad de tiempo.
+    public Object[] caminoMenorTiempo(String origen, String destino) {
+<span class="nc" id="L141">        return redDeRieles.caminoMenorTiempo(origen, destino);</span>
+    }
+    
+    //Metodo el cual imprime por pantalla las estructuras.
+    public void mostrarEstructuras() {
+<span class="nc" id="L146">        System.out.println(&quot;Red de Rieles: &quot;+&quot;\n&quot;+redDeRieles.toString());</span>
+<span class="nc" id="L147">        System.out.println(&quot;Estaciones: &quot;+&quot;\n&quot;+estaciones.listarDatos().toString());</span>
+<span class="nc" id="L148">        System.out.println(&quot;Trenes: &quot;+trenes.toString());</span>
+<span class="nc" id="L149">        System.out.println(&quot;Lineas: &quot;+&quot;\n&quot;+lineas.toString());</span>
+<span class="nc" id="L150">    }</span>
+    
+    public void mostrarEstaciones() {
+<span class="nc" id="L153">        System.out.println(&quot;Estaciones: &quot;+&quot;\n&quot;+estaciones.toString());</span>
+<span class="nc" id="L154">    }</span>
+    
+    public void mostrarSubte() {
+<span class="nc" id="L157">        System.out.println(&quot;Red de Rieles: &quot;+&quot;\n&quot;+redDeRieles.toString());</span>
+<span class="nc" id="L158">    }</span>
+    
+    public void mostrarLineas() {
+<span class="nc" id="L161">        System.out.println(&quot;Lineas: &quot;+&quot;\n&quot;+lineas.toString());</span>
+<span class="nc" id="L162">    }</span>
+    
+    public void mostrarTrenes() {
+<span class="nc" id="L165">        System.out.println(&quot;Trenes: &quot;+trenes.toString());</span>
+<span class="nc" id="L166">    }</span>
+    
+    //Metodo que modifica la linea de un tren, modificando tambien la lista de trenesFuncionando de linea.
+    public boolean modificarTrenExistente(String tren, String linea) {
+<span class="nc" id="L170">        boolean salida = false;</span>
+<span class="nc bnc" id="L171" title="All 4 branches missed.">        if (trenes.containsKey(tren) &amp;&amp; lineas.containsKey(linea)) {</span>
+<span class="nc" id="L172">            String t = (String)trenes.get(tren);</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (t.equals(&quot;null&quot;)) {</span>
+                //Actualizo valor linea del tren
+<span class="nc" id="L175">                trenes.replace(tren, linea);</span>
+                //Actualizo mapa lineas
+<span class="nc" id="L177">                Linea l = (Linea)lineas.get(linea);</span>
+<span class="nc" id="L178">                l.getTrenesFuncionando().insertar(tren, l.getTrenesFuncionando().longitud() + 1);</span>
+<span class="nc" id="L179">            }</span>
+            else {
+<span class="nc" id="L181">                Linea l = (Linea)lineas.get(t);</span>
+<span class="nc" id="L182">                l.getTrenesFuncionando().eliminar(l.getTrenesFuncionando().localizar(tren));</span>
+<span class="nc" id="L183">                trenes.replace(tren, linea);</span>
+<span class="nc" id="L184">                l = (Linea)lineas.get(linea);</span>
+<span class="nc" id="L185">                l.getTrenesFuncionando().insertar(tren, l.getTrenesFuncionando().longitud() + 1);</span>
+            }
+<span class="nc" id="L187">        salida = true;    </span>
+        }
+<span class="nc" id="L189">        return salida;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

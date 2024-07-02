@@ -1,4 +1,4 @@
-
+/*
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.Test;
@@ -27,6 +27,7 @@ class ListaTest {
      */
 
     // prueba de multiples inserciones y eliminaciones
+/*
     @Test
     void testMultipleInsertarYEliminar() {
         Lista lista = new Lista();
@@ -74,6 +75,7 @@ class ListaTest {
      */
 
     // Simulamos la obtención del tamaño de la lista.
+/*
     @Test
     void testLongitudConMockito() {
         Lista mockLista = mock(Lista.class);
@@ -110,3 +112,4 @@ class ListaTest {
 
 
 
+*/

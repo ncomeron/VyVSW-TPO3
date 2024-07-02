@@ -6,6 +6,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import especificos.Diccionario;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -134,6 +135,27 @@ public class TrenesSubterraneosTest {
         assertEquals(listaEsperada, resultado);
         // Verificación de que se llamó a caminoMasCorto con los parámetros esperados
         verify(redDeRieles, times(1)).caminoMasCorto(origen, destino);
+    }
+
+    @Test
+    public void testCaminoMenorTiempo() {
+        String origen = "Origen";
+        String destino = "Destino";
+
+        // Arreglo esperado para el camino más rápido
+        Object[] arregloEsperado = new Object[]{"Estacion1", "Estacion2", "Destino"};
+
+        // Configuración del comportamiento esperado en el spy de Grafo
+        doReturn(arregloEsperado).when(redDeRieles).caminoMenorTiempo(origen, destino);
+
+        // Llamada al método que queremos probar
+        Object[] resultado = subte.caminoMenorTiempo(origen, destino);
+
+        // Verificación que se obtuvo el arreglo esperado
+        assertArrayEquals(arregloEsperado, resultado);
+
+        // Verificación que se llamó a caminoMenorTiempo con los parámetros esperados
+        verify(redDeRieles, times(1)).caminoMenorTiempo(origen, destino);
     }
 
     

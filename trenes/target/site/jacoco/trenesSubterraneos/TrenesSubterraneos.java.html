@@ -53,11 +53,11 @@ public class TrenesSubterraneos {
     
     //Metodo que realiza la creacion de las estaciones y sus respectivas actualizaciones dentro de las demas estructuras.
     public boolean altaEstacion(String nombre, String direccion, String horario, String accesibilidad, boolean esExtremo) {
-<span class="fc" id="L56">        Estacion unaEstacion = new Estacion(nombre, direccion, horario, accesibilidad, esExtremo);</span>
-<span class="fc" id="L57">        boolean salida = estaciones.insertar(nombre, unaEstacion);</span>
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if (salida)</span>
-<span class="fc" id="L59">            redDeRieles.insertarVertice(nombre);</span>
-<span class="fc" id="L60">        return salida;</span>
+<span class="nc" id="L56">        Estacion unaEstacion = new Estacion(nombre, direccion, horario, accesibilidad, esExtremo);</span>
+<span class="nc" id="L57">        boolean salida = estaciones.insertar(nombre, unaEstacion);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (salida)</span>
+<span class="nc" id="L59">            redDeRieles.insertarVertice(nombre);</span>
+<span class="nc" id="L60">        return salida;</span>
     }
     
     //Metodo que realiza la eliminacion de las estaciones y sus respectivas actualizaciones dentro de las demas estructuras.
@@ -138,7 +138,7 @@ public class TrenesSubterraneos {
     
     //Metodo que retorna una lista con el camino por el cual se llega a su destino en la menor cantidad de tiempo.
     public Object[] caminoMenorTiempo(String origen, String destino) {
-<span class="nc" id="L141">        return redDeRieles.caminoMenorTiempo(origen, destino);</span>
+<span class="fc" id="L141">        return redDeRieles.caminoMenorTiempo(origen, destino);</span>
     }
     
     //Metodo el cual imprime por pantalla las estructuras.

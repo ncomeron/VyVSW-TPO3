@@ -1,153 +1,67 @@
-/* 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import grafos.Grafo;
-import grafos.NodoVert;
-import lineales.dinamicas.Lista;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-*/
-import grafos.Grafo;
-
-import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.doReturn;
-//import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-import org.mockito.Mock;
-//import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
+import grafos.Grafo;
 
-@ExtendWith(MockitoExtension.class)
-public class GrafoTest {
-    @Mock
-    Grafo grafoRieles;                           
-    boolean a;
-    //@Spy
-    //Grafo grafoSpy = new Grafo();
-
-    //@Mock
-
-    //@InjectMocks 
-    //private Grafo grafoRieles;
-    @BeforeEach
-    public void setUp() {
-        a = true;
-    }
-    @Test
-    public void testGrafo()  {
-
-
-
-        when(grafoRieles.insertarVertice("A")).thenReturn(true);
-        assertEquals(grafoRieles.insertarVertice("A"), true);
-
-        
-        when(grafoRieles.esVacio()).thenReturn(true);
-        //when(grafoRieles.esVacio()).thenReturn(new Grafo());
-
-        assertTrue(grafoRieles.esVacio());
-        //assertFalse(a);
-        
-
-        // spy
-        //doReturn(true).when(grafoSpy).esVacio();
-        //assertTrue(grafoSpy.esVacio());
-        //assertEquals(true, grafoSpy.esVacio());
-    }
-
-} 
-
-/*
-@RunWith(MockitoJUnitRunner.class)
 public class GrafoTest {
 
-    @InjectMocks
     private Grafo grafo;
 
-    @Mock
-    private NodoVert nodoOrigen;
-
-    @Mock
-    private NodoVert nodoDestino;
-
-    @Mock
-    private Lista caminoMock;
-
-    @Mock
-    private Lista caminoMasCortoMock;
-   
-    // Clase bajo prueba
-    //private Grafo grafo;
-
-    @Before
+    @BeforeEach
     public void setUp() {
-        // Inicializar la clase bajo prueba
-        //grafo = new Grafo();
-        grafo = mock(Grafo.class);
-    }
-
-    @Test 
-    public void testInsertarVertice() {
-        when(grafo.insertarVertice("A")).thenReturn(true);
-    }
-    /* 
-    @Test
-    public void testInsertarVertice() {
-        assertTrue(grafo.insertarVertice("A"));
-        assertTrue(grafo.insertarVertice("B"));
-        assertFalse(grafo.insertarVertice("A")); // Ya existe "A"
+        grafo = new Grafo();
     }
 
     @Test
-    public void testEliminarVertice() {
-        grafo.insertarVertice("A");
-        assertTrue(grafo.eliminarVertice("A"));
-        assertFalse(grafo.eliminarVertice("B")); // No existe "B"
+    public void testInsertarYEliminarVertice() {
+        // Test insertarVertice
+        Assertions.assertTrue(grafo.insertarVertice("Vertice1"));
+        Assertions.assertTrue(grafo.existeVertice("Vertice1"));
+
+        // Test eliminarVertice
+        Assertions.assertTrue(grafo.eliminarVertice("Vertice1"));
+        Assertions.assertFalse(grafo.existeVertice("Vertice1"));
     }
 
     @Test
-    public void testInsertarEliminarArco() {
-        grafo.insertarVertice("A");
-        grafo.insertarVertice("B");
-        assertTrue(grafo.insertarArco("A", "B", 10));
-        assertTrue(grafo.existeArco("A", "B"));
-        assertTrue(grafo.eliminarArco("A", "B"));
-        assertFalse(grafo.existeArco("A", "B"));
+    public void testInsertarYEliminarArco() {
+        // Test insertarArco y existeArco
+        grafo.insertarVertice("Vertice1");
+        grafo.insertarVertice("Vertice2");
+        Assertions.assertTrue(grafo.insertarArco("Vertice1", "Vertice2", 10));
+        Assertions.assertTrue(grafo.existeArco("Vertice1", "Vertice2"));
+
+        // Test eliminarArco
+        Assertions.assertTrue(grafo.eliminarArco("Vertice1", "Vertice2"));
+        Assertions.assertFalse(grafo.existeArco("Vertice1", "Vertice2"));
+    }
+
+    @Test
+    public void testExisteArco() {
+        grafo.insertarVertice("Vertice1");
+        grafo.insertarVertice("Vertice2");
+        grafo.insertarArco("Vertice1", "Vertice2", 10);
+
+        // Verificar que existe el arco entre Vertice1 y Vertice2
+        Assertions.assertTrue(grafo.existeArco("Vertice1", "Vertice2"));
+
+        // Verificar que no existe un arco incorrecto
+        Assertions.assertFalse(grafo.existeArco("Vertice2", "Vertice3"));
     }
 
     @Test
     public void testExisteCamino() {
-        grafo.insertarVertice("A");
-        grafo.insertarVertice("B");
-        grafo.insertarArco("A", "B", 10);
-        assertTrue(grafo.existeCamino("A", "B"));
-        assertTrue(grafo.existeCamino("B", "A"));
-        //assertFalse(grafo.existeCamino("B", "A"));
+        grafo.insertarVertice("Vertice1");
+        grafo.insertarVertice("Vertice2");
+        grafo.insertarVertice("Vertice3");
+        grafo.insertarArco("Vertice1", "Vertice2", 10);
+        grafo.insertarArco("Vertice2", "Vertice3", 20);
+
+        // Verificar que existe un camino válido entre Vertice1 y Vertice3
+        Assertions.assertTrue(grafo.existeCamino("Vertice1", "Vertice3"));
+
+        // Verificar que existe un camino válido entre Vertice3 y Vertice1 ya que es bidireccional
+        Assertions.assertTrue(grafo.existeCamino("Vertice3", "Vertice1"));
     }
 
-    /* 
-    @Test
-    public void testListarArcos() {
-        grafo.insertarVertice("A");
-        grafo.insertarVertice("B");
-        grafo.insertarArco("A", "B", 10);
-        Lista arcList = grafo.listarArcos();
-        assertEquals("{[A, B, 10min]}", arcList.toString());
-    }
-    */
-    // Agrega más tests según los métodos que desees cubrir
-
-//}
+}

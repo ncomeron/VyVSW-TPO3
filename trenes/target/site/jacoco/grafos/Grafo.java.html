@@ -22,14 +22,14 @@ public class Grafo {
     }
 
     public boolean eliminarVertice(Object elem) {
-<span class="nc" id="L25">        boolean res = false;</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (inicio != null) {</span>
-<span class="nc" id="L27">            NodoAdy auxAdy = null;</span>
-<span class="nc" id="L28">            NodoVert aux = inicio;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">            if (aux.getElem().equals(elem)) {</span>
-<span class="nc" id="L30">                auxAdy = aux.getPrimerAdy();</span>
-<span class="nc" id="L31">                inicio = inicio.getSigVertice();</span>
-<span class="nc" id="L32">                res = true;</span>
+<span class="fc" id="L25">        boolean res = false;</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (inicio != null) {</span>
+<span class="fc" id="L27">            NodoAdy auxAdy = null;</span>
+<span class="fc" id="L28">            NodoVert aux = inicio;</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (aux.getElem().equals(elem)) {</span>
+<span class="fc" id="L30">                auxAdy = aux.getPrimerAdy();</span>
+<span class="fc" id="L31">                inicio = inicio.getSigVertice();</span>
+<span class="fc" id="L32">                res = true;</span>
             } else {
 <span class="nc bnc" id="L34" title="All 4 branches missed.">                while (!res &amp;&amp; aux.getSigVertice() != null) {</span>
 <span class="nc bnc" id="L35" title="All 2 branches missed.">                    if (aux.getSigVertice().getElem().equals(elem)) {</span>
@@ -40,111 +40,111 @@ public class Grafo {
 <span class="nc" id="L40">                    aux = aux.getSigVertice();</span>
                 }
             }
-<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (res) {</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">                while (auxAdy != null) {</span>
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">            if (res) {</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">                while (auxAdy != null) {</span>
 <span class="nc" id="L45">                    eliminarArcoAux(auxAdy.getVertice(), elem);</span>
 <span class="nc" id="L46">                    auxAdy = auxAdy.getSigAdyacente();</span>
                 }
             }
         }
-<span class="nc" id="L50">        return res;</span>
+<span class="fc" id="L50">        return res;</span>
     }
 
     private NodoVert ubicarVertice(Object buscado) {
 <span class="fc" id="L54">        NodoVert aux = inicio;</span>
-<span class="pc bpc" id="L55" title="3 of 4 branches missed.">        while (aux != null &amp;&amp; !(aux.getElem().equals(buscado))) {</span>
-<span class="nc" id="L56">            aux = aux.getSigVertice();</span>
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">        while (aux != null &amp;&amp; !(aux.getElem().equals(buscado))) {</span>
+<span class="fc" id="L56">            aux = aux.getSigVertice();</span>
         }
 <span class="fc" id="L58">        return aux;</span>
     }
 
     public boolean existeVertice(Object buscado) {
-<span class="nc" id="L62">        boolean res = false;</span>
-<span class="nc" id="L63">        NodoVert aux = inicio;</span>
-<span class="nc bnc" id="L64" title="All 4 branches missed.">        while (!res &amp;&amp; aux != null) {</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (aux.getElem().equals(buscado)) </span>
-<span class="nc" id="L66">                res = true;</span>
-<span class="nc" id="L67">            aux = aux.getSigVertice();</span>
+<span class="fc" id="L62">        boolean res = false;</span>
+<span class="fc" id="L63">        NodoVert aux = inicio;</span>
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        while (!res &amp;&amp; aux != null) {</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">            if (aux.getElem().equals(buscado)) </span>
+<span class="fc" id="L66">                res = true;</span>
+<span class="fc" id="L67">            aux = aux.getSigVertice();</span>
         }
-<span class="nc" id="L69">        return res;</span>
+<span class="fc" id="L69">        return res;</span>
     }
 
     public boolean insertarArco(Object origen, Object destino, int etiqueta) {
-<span class="nc" id="L73">        boolean res = false;</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (inicio != null) {</span>
-<span class="nc" id="L75">            NodoVert nodoOrigen = null;</span>
-<span class="nc" id="L76">            NodoVert nodoDestino = null;</span>
-<span class="nc" id="L77">            NodoVert aux1 = inicio;</span>
-<span class="nc" id="L78">            boolean encontroOrigen = false;</span>
-<span class="nc" id="L79">            boolean encontroDestino = false;</span>
-<span class="nc bnc" id="L80" title="All 6 branches missed.">            while (aux1 != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">                if (aux1.getElem().equals(origen)) {</span>
-<span class="nc" id="L82">                    nodoOrigen = aux1;</span>
-<span class="nc" id="L83">                    encontroOrigen = true;</span>
+<span class="fc" id="L73">        boolean res = false;</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (inicio != null) {</span>
+<span class="fc" id="L75">            NodoVert nodoOrigen = null;</span>
+<span class="fc" id="L76">            NodoVert nodoDestino = null;</span>
+<span class="fc" id="L77">            NodoVert aux1 = inicio;</span>
+<span class="fc" id="L78">            boolean encontroOrigen = false;</span>
+<span class="fc" id="L79">            boolean encontroDestino = false;</span>
+<span class="pc bpc" id="L80" title="1 of 6 branches missed.">            while (aux1 != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">                if (aux1.getElem().equals(origen)) {</span>
+<span class="fc" id="L82">                    nodoOrigen = aux1;</span>
+<span class="fc" id="L83">                    encontroOrigen = true;</span>
                 }
-<span class="nc bnc" id="L85" title="All 2 branches missed.">                if (aux1.getElem().equals(destino)) {</span>
-<span class="nc" id="L86">                    nodoDestino = aux1;</span>
-<span class="nc" id="L87">                    encontroDestino = true;</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                if (aux1.getElem().equals(destino)) {</span>
+<span class="fc" id="L86">                    nodoDestino = aux1;</span>
+<span class="fc" id="L87">                    encontroDestino = true;</span>
                 }
-<span class="nc" id="L89">                aux1 = aux1.getSigVertice();</span>
+<span class="fc" id="L89">                aux1 = aux1.getSigVertice();</span>
             }
-<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">                if (nodoOrigen.getPrimerAdy() == null) {</span>
-<span class="nc" id="L93">                    nodoOrigen.setPrimerAdy(new NodoAdy(nodoDestino, etiqueta));</span>
-<span class="nc" id="L94">                    res = true;</span>
+<span class="pc bpc" id="L91" title="2 of 4 branches missed.">            if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">                if (nodoOrigen.getPrimerAdy() == null) {</span>
+<span class="fc" id="L93">                    nodoOrigen.setPrimerAdy(new NodoAdy(nodoDestino, etiqueta));</span>
+<span class="fc" id="L94">                    res = true;</span>
                 } else {
-<span class="nc" id="L96">                    NodoAdy aux2 = nodoOrigen.getPrimerAdy();</span>
-<span class="nc bnc" id="L97" title="All 4 branches missed.">                    while (aux2 != null &amp;&amp; !(aux2.getVertice().getElem().equals(destino))) {</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">                        if (aux2.getSigAdyacente() == null) {</span>
-<span class="nc" id="L99">                            aux2.setSigAdyacente(new NodoAdy(nodoDestino, etiqueta));</span>
-<span class="nc" id="L100">                            res = true;</span>
+<span class="fc" id="L96">                    NodoAdy aux2 = nodoOrigen.getPrimerAdy();</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">                    while (aux2 != null &amp;&amp; !(aux2.getVertice().getElem().equals(destino))) {</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">                        if (aux2.getSigAdyacente() == null) {</span>
+<span class="fc" id="L99">                            aux2.setSigAdyacente(new NodoAdy(nodoDestino, etiqueta));</span>
+<span class="fc" id="L100">                            res = true;</span>
                         }
-<span class="nc" id="L102">                        aux2 = aux2.getSigAdyacente();</span>
+<span class="fc" id="L102">                        aux2 = aux2.getSigAdyacente();</span>
                     }
                 }
-<span class="nc bnc" id="L105" title="All 2 branches missed.">                if (res) {</span>
-<span class="nc" id="L106">                    NodoAdy aux3 = new NodoAdy(nodoOrigen, etiqueta);</span>
-<span class="nc" id="L107">                    aux3.setSigAdyacente(nodoDestino.getPrimerAdy());</span>
-<span class="nc" id="L108">                    nodoDestino.setPrimerAdy(aux3);</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">                if (res) {</span>
+<span class="fc" id="L106">                    NodoAdy aux3 = new NodoAdy(nodoOrigen, etiqueta);</span>
+<span class="fc" id="L107">                    aux3.setSigAdyacente(nodoDestino.getPrimerAdy());</span>
+<span class="fc" id="L108">                    nodoDestino.setPrimerAdy(aux3);</span>
                 }
             }
         }
-<span class="nc" id="L112">        return res;</span>
+<span class="fc" id="L112">        return res;</span>
     }
 
     public boolean eliminarArco(Object origen, Object destino) {
-<span class="nc" id="L116">        boolean res = false;</span>
-<span class="nc" id="L117">        NodoVert nodoOrigen = null;</span>
-<span class="nc" id="L118">        NodoVert nodoDestino = null;</span>
-<span class="nc" id="L119">        NodoVert aux = inicio;</span>
-<span class="nc" id="L120">        boolean encontroOrigen = false;</span>
-<span class="nc" id="L121">        boolean encontroDestino = false;</span>
-<span class="nc bnc" id="L122" title="All 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">            if (aux.getElem().equals(origen)) {</span>
-<span class="nc" id="L124">                nodoOrigen = aux;</span>
-<span class="nc" id="L125">                encontroOrigen = true;</span>
+<span class="fc" id="L116">        boolean res = false;</span>
+<span class="fc" id="L117">        NodoVert nodoOrigen = null;</span>
+<span class="fc" id="L118">        NodoVert nodoDestino = null;</span>
+<span class="fc" id="L119">        NodoVert aux = inicio;</span>
+<span class="fc" id="L120">        boolean encontroOrigen = false;</span>
+<span class="fc" id="L121">        boolean encontroDestino = false;</span>
+<span class="pc bpc" id="L122" title="3 of 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">            if (aux.getElem().equals(origen)) {</span>
+<span class="fc" id="L124">                nodoOrigen = aux;</span>
+<span class="fc" id="L125">                encontroOrigen = true;</span>
             }
-<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L128">                nodoDestino = aux;</span>
-<span class="nc" id="L129">                encontroDestino = true;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L128">                nodoDestino = aux;</span>
+<span class="fc" id="L129">                encontroDestino = true;</span>
             }
-<span class="nc" id="L131">            aux = aux.getSigVertice();</span>
+<span class="fc" id="L131">            aux = aux.getSigVertice();</span>
         }
-<span class="nc bnc" id="L133" title="All 4 branches missed.">        if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
-<span class="nc" id="L134">            res = eliminarArcoAux(nodoOrigen, destino);</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (res) </span>
-<span class="nc" id="L136">                eliminarArcoAux(nodoDestino, origen);</span>
+<span class="pc bpc" id="L133" title="2 of 4 branches missed.">        if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
+<span class="fc" id="L134">            res = eliminarArcoAux(nodoOrigen, destino);</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">            if (res) </span>
+<span class="fc" id="L136">                eliminarArcoAux(nodoDestino, origen);</span>
         }
-<span class="nc" id="L138">        return res;</span>
+<span class="fc" id="L138">        return res;</span>
     }
 
     private boolean eliminarArcoAux(NodoVert nodoOrigen, Object elemDestino) {
-<span class="nc" id="L142">        boolean res = false;</span>
-<span class="nc" id="L143">        NodoAdy aux = nodoOrigen.getPrimerAdy();</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (aux != null) {</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (nodoOrigen.getPrimerAdy().getVertice().getElem().equals(elemDestino)) {</span>
-<span class="nc" id="L146">                nodoOrigen.setPrimerAdy(nodoOrigen.getPrimerAdy().getSigAdyacente());</span>
-<span class="nc" id="L147">                res = true;</span>
+<span class="fc" id="L142">        boolean res = false;</span>
+<span class="fc" id="L143">        NodoAdy aux = nodoOrigen.getPrimerAdy();</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">        if (aux != null) {</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">            if (nodoOrigen.getPrimerAdy().getVertice().getElem().equals(elemDestino)) {</span>
+<span class="fc" id="L146">                nodoOrigen.setPrimerAdy(nodoOrigen.getPrimerAdy().getSigAdyacente());</span>
+<span class="fc" id="L147">                res = true;</span>
             } else {
 <span class="nc bnc" id="L149" title="All 4 branches missed.">                while (!res &amp;&amp; aux.getSigAdyacente() != null) {</span>
 <span class="nc bnc" id="L150" title="All 2 branches missed.">                    if (aux.getSigAdyacente().getVertice().getElem().equals(elemDestino)) {</span>
@@ -155,79 +155,79 @@ public class Grafo {
                 }
             }
         }
-<span class="nc" id="L158">        return res;</span>
+<span class="fc" id="L158">        return res;</span>
     }
 
     public boolean existeArco(Object origen, Object destino) {
-<span class="nc" id="L162">        boolean res = false;</span>
-<span class="nc" id="L163">        NodoVert nodoOrigen = null;</span>
-<span class="nc" id="L164">        NodoVert nodoDestino = null;</span>
-<span class="nc" id="L165">        NodoVert aux = inicio;</span>
-<span class="nc" id="L166">        boolean encontroOrigen = false;</span>
-<span class="nc" id="L167">        boolean encontroDestino = false;</span>
-<span class="nc bnc" id="L168" title="All 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
-<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (aux.getElem().equals(origen)) {</span>
-<span class="nc" id="L170">                nodoOrigen = aux;</span>
-<span class="nc" id="L171">                encontroOrigen = true;</span>
+<span class="fc" id="L162">        boolean res = false;</span>
+<span class="fc" id="L163">        NodoVert nodoOrigen = null;</span>
+<span class="fc" id="L164">        NodoVert nodoDestino = null;</span>
+<span class="fc" id="L165">        NodoVert aux = inicio;</span>
+<span class="fc" id="L166">        boolean encontroOrigen = false;</span>
+<span class="fc" id="L167">        boolean encontroDestino = false;</span>
+<span class="pc bpc" id="L168" title="1 of 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">            if (aux.getElem().equals(origen)) {</span>
+<span class="fc" id="L170">                nodoOrigen = aux;</span>
+<span class="fc" id="L171">                encontroOrigen = true;</span>
             }
-<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L174">                nodoDestino = aux;</span>
-<span class="nc" id="L175">                encontroDestino = true;</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L174">                nodoDestino = aux;</span>
+<span class="fc" id="L175">                encontroDestino = true;</span>
             }
-<span class="nc" id="L177">            aux = aux.getSigVertice();</span>
+<span class="fc" id="L177">            aux = aux.getSigVertice();</span>
         }
-<span class="nc" id="L179">        NodoAdy auxAdy = nodoOrigen.getPrimerAdy();</span>
-<span class="nc bnc" id="L180" title="All 4 branches missed.">        while (!res &amp;&amp; auxAdy != null) {</span>
-<span class="nc bnc" id="L181" title="All 2 branches missed.">            if (auxAdy.getVertice().equals(nodoDestino)) </span>
-<span class="nc" id="L182">                res = true;</span>
-<span class="nc" id="L183">            auxAdy = auxAdy.getSigAdyacente();</span>
+<span class="fc" id="L179">        NodoAdy auxAdy = nodoOrigen.getPrimerAdy();</span>
+<span class="fc bfc" id="L180" title="All 4 branches covered.">        while (!res &amp;&amp; auxAdy != null) {</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            if (auxAdy.getVertice().equals(nodoDestino)) </span>
+<span class="fc" id="L182">                res = true;</span>
+<span class="fc" id="L183">            auxAdy = auxAdy.getSigAdyacente();</span>
         }
-<span class="nc" id="L185">        return res;</span>
+<span class="fc" id="L185">        return res;</span>
     }
 
     public boolean existeCamino(Object origen, Object destino) {
-<span class="nc" id="L189">        boolean res = false;</span>
-<span class="nc" id="L190">        NodoVert nodoOrigen = null;</span>
-<span class="nc" id="L191">        NodoVert nodoDestino = null;</span>
-<span class="nc" id="L192">        NodoVert aux = inicio;</span>
-<span class="nc" id="L193">        boolean encontroOrigen = false;</span>
-<span class="nc" id="L194">        boolean encontroDestino = false;</span>
-<span class="nc bnc" id="L195" title="All 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">            if (aux.getElem().equals(origen)) {</span>
-<span class="nc" id="L197">                nodoOrigen = aux;</span>
-<span class="nc" id="L198">                encontroOrigen = true;</span>
+<span class="fc" id="L189">        boolean res = false;</span>
+<span class="fc" id="L190">        NodoVert nodoOrigen = null;</span>
+<span class="fc" id="L191">        NodoVert nodoDestino = null;</span>
+<span class="fc" id="L192">        NodoVert aux = inicio;</span>
+<span class="fc" id="L193">        boolean encontroOrigen = false;</span>
+<span class="fc" id="L194">        boolean encontroDestino = false;</span>
+<span class="pc bpc" id="L195" title="1 of 6 branches missed.">        while (aux != null &amp;&amp; (!encontroOrigen || !encontroDestino)) {</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">            if (aux.getElem().equals(origen)) {</span>
+<span class="fc" id="L197">                nodoOrigen = aux;</span>
+<span class="fc" id="L198">                encontroOrigen = true;</span>
             }
-<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L201">                nodoDestino = aux;</span>
-<span class="nc" id="L202">                encontroDestino = true;</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L201">                nodoDestino = aux;</span>
+<span class="fc" id="L202">                encontroDestino = true;</span>
             }
-<span class="nc" id="L204">            aux = aux.getSigVertice();</span>
+<span class="fc" id="L204">            aux = aux.getSigVertice();</span>
         }
-<span class="nc bnc" id="L206" title="All 4 branches missed.">        if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
-<span class="nc" id="L207">            Lista visitados = new Lista();</span>
-<span class="nc" id="L208">            res = existeCaminoAux(nodoOrigen, destino, visitados);</span>
+<span class="pc bpc" id="L206" title="2 of 4 branches missed.">        if (nodoOrigen != null &amp;&amp; nodoDestino != null) {</span>
+<span class="fc" id="L207">            Lista visitados = new Lista();</span>
+<span class="fc" id="L208">            res = existeCaminoAux(nodoOrigen, destino, visitados);</span>
         }
-<span class="nc" id="L210">        return res;</span>
+<span class="fc" id="L210">        return res;</span>
     }
 
     private boolean existeCaminoAux(NodoVert aux, Object destino, Lista visitados) {
-<span class="nc" id="L214">        boolean res = false;</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">        if (aux != null) {</span>
-<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (aux.getElem().equals(destino)) {</span>
-<span class="nc" id="L217">                res = true;</span>
+<span class="fc" id="L214">        boolean res = false;</span>
+<span class="pc bpc" id="L215" title="1 of 2 branches missed.">        if (aux != null) {</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">            if (aux.getElem().equals(destino)) {</span>
+<span class="fc" id="L217">                res = true;</span>
             }
             else {
-<span class="nc" id="L220">                visitados.insertar(aux.getElem(), visitados.longitud() + 1);</span>
-<span class="nc" id="L221">                NodoAdy auxAdy = aux.getPrimerAdy();</span>
-<span class="nc bnc" id="L222" title="All 4 branches missed.">                while (!res &amp;&amp; auxAdy != null) {</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">                    if (visitados.localizar(auxAdy.getVertice().getElem()) &lt; 0) {</span>
-<span class="nc" id="L224">                        res = existeCaminoAux(auxAdy.getVertice(), destino, visitados);</span>
+<span class="fc" id="L220">                visitados.insertar(aux.getElem(), visitados.longitud() + 1);</span>
+<span class="fc" id="L221">                NodoAdy auxAdy = aux.getPrimerAdy();</span>
+<span class="pc bpc" id="L222" title="1 of 4 branches missed.">                while (!res &amp;&amp; auxAdy != null) {</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">                    if (visitados.localizar(auxAdy.getVertice().getElem()) &lt; 0) {</span>
+<span class="fc" id="L224">                        res = existeCaminoAux(auxAdy.getVertice(), destino, visitados);</span>
                     }
-<span class="nc" id="L226">                    auxAdy = auxAdy.getSigAdyacente();</span>
+<span class="fc" id="L226">                    auxAdy = auxAdy.getSigAdyacente();</span>
                 }
             }
         }
-<span class="nc" id="L230">        return res;</span>
+<span class="fc" id="L230">        return res;</span>
     }
 
     public Lista listarArcos() {

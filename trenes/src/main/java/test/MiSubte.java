@@ -9,7 +9,7 @@ public class MiSubte {
 
     public static void main(String[] args) throws IOException {
         TrenesSubterraneos miSubte = new TrenesSubterraneos();
-        FileWriter archivo = new FileWriter("C:\\Users\\Nicolas\\Desktop\\log.txt");
+        FileWriter archivo = new FileWriter("log.txt");
         PrintWriter escritor = new PrintWriter(archivo);
         int op;
 

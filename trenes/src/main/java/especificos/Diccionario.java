@@ -33,18 +33,14 @@ public class Diccionario {
             if (clave.compareTo(aux.getClave()) < 0) {
                 if (aux.getIzquierdo() != null) {
                     res = insertarAux(aux.getIzquierdo(), clave, dato);
-                    //aux.calcularAltura();
                 } else {
                     aux.setIzquierdo(new NodoAVLDicc(clave, dato));
-                    //aux.calcularAltura();
                 }
             } else {
                 if (aux.getDerecho() != null) {
                     res = insertarAux(aux.getDerecho(), clave, dato);
-                    //aux.calcularAltura();
                 } else {
                     aux.setDerecho(new NodoAVLDicc(clave, dato));
-                    //aux.calcularAltura();
                 }
             }
         }
@@ -65,13 +61,10 @@ public class Diccionario {
             if (raiz.getClave().equals(clave)) {
                 if (esHoja(raiz)) {
                     raiz = null;
-                    //raiz.calcularAltura();
                 } else if (soloHijoIzq(raiz)) {
                     raiz = raiz.getIzquierdo();
-                    //raiz.calcularAltura();
                 } else if (soloHijoDer(raiz)) {
                     raiz = raiz.getDerecho();
-                    //raiz.calcularAltura();
                 } else {
                     raiz = tercerCaso(raiz);
                 }
@@ -92,31 +85,23 @@ public class Diccionario {
             if ((aux.getIzquierdo() != null) && (aux.getIzquierdo().getClave().equals(clave))) {
                 if (esHoja(aux.getIzquierdo())) {
                     aux.setIzquierdo(null);
-                    //aux.calcularAltura();
                 } else if (soloHijoIzq(aux.getIzquierdo())) {
                     aux.setIzquierdo(aux.getIzquierdo().getIzquierdo());
-                    //aux.calcularAltura();
                 } else if (soloHijoDer(aux.getIzquierdo())) {
                     aux.setIzquierdo(aux.getIzquierdo().getDerecho());
-                    //aux.calcularAltura();
                 } else {
                     aux.setIzquierdo(tercerCaso(aux.getIzquierdo()));
-                    //aux.calcularAltura();
                 }
                 res = true;
             } else if ((aux.getDerecho() != null) && (aux.getDerecho().getClave().equals(clave))) {
                 if (esHoja(aux.getDerecho())) {
                     aux.setDerecho(null);
-                    //aux.calcularAltura();
                 } else if (soloHijoIzq(aux.getDerecho())) {
                     aux.setDerecho(aux.getDerecho().getIzquierdo());
-                    //aux.calcularAltura();
                 } else if (soloHijoDer(aux.getDerecho())) {
                     aux.setDerecho(aux.getDerecho().getDerecho());
-                    //aux.calcularAltura();
                 } else {
                     aux.setDerecho(tercerCaso(aux.getDerecho()));
-                    //aux.calcularAltura();
                 }
                 res = true;
             } else {
@@ -154,52 +139,6 @@ public class Diccionario {
         }
         return n;
     }
-    
-    /*
-    private NodoAVLDicc autobalancear(NodoAVLDicc n) {
-        int balanceP = calcularBalance(n);
-        
-        if (balanceP < -1)  {
-            NodoAVLDicc aux = n.getDerecho();
-            int balanceHD = calcularBalance(aux);
-            
-            if (balanceHD < 0) {
-                rotacionSimpleIzq(n);
-            } else {
-                rotacionSimpleDer(n.getDerecho());
-                rotacionSimpleIzq(n);
-            }
-        } else if (balanceP > 1) {
-            NodoAVLDicc aux = n.getIzquierdo();
-            int balanceHI = calcularBalance(aux);
-            
-            if (balanceHI > 0) {
-                rotacionSimpleDer(n);
-            } else {
-                rotacionSimpleIzq(n.getIzquierdo());
-                rotacionSimpleDer(n);
-            }
-        }
-        return n;
-    }
-    
-    private int calcularBalance(NodoAVLDicc n) {
-        int balance;
-        if (n.getIzquierdo() != null && n.getDerecho() != null)
-            balance = (n.getIzquierdo().getAltura()) - (n.getDerecho().getAltura());
-        else {
-            if (n.getIzquierdo() == null && n.getDerecho() == null)
-                balance = 0;
-            else {
-                if (n.getIzquierdo() != null && n.getDerecho() == null) 
-                    balance = (n.getIzquierdo().getAltura() - (-1));
-                else
-                    balance = ((-1) - (n.getDerecho().getAltura())); 
-            }
-        }
-        return balance;
-    }
-    */
     
     private NodoAVLDicc rotacionSimpleIzq(NodoAVLDicc n) {
         Comparable aux1 = n.getClave();

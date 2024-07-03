@@ -9,9 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,41 +27,32 @@ import trenesSubterraneos.TrenesSubterraneos;
 
 @ExtendWith(MockitoExtension.class)
 public class TrenesSubterraneosTest {
-    
-    //Dependencias
     //@Mock
     //private Grafo redRieles;
 
     //@Mock
     //private Diccionario estaciones;
 
+    //Dependencias
     @Spy
     private HashMap trenesSpy = new HashMap<>();
-    //private HashMap<String, String> trenesSpy = new HashMap<>();
 
     @Spy
     private HashMap lineasSpy = new HashMap();
-    //private HashMap<String, String> lineasSpy = new HashMap<>();
 
     @Spy
     private Grafo redDeRieles = new Grafo();
     
     @Spy
     private Diccionario estaciones = new Diccionario();
+
     //Clase a testear
     private TrenesSubterraneos subte;
 
-    /* 
-    @BeforeEach
-    public void setup() {
-        estaciones = mock(Diccionario.class);
-        subte = new TrenesSubterraneos(estaciones);
-    }
-    */
 
     @BeforeEach
     public void setup() {
-        subte = new TrenesSubterraneos(trenesSpy, lineasSpy,redDeRieles,estaciones);
+        subte = new TrenesSubterraneos(trenesSpy, lineasSpy, redDeRieles, estaciones);
     }
 
     @Test
@@ -78,8 +67,6 @@ public class TrenesSubterraneosTest {
 
         verify(lineasSpy).containsKey(anyString());
         //verify(lineasSpy, times(2)).containsKey(anyString());  DESCOMENTAR
-        
-        //assertThat(aSpyList).hasSize(2);
     }
 
     @Test
@@ -157,6 +144,4 @@ public class TrenesSubterraneosTest {
         // Verificación que se llamó a caminoMenorTiempo con los parámetros esperados
         verify(redDeRieles, times(1)).caminoMenorTiempo(origen, destino);
     }
-
-    
 }
